@@ -1,0 +1,6 @@
+# Config
+/application/config/config.php
+/application/config/database.php
+
+# Cache
+/application/cache
