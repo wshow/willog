@@ -3,7 +3,7 @@
 /application/config/database.php
 
 # Cache
-#/application/cache
+/application/cache
 
 # Other
 /.idea
