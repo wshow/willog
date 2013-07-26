@@ -231,7 +231,8 @@ if ( ! function_exists('get_config'))
 		// Fetch the config file
 		if ( ! file_exists($file_path))
 		{
-			exit('The configuration file does not exist.');
+            install();
+		    //exit('The configuration file does not exist.');
 		}
 
 		require($file_path);
@@ -239,7 +240,8 @@ if ( ! function_exists('get_config'))
 		// Does the $config array exist in the file?
 		if ( ! isset($config) OR ! is_array($config))
 		{
-			exit('Your config file does not appear to be formatted correctly.');
+            install();
+			//exit('Your config file does not appear to be formatted correctly.');
 		}
 
 		// Are any values being dynamically replaced?
@@ -560,5 +562,25 @@ if ( ! function_exists('html_escape'))
 	}
 }
 
+if ( ! function_exists('install')){
+
+    function install(){
+        // Setup Options
+        if (isset($_SERVER['HTTP_HOST']))
+        {
+            $base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+            $base_url .= '://'. $_SERVER['HTTP_HOST'];
+            $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+        }
+
+        else
+        {
+            $base_url = 'http://localhost/';
+        }
+        $instal_lock = realpath(BASEPATH.'../install/install.lock');
+        if($instal_lock) unlink($instal_lock);
+        header("Location: ".$base_url.'install/', TRUE, 302);
+    }
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

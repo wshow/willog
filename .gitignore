@@ -4,7 +4,9 @@
 
 # Cache
 /application/cache
+/application/log
 
 # Other
+/install/install.lock
 /.idea
 .DS_Store

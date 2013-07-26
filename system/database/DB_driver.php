@@ -117,13 +117,29 @@ class CI_DB_driver {
 		// No connection resource?  Throw an error
 		if ( ! $this->conn_id)
 		{
-			log_message('error', 'Unable to connect to the database');
+            // Setup Options
+            if (isset($_SERVER['HTTP_HOST']))
+            {
+                $base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+                $base_url .= '://'. $_SERVER['HTTP_HOST'];
+                $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+            }
+            else
+            {
+                $base_url = 'http://localhost/';
+            }
+            $instal_lock = realpath(BASEPATH.'../install/install.lock');
+            if($instal_lock) unlink($instal_lock);
+            header("Location: ".$base_url.'install/', TRUE, 302);
 
-			if ($this->db_debug)
-			{
-				$this->display_error('db_unable_to_connect');
-			}
-			return FALSE;
+            exit();
+//            log_message('error', 'Unable to connect to the database');
+//
+//			if ($this->db_debug)
+//			{
+//				$this->display_error('db_unable_to_connect');
+//			}
+//			return FALSE;
 		}
 
 		// ----------------------------------------------------------------
