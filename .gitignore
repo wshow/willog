@@ -4,3 +4,6 @@
 
 # Cache
 /application/cache
+
+# Other
+/.idea
