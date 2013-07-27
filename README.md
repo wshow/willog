@@ -1,7 +1,5 @@
 #Willog
-**中文版请往下**
-
-======
+[**中文版请往下**](#willog-%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E)
 
 ## Overview
 
@@ -16,15 +14,11 @@ Demo: [now.willin.org](http://now.willin.org/)
 ## Configuration
 
 
-======
-
 ## Features
 
 
 ## Faq
 
-
-======
 
 ## Contributors 
 
@@ -39,12 +33,9 @@ Demo: [now.willin.org](http://now.willin.org/)
 
 #Willog 中文说明
 
-======
-
 ## 概述
 
-The best way to log what you will do and what you want
-Demo: [now.willin.org](http://now.willin.org/)
+基于LBS的轻博客系统，记录奔波成长历程和心愿的最佳方式。演示: [now.willin.org](http://now.willin.org/)
 
 
 ## 安装
@@ -54,7 +45,6 @@ Demo: [now.willin.org](http://now.willin.org/)
 ## 配置
 
 
-======
 
 ## 特色
 
@@ -62,7 +52,6 @@ Demo: [now.willin.org](http://now.willin.org/)
 ## Q&amp;A
 
 
-======
 
 ## 贡献者 
 
