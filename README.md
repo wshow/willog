@@ -57,7 +57,7 @@ Demo: [now.willin.org](http://now.willin.org/)
 
 **创意架构**: [王之琳](http://willin.org/)
 
-**核心成员**: 蒲茂林 pml1988.ok@163.com
+**核心成员**: 蒲茂林 pml1988.ok@163.com 
 
 ## 鸣谢
 
