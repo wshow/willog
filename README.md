@@ -1,4 +1,4 @@
-#Willog
+#Willog Beta
 [**中文版请往下**](#willog-%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E)
 
 ## Overview
@@ -57,7 +57,7 @@ Demo: [now.willin.org](http://now.willin.org/)
 
 **创意架构**: [王之琳](http://willin.org/)
 
-**核心成员**: 蒲茂林 pml1988.ok@163.com 
+**核心成员**: 蒲茂林 pml1988.ok@163.com
 
 ## 鸣谢
 
