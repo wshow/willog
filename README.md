@@ -26,6 +26,8 @@ Demo: [now.willin.org](http://now.willin.org/)
 
 **Chief Programmer**: Maolin Pu
 
+Dev Notes: (https://www.evernote.com/pub/willinwang/willog)
+
 ## Credits
 
 ======
@@ -58,6 +60,8 @@ Demo: [now.willin.org](http://now.willin.org/)
 **创意架构**: [王之琳](http://willin.org/)
 
 **核心成员**: 蒲茂林 pml1988.ok@163.com
+
+开发资料: (https://www.evernote.com/pub/willinwang/willog)
 
 ## 鸣谢
 
