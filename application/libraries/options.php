@@ -14,6 +14,7 @@ class Options
      * @var object
      */
     private $_CI;
+    private $_Adapter;
 
     /**
      * 构造函数
@@ -24,7 +25,8 @@ class Options
     public function __construct(){
         /** 获取CI句柄 */
         $this->_CI = & get_instance();
-        $this->_CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+        $this->_CI->load->library('caches');
+        $this->_Adapter = $this->_CI->Caches;
     }
 
     /**
@@ -34,11 +36,7 @@ class Options
      * @return list
      */
     public function get_option($keys=null,$by_id=FALSE){
-        if ($this->_CI->cache->apc->is_supported())
-            $options =  $this->_CI->cache->get('options');
-        else
-            $options =  $this->_CI->cache->file->get('options');
-        if(!$options)
+        if( ! $options = $this->_Adapter->get('options') )
             $options = $this->_set_options(TRUE);
         if(!$keys) return $options;
         $data=array();
@@ -119,18 +117,10 @@ class Options
             ->from('options');
         $options = $this->_CI->db->get()->result_array();
         $options = array_insert($options,array('id'=>'0','key'=>'cached_time','value'=>date('Y-m-d H:i:s')),0);
-        if ($this->_CI->cache->apc->is_supported()){
-            $this->_CI->cache->save('options', $options , 3600*24);
-        }
-        else{
-            $this->_CI->cache->file->save('options', $options , 3600*24);
-        }
+        $this->_Adapter->save('options', $options , 3600*24);
+
         if($return){
-            if ($this->_CI->cache->apc->is_supported())
-                $options =  $this->_CI->cache->get('options');
-            else
-                $options =  $this->_CI->cache->file->get('options');
-            return $options;
+            return $this->_Adapter->get('options');
         }
 
     }
