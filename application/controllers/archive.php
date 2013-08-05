@@ -35,9 +35,9 @@ class Archive extends MY_Controller {
         }
         if(!is_numeric($year))
             show_404();
-        $this->lang->load('archive',$this->lan);
+        $this->lang->load('archive',$this->get_lang());
 
-        echo $this->lan.'<br>';
+        echo $this->get_lang().'<br>';
         echo $year.'-'.($mon?$mon:'0').'-'.($day?$day:'0').'<br>';
         if($p=='page'){
             //$page 分页

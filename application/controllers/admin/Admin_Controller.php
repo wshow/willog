@@ -6,17 +6,21 @@
  * File:    MY_Admin_Controller.php
  */
 class Admin_Controller extends CI_Controller{
-    private  $site_lang = '';
-    public $lan = '';
+    private  $_site_lang = '';
+    private  $_cur_lang = '';
+    public $data;
+
+    public function get_lang(){
+        return $this->_cur_lang;
+    }
 
     public function __construct(){
         parent::__construct();
-        $this->site_lang = $this->options->get_option('site_lang');
+        $this->_site_lang = $this->options->get('site_lang');
+        if(! $this->_cur_lang = $this->session->userdata('lang')){
+            $this->_cur_lang = $this->_site_lang;
+            $this->session->set_userdata('lang',$this->_site_lang);
+        }
+        $this->data['site_name'] = $this->options->get('site_name',$this->get_lang());
     }
-
-    public  function get_lang(){
-        return $this->site_lang;
-    }
-
-
 }

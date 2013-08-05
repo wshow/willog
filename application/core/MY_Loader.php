@@ -10,12 +10,14 @@ class MY_Loader extends CI_Loader {
     public function __construct()
     {
         parent::__construct();
-        $this->_ci_view_paths =  array( WILLOG.'themes/' => TRUE);//定义你自己的views路径
+        $this->_ci_view_paths =  array(
+            WILLOG.'themes/' => TRUE,
+            APPPATH.'views/' => TRUE
+        );
 
     }
 
     public function system_view($view, $vars = array(), $return = FALSE){
-        $this->_ci_view_paths =  array( APPPATH.'views/' => TRUE);
-        $this->view($view, $vars = array(), $return = FALSE);
+        $this->view($view, $vars, $return);
     }
 }
