@@ -190,6 +190,7 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+    define('WILLOG',realpath(BASEPATH.'../').'/');
 
 /*
  * --------------------------------------------------------------------

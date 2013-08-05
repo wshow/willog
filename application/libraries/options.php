@@ -26,7 +26,7 @@ class Options
         /** 获取CI句柄 */
         $this->_CI = & get_instance();
         $this->_CI->load->library('caches');
-        $this->_Adapter = $this->_CI->Caches;
+        $this->_Adapter = $this->_CI->caches;
     }
 
     /**
@@ -117,7 +117,7 @@ class Options
             ->from('options');
         $options = $this->_CI->db->get()->result_array();
         $options = array_insert($options,array('id'=>'0','key'=>'cached_time','value'=>date('Y-m-d H:i:s')),0);
-        $this->_Adapter->save('options', $options , 3600*24);
+        $this->_Adapter->set('options', $options , 3600*24);
 
         if($return){
             return $this->_Adapter->get('options');

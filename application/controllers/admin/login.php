@@ -10,7 +10,9 @@ require_once('Admin_Controller.php');
 class Login extends Admin_Controller {
     public function index()
     {
-        echo $this->get_lang();
+        //echo $this->get_lang();
+
+        $this->load->system_view('1');
     }
 }
 
