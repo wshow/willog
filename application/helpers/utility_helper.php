@@ -56,3 +56,27 @@ if ( ! function_exists('valid_email'))
         return ( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $address)) ? FALSE : TRUE;
     }
 }
+
+if ( ! function_exists('is_mobile'))
+{
+    function is_mobile(){
+        //正则表达式,批配不同手机浏览器UA关键词。
+        $regex_match="/(nokia|iphone|android|motorola|^mot\-|softbank|foma|docomo|kddi|up\.browser|up\.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam\-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte\-|longcos|pantech|gionee|^sie\-|portalmmm|jig\s browser|hiptop|^ucweb|^benq|haier|^lct|opera\s*mobi|opera\*mini|320x320|240x320|176x220)/i";
+        return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT'])); //如果UA中存在上面的关键词则返回真。
+    }
+}
+
+if ( ! function_exists('object_to_array') )
+{
+    function object_to_array($stdclassobject)
+    {
+        $_array = is_object($stdclassobject) ? get_object_vars($stdclassobject) : $stdclassobject;
+        $array =  [];
+        foreach ($_array as $key => $value) {
+            $value = (is_array($value) || is_object($value)) ? object_to_array($value) : $value;
+            $array[$key] = $value;
+        }
+
+        return $array;
+    }
+}
