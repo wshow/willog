@@ -20,12 +20,8 @@ class Root extends MY_Controller {
 	public function index($p=false,$page=false)
 	{
         $this->load->model('users');
-        $o = array(
-            'username' => 'willin',
-            'password' => 'willin',
-            'login_valid' => 1
-        );
-        $this->users->log($o);
+        echo $this->users->can_login();
+
         if($p=='page'){
 
         }
