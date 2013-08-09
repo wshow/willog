@@ -46,12 +46,8 @@ class Options
                 $data=array_insert($data,$option);
         }
         if(count($keys)==1 && count($data)==1){
-            try{
-                if($lang)
-                    return unserialize($data[0]['value'])[$lang];
-            }
-            catch(Exception $e){}
-
+            if($lang && isset(unserialize($data[0]['value'])[$lang]))
+                return unserialize($data[0]['value'])[$lang];
             return $data[0]['value'];
         }
         else

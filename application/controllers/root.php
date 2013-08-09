@@ -20,7 +20,7 @@ class Root extends MY_Controller {
 	public function index($p=false,$page=false)
 	{
         $this->load->model('users');
-        echo $this->users->can_login();
+        //var_dump( $this->users->delete(array('username'=>'wzl','nickname'=>'wzl','nouser'=>'23','password'=>'123','reset_key'=>true)) );
 
         if($p=='page'){
 

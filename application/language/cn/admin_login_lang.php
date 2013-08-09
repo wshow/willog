@@ -1,2 +1,2 @@
 <?php
-$lang['title']          = '登录';
+$lang['title']  = '登录';

@@ -1,3 +1,3 @@
 <?php
-$lang['archive']          = 'Archives';
-$lang['search']           = 'Search';
+$lang['archive'] = 'Archives';
+$lang['search'] = 'Search';

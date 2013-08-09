@@ -17,7 +17,4 @@ class MY_Loader extends CI_Loader {
 
     }
 
-    public function system_view($view, $vars = array(), $return = FALSE){
-        $this->view($view, $vars, $return);
-    }
 }

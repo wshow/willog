@@ -1,2 +1,2 @@
 <?php
-$lang['title']          = 'Login';
+$lang['title'] = 'Login';

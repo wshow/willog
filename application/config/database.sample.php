@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '{WILLOGBLANK}';
-$db['default']['username'] = '{WILLOGBLANK}';
-$db['default']['password'] = '{WILLOGBLANK}';
-$db['default']['database'] = '{WILLOGBLANK}';
+$db['default']['hostname'] = '{hostname}';
+$db['default']['username'] = '{username}';
+$db['default']['password'] = '{password}';
+$db['default']['database'] = '{database}';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'w_';
 $db['default']['pconnect'] = TRUE;

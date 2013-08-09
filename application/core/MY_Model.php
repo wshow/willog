@@ -50,8 +50,24 @@ class MY_Model extends CI_Model
      * @param array $options
      * @return array
      */
-    function _default($defaults, $options)
+    function _default($defaults, $options , $delete=FALSE)
     {
-        return array_merge($defaults, $options);
+        foreach($options as $key=>$value){
+            if( ! array_key_exists($key,$defaults))
+                unset($options[$key]);
+        }
+        $result = array_merge($defaults, $options);
+        if($delete)
+            return $this->_delete_null($result);
+        return $result;
+    }
+
+    private function _delete_null($options)
+    {
+        foreach($options as $key=>$value){
+            if(!$value)
+                unset($options[$key]);
+        }
+        return $options;
     }
 }
