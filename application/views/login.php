@@ -16,8 +16,8 @@
     <div class="container">
        <div class="row">
            <div class="large-6 large-offset-3 columns">
-               <form id="loginform" method="post" action="<?= base_url('/admin/login/submit') ?>">
-                   <h1 class="logo text-center"><a href="#">Willog</a></h1>
+               <h1 class="logo text-center"><a href="#" id="logo">Willog</a></h1>
+               <form id="loginform" method="post" action="<?= base_url('/admin/login/submit') ?>" class="radius5">
                    <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
                    <div class="username">
                        <label for="username"><?= $lang->line('username') ?></label>
@@ -27,35 +27,39 @@
                        <label for="password"><?= $lang->line('password') ?></label>
                        <input id="password" type="password" name="p[password]" placeholder="password" />
                    </div>
-                   <div class="row">
-                       <div class="small-3 columns">
-                           <div class="switch">
-                               <input id="off" name="p[remember]" type="radio" value="0" >
-                               <label for="off" onclick="">Off</label>
+                   <div class="remember">
+                       <label for="remember"><?= $lang->line('remember') ?></label>
+                       <div class="row">
+                           <div class="small-4 columns">
+                               <div class="switch">
+                                   <input id="remember_off" name="p[remember]" type="radio" value="0" >
+                                   <label for="remember_off" onclick="">Off</label>
 
-                               <input id="on" name="p[remember]" type="radio" value="1" checked>
-                               <label for="on" onclick="">On</label>
-                               <span>&nbsp;</span>
+                                   <input id="remember" name="p[remember]" type="radio" value="1" checked>
+                                   <label for="remember" onclick="">On</label>
+                                   <span>&nbsp;</span>
+                               </div>
+                           </div>
+                           <div id="msg" class="small-8 columns">
+                               <?php if(isset($msg)): ?>
+                                   <span class="round alert label"><?= $msg ?></span>
+                               <?php endif; ?>
                            </div>
                        </div>
-                       <div id="remember" class="small-9 columns">
-                           <?= $lang->line('remember') ?>
-                           <?php if(isset($msg)): ?>
-                               <span class="round alert label"><?= $msg ?></span>
-                           <?php endif; ?>
-                       </div>
                    </div>
 
-                   <ul class="button-group round even-3">
+
+                   <ul class="button-group round even-2">
                        <li><input type="submit" value="<?= $lang->line('login') ?>" class="button"></li>
-                       <li><input type="reset" value="<?= $lang->line('reset') ?>" class="button"></li>
                        <li><input type="reset" value="<?= $lang->line('lost') ?>" class="button"></li>
                    </ul>
-                   <div>
-
-
-                   </div>
                </form>
+               <div class="row">
+                   <div class="small-offset-1">
+                       <a href="<?= base_url('/')?>">&larr;  <?= $site_name ?></a>
+                   </div>
+               </div>
+
            </div>
        </div>
     </div> <!-- /container -->
@@ -63,7 +67,7 @@
     <div class="scripts">
         <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
         <script type="text/javascript" src="<?=base_url('/assets/js/responsive-modernizr.js')?>"></script>
-        <script type="text/javascript">window.jQuery || document.write('<script src="<?=base_url('/assets/js/jquery-1.10.2.min.js')?>">\x3C/script>')</script>
+        <script type="text/javascript">window.jQuery || document.write('<script src="<?=base_url('/assets/js/jquery-1.10.2.min.js')?>">\x3C/script>');var base_url='<?= base_url('/')?>';</script>
         <script type="text/javascript" src="<?=base_url('/assets/js/dashboard.min.js')?>"></script>
     </div>
 </body>

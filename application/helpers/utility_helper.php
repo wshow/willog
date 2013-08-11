@@ -17,6 +17,16 @@ if ( ! function_exists('is_ajax'))
         return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest");
     }
 }
+
+if( ! function_exists('json_result') )
+{
+    function json_result($result){
+        header('ContentType: test/json');
+        echo json_encode($result);
+        exit();
+    }
+}
+
 if ( ! function_exists('array_insert'))
 {
     function array_insert($myarray,$value,$position=-1){
@@ -66,17 +76,3 @@ if ( ! function_exists('is_mobile'))
     }
 }
 
-if ( ! function_exists('object_to_array') )
-{
-    function object_to_array($stdclassobject)
-    {
-        $_array = is_object($stdclassobject) ? get_object_vars($stdclassobject) : $stdclassobject;
-        $array =  [];
-        foreach ($_array as $key => $value) {
-            $value = (is_array($value) || is_object($value)) ? object_to_array($value) : $value;
-            $array[$key] = $value;
-        }
-
-        return $array;
-    }
-}

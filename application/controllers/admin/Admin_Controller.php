@@ -24,9 +24,12 @@ class Admin_Controller extends CI_Controller{
         $this->data['site_name'] = $this->options->get('site_name',$this->get_lang());
     }
 
-    public function check_login(){
+    public function check_login($return = false){
         $this->load->model('users');
+        if($return)
+            return $this->users->get_user_id();
         if(!$this->users->is_login())
             redirect(base_url('admin/login'));
+
     }
 }

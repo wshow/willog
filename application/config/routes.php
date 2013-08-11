@@ -42,6 +42,7 @@ $route['default_controller'] = "root";
 //$route['(:any)']= preg_replace('/\-/u','_',$_SERVER['REQUEST_URI']);
 
 //Dashboard
+$route['admin/logout'] = 'admin/login/logout';
 $route['admin/(:any)'] = 'admin/$1';
 
 //Search and Archives

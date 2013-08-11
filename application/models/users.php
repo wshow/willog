@@ -248,4 +248,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      public function is_login(){
          return $this->get_session('id')?true:false;
      }
+
+     public function get_user_id($user = false){
+         if(!$user)
+             return $this->get_session('id')?$this->get_session('id'):false;
+         $default = array(
+             'username' => '',
+             'email' => ''
+         );
+         $user = $this->_default($default,$user,true);
+         $this->_CI->db->select('id')->from('users')->where($user)->limit(1);
+         $result = $this->_CI->db->get()->row_array();
+         if($result && $result['id'])
+             return $result['id'];
+         return false;
+     }
  }

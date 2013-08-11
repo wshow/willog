@@ -1,7 +1,31 @@
+/* Global */
+.radius10{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.radius5{
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
 /* Login */
-#loginform #remember{
+h1.logo #logo{
+
+}
+#loginform{
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: 1em;
+    box-shadow: 0 4px 10px -1px rgba(200,200,200,0.7);
+    -moz-box-shadow: 0 4px 10px -1px rgba(200,200,200,0.7);
+    -webkit-box-shadow: 0 4px 10px -1px rgba(200,200,200,0.7);
+}
+#loginform #msg{
     line-height: 36px;
 }
 @media only screen and (min-width: 768px){
-
+    h1.logo{
+        margin-top: 120px;
+    }
 }
