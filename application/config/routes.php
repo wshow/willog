@@ -58,7 +58,7 @@ $route['cn/(:any)'] = 'root/posts/cn/$1';
 $route['en/(:any)'] = 'root/posts/en/$1';
 $route['cn'] = 'root/index/cn';
 $route['en'] = 'root/index/en';
-
+$route['admin'] = 'admin/dashboard';
 //Posts
 $route['(:any)'] = 'root/posts/$1';
 

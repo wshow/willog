@@ -38,7 +38,7 @@ class MY_Model extends CI_Model
      */
     function _required($required, $data)
     {
-        foreach($required as $field) if(!isset($data[$field])) return false;
+        foreach($required as $field) if(!isset($data[$field]) || !$data[$field]) return false;
         return true;
     }
 

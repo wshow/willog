@@ -51,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          else
              $logininfo['username'] = $options['username'];
          $userinfo = $this->get($logininfo);
-         if(! $userinfo)
+
+         if(!$userinfo)
          {
              $this->log($options);
              return array('status'=>false,'msg'=>'wrong_user');
@@ -63,7 +64,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              return array('status'=>false,'msg'=>'wrong_password');
          }
          //Set Login Session
-         $this->_set_session($userinfo);
+         $remember = $options['remember']==1?TRUE:FALSE;
+         $this->_set_session($userinfo,$remember);
          $options['login_valid'] = 1;
          $this->log($options);
          return array('status'=>true,'msg'=>'login_success');
@@ -200,7 +202,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          if($options)
              $this->_CI->db->where($options);
          $users = $this->_CI->db->get()->result_array();
-         if(count($users==0)) return false;
+         if(count($users)==0) return false;
          return count($users)>1?$users:$users[0];
      }
 
@@ -210,9 +212,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       * @access private
       * @return void
       */
-     private function _set_session($userinfo){
+     private function _set_session($userinfo,$remember = TRUE){
          $userinfo['timespan'] = time();
          $session_data = array('user' => serialize($userinfo));
+         if($remember)
+             $this->_CI->session->sess_expiration = 60*60*24*365*2;
          $this->_CI->session->set_userdata($session_data);
      }
 
