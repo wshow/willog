@@ -24,6 +24,11 @@ class Admin_Controller extends CI_Controller{
         $this->data['site_name'] = $this->options->get('site_name',$this->get_lang());
     }
 
+    /**
+     * Check Login
+     * @param bool $return
+     * @return mixed
+     */
     public function check_login($return = false){
         $this->load->model('users');
         if($return)
@@ -31,5 +36,20 @@ class Admin_Controller extends CI_Controller{
         if(!$this->users->is_login())
             redirect(base_url('admin/login'));
 
+    }
+
+    /**
+     * Load Dashboard Views
+     * @param string $page
+     */
+    public function admin_view($options = array()){
+        if(! $options['page'] || ! $options['index']) return;
+        $this->lang->load($options['page'],$this->get_lang());
+        $this->data['lang'] = $this->lang;
+        $this->data['page'] = $options['page'];
+        $this->data['nav_index'] = $options['index'];
+        $this->load->view('layouts/header',$this->data);
+        $this->load->view('admin/'.$options['page'],$this->data);
+        $this->load->view('layouts/footer',$this->data);
     }
 }

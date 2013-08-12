@@ -29,3 +29,138 @@ h1.logo #logo{
         margin-top: 120px;
     }
 }
+
+/* DashBoard*/
+#container {
+    padding-left: 150px; /* left col width "#menu" */
+    left: 0;
+}
+/* --------------------------
+ * Main Navigation Bar Styles
+ * --------------------------
+*/
+.top-bar .toggle-topbar.menu-icon a{
+    text-indent:-88px;
+}
+#container,
+#menu,
+.pure-menu-link {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+#menu {
+    margin-left: -150px; /* "#menu" width */
+    width: 150px;
+    position: fixed;
+    top: 0;
+    left: 150px;
+    bottom: 0;
+    z-index: 1000; /* so the menu or its navicon stays above all content */
+    background: #191818;
+    overflow-y: auto;
+    -webkit-overflow-scroll: touch;
+}
+#menu a {
+    color: #999;
+    border: none;
+    white-space: normal;
+    padding: 0.6em 0 0.6em 0.6em;
+}
+
+#menu .pure-menu-open {
+    background: transparent;
+    border: 0;
+}
+
+#menu .pure-menu ul {
+    border: none;
+    background: transparent;
+}
+
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+    border-top: 1px solid #333;
+}
+
+#menu .pure-menu li a:hover,
+#menu .pure-menu li a:focus {
+    background: #333;
+}
+
+.pure-menu-link {
+    display: none; /* show this only on small screens */
+    top: 0;
+    left: 150px; /* "#menu width" */
+}
+
+#menu .pure-menu-heading {
+    font-size: 110%;
+    color: #fff;
+}
+#menu .pure-menu-heading:hover,
+#menu .pure-menu-heading:focus {
+    color: #999;
+}
+
+#menu .selected {
+    background: #1f8dd6;
+}
+
+#menu .selected a {
+    color: #fff;
+}
+
+#menu li.selected a:hover,
+#menu li.selected a:focus {
+    background: none;
+}
+
+
+@media (max-width: 870px) {
+
+    /* Navigation Push Styles */
+    #container {
+        position: relative;
+        padding-left: 0;
+    }
+    #container.active {
+        position: relative;
+        left: 150px;
+    }
+    #container.active #menu {
+        left: 150px;
+        width: 150px;
+    }
+
+    #menu {
+        left: 0;
+    }
+
+    .pure-menu-link{
+        position: fixed;
+        left: 0;
+        display: block;
+        padding: 0.35em 1em;
+        z-index: 99999;
+    }
+    .pure-menu-link a{
+        width: 32px;
+        height:32px;
+        display: block;
+        position: relative;
+    }
+    .pure-menu-link span{
+        position: absolute;
+        display: block;
+        width:16px;
+        height:0px;
+        -webkit-box-shadow: 0 10px 0 1px #fff,0 16px 0 1px #fff,0 22px 0 1px #fff;
+        box-shadow: 0 10px 0 1px #fff,0 16px 0 1px #fff,0 22px 0 1px #fff;
+    }
+    #container.active .pure-menu-link {
+        left: 150px;
+    }
+}

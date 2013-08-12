@@ -11,8 +11,7 @@ class Dashboard extends Admin_Controller {
 
     public function index()
     {
-        $this->check_login();
-        echo'Undone';
+        $this->admin_view(array('page'=>'dashboard','index'=>1));
     }
 
 
