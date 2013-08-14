@@ -245,7 +245,7 @@ $config['encryption_key'] = '{encryption_key}';
 |
 */
 $config['sess_cookie_name']		= 'willog_session';
-$config['sess_expiration']		= 7200;
+$config['sess_expiration']		= 3600*24*365*2;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= TRUE;
 $config['sess_use_database']	= FALSE;

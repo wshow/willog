@@ -85,11 +85,6 @@ h1.logo #logo{
     border-top: 1px solid #333;
 }
 
-#menu .pure-menu li a:hover,
-#menu .pure-menu li a:focus {
-    background: #333;
-}
-
 .pure-menu-link {
     display: none; /* show this only on small screens */
     top: 0;

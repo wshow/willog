@@ -215,8 +215,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      private function _set_session($userinfo,$remember = TRUE){
          $userinfo['timespan'] = time();
          $session_data = array('user' => serialize($userinfo));
-         if($remember)
-             $this->_CI->session->sess_expiration = 60*60*24*365*2;
+         if(!$remember)
+             $this->_CI->session->sess_expiration = 7200;
          $this->_CI->session->set_userdata($session_data);
      }
 
