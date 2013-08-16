@@ -54,18 +54,13 @@
                 <li <?= $nav_index==1?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin') ?>"><?= $lang->line('dashboard') ?></a>
                 </li>
-                <li>
-                    <a href="#">Menus</a>
-                </li>
 
-                <li class="menu-item-divided">
-                    <a href="#">Customize</a>
+                <li class="menu-item-divided<?= $nav_index==81?' selected':'' ?>">
+                    <a href="<?= base_url('/admin/users')?>"><?= $lang->line('users') ?></a>
                 </li>
-
-                <li>
-                    <a href="#">Extend</a>
+                <li <?= $nav_index==82?' class="selected"':'' ?>>
+                    <a href="<?= base_url('/admin/users/add') ?>"><?= $lang->line('user_add') ?></a>
                 </li>
-
             </ul>
         </div>
     </div>

@@ -13,3 +13,5 @@ $lang['dashboard']  = '控制面板';
  *      发布心愿
  *
  */
+$lang['users'] = '用户管理';
+$lang['user_add'] = '添加用户';

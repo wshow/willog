@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Created: 2013-08-07 20:58
  * File:    users.php
  */
- Class Users extends MY_Model
+ Class M_Users extends MY_Model
  {
      /**
       * 写登录日志
@@ -38,11 +38,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      public function login($options = array()){
          //Check Blank
          if( ! $this->_required(array('username','password'),$options)){
-             return array('status'=>false,'msg'=>'blank_username_or_password');
+             return array('status'=>0,'msg'=>'blank_username_or_password');
          }
          //Cannot Login 30min > 5 Failures
          if( ! $this->can_login() ){
-             return array('status'=>false,'msg'=>'login_limit');
+             return array('status'=>0,'msg'=>'login_limit');
          }
          //Check Email or Username
          $logininfo = array();
@@ -55,20 +55,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          if(!$userinfo)
          {
              $this->log($options);
-             return array('status'=>false,'msg'=>'wrong_user');
+             return array('status'=>0,'msg'=>'wrong_user');
          }
          //Check Password
          if(sha1($options['password'].$userinfo['salt'])!=$userinfo['password'])
          {
              $this->log($options);
-             return array('status'=>false,'msg'=>'wrong_password');
+             return array('status'=>0,'msg'=>'wrong_password');
          }
          //Set Login Session
          $remember = $options['remember']==1?TRUE:FALSE;
          $this->_set_session($userinfo,$remember);
          $options['login_valid'] = 1;
          $this->log($options);
-         return array('status'=>true,'msg'=>'login_success');
+         return array('status'=>1,'msg'=>'login_success');
      }
 
      /**
@@ -106,18 +106,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              'updated_at' => date("Y-m-d H:i:s")
          );
          if( ! $this->_required(array('username','password'),$options)){
-             return array('status'=>false,'msg'=>'blank_username_or_password');
+             return array('status'=>0,'msg'=>'blank_username_or_password');
          }
          if($this->check_register($options)>0)
-             return array('status'=>false,'msg'=>'user_exist');
+             return array('status'=>0,'msg'=>'user_exist');
          $options['salt'] = random_string('alnum',10);
          $options['password'] = sha1($options['password'].$options['salt']);
 
          $options = $this->_default($default,$options);
          $status = $this->_CI->db->insert('users',$options);
          if(! $status)
-             return array('status'=>false,'msg'=>'sql_error');
-         return array('status'=>true,'msg'=>'insert_success');
+             return array('status'=>0,'msg'=>'sql_error');
+         return array('status'=>1,'msg'=>'insert_success');
      }
 
      /**
@@ -137,8 +137,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              'updated_at' => date("Y-m-d H:i:s")
          );
          if( ! $this->_required(array('username'),$options))
-             return array('status'=>false,'msg'=>'blank_username');
-         if(isset($options['password'])){
+             return array('status'=>0,'msg'=>'blank_username');
+         if(isset($options['password']) && !empty($options['password'])){
              $options['salt'] = random_string('alnum',10);
              $options['password'] = sha1($options['password'].$options['salt']);
          }
@@ -148,10 +148,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          $status = $this->db->where('username',$options['username'])->update('users',$options);
          if(!$status)
-             return array('status'=>false,'msg'=>'sql_error');
-         if($options['reset_key'])
-            return array('status'=>true,'msg'=>'update_success','data'=>$options['reset_key']);
-         return array('status'=>true,'msg'=>'update_success');
+             return array('status'=>0,'msg'=>'sql_error');
+         if(isset($options['reset_key']) && $options['reset_key'])
+            return array('status'=>1,'msg'=>'update_success','data'=>$options['reset_key']);
+         return array('status'=>1,'msg'=>'update_success');
      }
 
      /**
@@ -167,12 +167,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              'email' => ''
          );
          if(!$options)
-             return array('status'=>false,'msg'=>'param_missing');
+             return array('status'=>0,'msg'=>'param_missing');
          $options = $this->_default($default,$options,true);
          $status = $this->_CI->db->where($options)->delete('users');
          if(!$status)
-             return array('status'=>false,'msg'=>'sql_error');
-         return array('status'=>true,'msg'=>'delete_success');
+             return array('status'=>0,'msg'=>'sql_error');
+         return array('status'=>1,'msg'=>'delete_success');
      }
 
      /**
@@ -204,6 +204,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $users = $this->_CI->db->get()->result_array();
          if(count($users)==0) return false;
          return count($users)>1?$users:$users[0];
+     }
+
+     /**
+      * 获取用户列表
+      *
+      * @access public
+      * @return StatusArray
+      */
+     public function get_list($options =array()){
+         //分页参数
+         $page = $options['page'];
+         $page_size = (isset($options['page_size'])&& !empty($options['page_size']) )?$options['page_size']:20;
+
+         $page = ($page===false || (int)$page<=0) ? 1 : (int)$page;
+         $page_size = ($page_size===false || (int)$page_size<=0) ? 1 : (int)$page_size;
+         //获取满足条件的总数，并计算总页数
+         $this->_CI->db
+             ->select('count(*) as count')
+             ->from('users')
+         ;
+         $count = $this->_CI->db->get()->row()->count;
+         $page_count = ceil($count/$page_size);
+
+         //从数据库中查询数据
+         $this->_CI->db
+             ->select('*')
+             ->from('users')
+             //->order_by('id desc')
+             ->limit($page_size, ($page-1)*$page_size);
+         $users = $this->_CI->db->get()->result_array();
+         return array('status'=>1,'msg'=>'', 'data'=>array(
+             'result' => $users,
+             'page_count' => $page_count,
+             'page_now' => $page
+         ));
      }
 
      /**
@@ -249,18 +284,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          return $this->get_session('id')?true:false;
      }
 
-     public function get_user_id($user = false){
-         if(!$user)
-             return $this->get_session('id')?$this->get_session('id'):false;
+     public function get_user(){
+         if(!$this->get_session('id'))
+             return false;
+
          $default = array(
-             'username' => '',
-             'email' => ''
+             'id' => $this->get_session('id')
          );
-         $user = $this->_default($default,$user,true);
-         $this->_CI->db->select('id')->from('users')->where($user)->limit(1);
+         $this->_CI->db->select('*')->from('users')->where($default)->limit(1);
          $result = $this->_CI->db->get()->row_array();
-         if($result && $result['id'])
-             return $result['id'];
-         return false;
+         if(!$result)
+             return false;
+         return $result;
      }
  }

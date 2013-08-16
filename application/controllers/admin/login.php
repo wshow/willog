@@ -12,8 +12,7 @@ class Login extends Admin_Controller {
     public function index()
     {
         //Check IS_LOGIN
-        $is_login = $this->check_login(true);
-        if(!empty($is_login))
+        if(!empty($this->cur_user))
             redirect(base_url('/admin'));
 
         //Load Language and Error msg
@@ -31,8 +30,7 @@ class Login extends Admin_Controller {
 
     public function submit()
     {
-        $this->load->model('users');
-        $result = $this->users->login($this->input->post('p'));
+        $result = $this->m_users->login($this->input->post('p'));
         //AJAX Handler
         if(is_ajax()){
             $this->lang->load('msg',$this->get_lang());

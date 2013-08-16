@@ -8,7 +8,8 @@
 class Admin_Controller extends CI_Controller{
     private  $_site_lang = '';
     private  $_cur_lang = '';
-    public $data;
+    public $cur_user = array();
+    public $data = array();
 
     public function get_lang(){
         return $this->_cur_lang;
@@ -16,6 +17,7 @@ class Admin_Controller extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
+        $this->load->model('m_users');
         $this->_site_lang = $this->options->get('site_lang');
         if(! $this->_cur_lang = $this->session->userdata('lang')){
             $this->_cur_lang = $this->_site_lang;
@@ -26,16 +28,19 @@ class Admin_Controller extends CI_Controller{
 
     /**
      * Check Login
-     * @param bool $return
-     * @return mixed
      */
-    public function check_login($return = false){
-        $this->load->model('users');
-        if($return)
-            return $this->users->get_user_id();
-        if(!$this->users->is_login())
-            redirect(base_url('admin/login'));
-
+    public function _remap($method, $params=array()){
+        $this->cur_user = $this->m_users->get_user();
+        if($this->router->class!='login')
+        {
+            if(empty($this->cur_user))
+                redirect(base_url('admin/login'));
+        }
+        if (method_exists($this, $method))
+        {
+            return call_user_func_array(array($this, $method), $params);
+        }
+        show_404();
     }
 
     /**
@@ -44,7 +49,7 @@ class Admin_Controller extends CI_Controller{
      */
     public function admin_view($options = array()){
         if(! $options['page'] || ! $options['index']) return;
-        $this->lang->load($options['page'],$this->get_lang());
+        $this->lang->load('dashboard',$this->get_lang());
         $this->data['lang'] = $this->lang;
         $this->data['page'] = $options['page'];
         $this->data['nav_index'] = $options['index'];
