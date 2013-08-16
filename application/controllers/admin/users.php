@@ -13,7 +13,7 @@ class Users extends Admin_Controller {
     public function index()
     {
         $page = $this->input->get('page');
-        $this->data['users'] = $this->m_users->get_list(array('page'=>$page,'page_size'=>1));
+        $this->data['users'] = $this->m_users->get_list(array('page'=>$page));
 
         $this->admin_view(array('page'=>'users','index'=>81));
     }
@@ -41,7 +41,6 @@ class Users extends Admin_Controller {
         }
         else if($action=='edit')
         {
-            var_dump($user);
             $result = $this->m_users->update($user);
         }
         else if($action=='del')
@@ -49,8 +48,9 @@ class Users extends Admin_Controller {
             $user = $this->input->get_post('u');
             $result = $this->m_users->delete($user);
         }
-        var_dump($result);
-        exit();
+        if($this->input->is_ajax())
+            json_result($result);
+        redirect(base_url('admin/users'));
     }
 
 }

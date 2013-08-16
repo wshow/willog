@@ -41,9 +41,11 @@ class Options
         if(!$keys) return $options;
         $data=array();
         if(!is_array($keys)) $keys=array($keys);
-        foreach($options as $option){
-            if(in_array($option[$by_id?'id':'key'],$keys))
-                $data=array_insert($data,$option);
+        if(is_array($options)){
+            foreach($options as $option){
+                if(in_array($option[$by_id?'id':'key'],$keys))
+                    $data=array_insert($data,$option);
+            }
         }
         if(count($keys)==1 && count($data)==1){
             $return = array();
