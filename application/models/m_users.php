@@ -50,8 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              $logininfo['email'] = $options['username'];
          else
              $logininfo['username'] = $options['username'];
-         $userinfo = $this->get($logininfo);
-
+         $logininfo['table'] = 'users';
+         $userinfo = $this->_CI->m_db->get($logininfo);
          if(!$userinfo)
          {
              $this->log($options);
@@ -101,7 +101,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              'password' => '',
              'salt' => '',
              'nickname' => '',
-             'reset_key' => '',
              'created_at' => date("Y-m-d H:i:s"),
              'updated_at' => date("Y-m-d H:i:s")
          );
@@ -189,56 +188,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $options = $this->_default($default,$options);
          $this->_CI->db->select('count(*) as count')->from('users')->or_where($options);
          return $this->_CI->db->get()->row()->count;
-     }
-
-     /**
-      * 获取用户基本信息
-      *
-      * @access public
-      * @return RowArray || ResultArray
-      */
-     public function get($options= array()){
-         $this->_CI->db->select('*')->from('users');
-         if($options)
-             $this->_CI->db->where($options);
-         $users = $this->_CI->db->get()->result_array();
-         if(count($users)==0) return false;
-         return count($users)>1?$users:$users[0];
-     }
-
-     /**
-      * 获取用户列表
-      *
-      * @access public
-      * @return StatusArray
-      */
-     public function get_list($options =array()){
-         //分页参数
-         $page = $options['page'];
-         $page_size = (isset($options['page_size'])&& !empty($options['page_size']) )?$options['page_size']:20;
-
-         $page = ($page===false || (int)$page<=0) ? 1 : (int)$page;
-         $page_size = ($page_size===false || (int)$page_size<=0) ? 1 : (int)$page_size;
-         //获取满足条件的总数，并计算总页数
-         $this->_CI->db
-             ->select('count(*) as count')
-             ->from('users')
-         ;
-         $count = $this->_CI->db->get()->row()->count;
-         $page_count = ceil($count/$page_size);
-
-         //从数据库中查询数据
-         $this->_CI->db
-             ->select('*')
-             ->from('users')
-             //->order_by('id desc')
-             ->limit($page_size, ($page-1)*$page_size);
-         $users = $this->_CI->db->get()->result_array();
-         return array('status'=>1,'msg'=>'', 'data'=>array(
-             'result' => $users,
-             'page_count' => $page_count,
-             'page_now' => $page
-         ));
      }
 
      /**

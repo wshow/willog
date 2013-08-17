@@ -13,7 +13,7 @@ class Users extends Admin_Controller {
     public function index()
     {
         $page = $this->input->get('page');
-        $this->data['users'] = $this->m_users->get_list(array('page'=>$page));
+        $this->data['users'] = $this->m_db->get_list(array('table'=>'users','page'=>$page));
 
         $this->admin_view(array('page'=>'users','index'=>81));
     }
@@ -26,7 +26,7 @@ class Users extends Admin_Controller {
     public function edit()
     {
         $id = $this->input->get('id');
-        $this->data['user'] = $this->m_users->get(array('id'=>$id));
+        $this->data['user'] = $this->m_db->get(array('table'=>'users','id'=>$id));
         if(empty($this->data['user']))
             show_404();
 
