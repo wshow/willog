@@ -15,12 +15,12 @@ class Users extends Admin_Controller {
         $page = $this->input->get('page');
         $this->data['users'] = $this->m_db->get_list(array('table'=>'users','page'=>$page));
 
-        $this->admin_view(array('page'=>'users','index'=>81));
+        $this->admin_view(array('folder'=>'users','page'=>'users','index'=>81));
     }
 
     public function add()
     {
-        $this->admin_view(array('page'=>'user_add','index'=>82));
+        $this->admin_view(array('folder'=>'users','page'=>'user_add','index'=>82));
     }
 
     public function edit()
@@ -30,7 +30,7 @@ class Users extends Admin_Controller {
         if(empty($this->data['user']))
             show_404();
 
-        $this->admin_view(array('page'=>'user_edit','index'=>81));
+        $this->admin_view(array('folder'=>'users','page'=>'user_edit','index'=>81));
     }
 
     public function action($action = false)

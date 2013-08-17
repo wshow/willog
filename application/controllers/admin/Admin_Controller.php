@@ -54,7 +54,7 @@ class Admin_Controller extends CI_Controller{
         $this->data['page'] = $options['page'];
         $this->data['nav_index'] = $options['index'];
         $this->load->view('layouts/header',$this->data);
-        $this->load->view('admin/'.$options['page'],$this->data);
+        $this->load->view('admin/'.(isset($options['folder'])?$options['folder'].'/':'').$options['page'],$this->data);
         $this->load->view('layouts/footer',$this->data);
     }
 }

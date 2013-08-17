@@ -216,7 +216,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              return FALSE;
          $user = unserialize( $all['user'] );
          if($all['last_activity']>$user['timespan']){
-             $this->_set_session( $this->get(array('id'=>$user['id'])) );
+             $this->_set_session( $this->_CI->m_db->get(array('table'=>'users','id'=>$user['id'])) );
              $user = $this->get_session();
          }
          if($key) return isset($user[$key])?$user[$key]:false;

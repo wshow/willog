@@ -54,7 +54,9 @@
                 <li <?= $nav_index==1?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin') ?>"><?= $lang->line('dashboard') ?></a>
                 </li>
-
+                <li <?= $nav_index==15?' class="selected"':'' ?>>
+                    <a href="<?= base_url('/admin/categories') ?>"><?= $lang->line('categories') ?></a>
+                </li>
                 <li class="menu-item-divided<?= $nav_index==81?' selected':'' ?>">
                     <a href="<?= base_url('/admin/users')?>"><?= $lang->line('users') ?></a>
                 </li>
