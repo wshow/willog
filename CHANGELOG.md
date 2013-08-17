@@ -2,6 +2,7 @@ Promise First Version Release before 2014-2
 
 ------------
 
+* 2013-8-16 Users Management Done
 * 2013-8-11 Login Page Done
 * 2013-8-10 Users Model Done
 * 2013-8-5 Themes Lib / Language Support Done
