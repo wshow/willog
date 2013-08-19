@@ -22,7 +22,7 @@ if($users['status']==1) :
         <tfoot>
             <tr>
                 <th colspan="5">
-                    <?= $users['data']['page_now'] ?> / <?= $users['data']['page_count'] ?>
+                    <?= $users['data']['count'] ?> | <?= $users['data']['page_now'] ?> / <?= $users['data']['page_count'] ?>
                         <?php if($cur_page>1) : ?>
                             <a href="<?= base_url('/admin/users/?page='.($cur_page-1)) ?>">上一页</a>
                         <?php endif;

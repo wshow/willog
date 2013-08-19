@@ -30,7 +30,7 @@ class Admin_Controller extends CI_Controller{
      * Check Login
      */
     public function _remap($method, $params=array()){
-        $this->cur_user = $this->m_users->get_user();
+        $this->cur_user = $this->m_users->get_session();
         if($this->router->class!='login')
         {
             if(empty($this->cur_user))

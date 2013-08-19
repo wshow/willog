@@ -233,17 +233,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          return $this->get_session('id')?true:false;
      }
 
-     public function get_user(){
-         if(!$this->get_session('id'))
-             return false;
-
-         $default = array(
-             'id' => $this->get_session('id')
-         );
-         $this->_CI->db->select('*')->from('users')->where($default)->limit(1);
-         $result = $this->_CI->db->get()->row_array();
-         if(!$result)
-             return false;
-         return $result;
-     }
  }

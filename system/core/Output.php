@@ -104,7 +104,7 @@ class CI_Output {
 		}
 
 
-		$this->mime_types = $mimes;
+		$this->mime_types = isset($mimes)?$mimes:array();
 
 		log_message('debug', "Output Class Initialized");
 	}
@@ -365,6 +365,7 @@ class CI_Output {
 
 			$output = str_replace('{elapsed_time}', $elapsed, $output);
 			$output = str_replace('{memory_usage}', $memory, $output);
+            $output = str_replace('{total_queries}', isset($CI) ? $CI->db->total_queries():'-1', $output);
 		}
 
 		// --------------------------------------------------------------------

@@ -11,3 +11,4 @@
 
 </body>
 </html>
+<!--{memory_usage}, {elapsed_time}s, {total_queries} queries-->
