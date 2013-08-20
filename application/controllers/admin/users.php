@@ -10,10 +10,15 @@ require_once('Admin_Controller.php');
 
 class Users extends Admin_Controller {
 
-    public function index()
+    public function index($page=1)
     {
-        $page = $this->input->get('page');
+        if(!is_numeric($page)) show_404();
         $this->data['users'] = $this->m_db->get_list(array('table'=>'users','page'=>$page));
+        $this->paginators->config(array(
+            'base_url' => base_url('/admin/users/index'),
+            'total_rows' => $this->data['users']['data']['count'],
+            'uri_segment' => 4
+        ));
 
         $this->admin_view(array('folder'=>'users','page'=>'users','index'=>81));
     }
@@ -48,7 +53,7 @@ class Users extends Admin_Controller {
             $user = $this->input->get_post('u');
             $result = $this->m_users->delete($user);
         }
-        if($this->input->is_ajax())
+        if(is_ajax())
             json_result($result);
         redirect(base_url('admin/users'));
     }

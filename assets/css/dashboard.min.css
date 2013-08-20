@@ -35,6 +35,17 @@ h1.logo #logo{
     padding-left: 150px; /* left col width "#menu" */
     left: 0;
 }
+
+tfoot .pagination{
+    float: right;
+    margin-bottom: 0;
+}
+footer{
+    text-align: center;
+}
+#main{
+    width:100%;
+}
 /* --------------------------
  * Main Navigation Bar Styles
  * --------------------------
@@ -42,9 +53,7 @@ h1.logo #logo{
 .top-bar .toggle-topbar.menu-icon a{
     text-indent:-88px;
 }
-#container,
-#menu,
-.pure-menu-link {
+#container,#menu,.pure-menu-link{
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     -ms-transition: all 0.2s ease-out;
@@ -134,6 +143,9 @@ h1.logo #logo{
         left: 0;
     }
 
+    .top-bar .name h1 a{
+        padding-left:45px;
+    }
     .pure-menu-link{
         position: fixed;
         left: 0;

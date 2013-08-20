@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if($users['status']==1) :
     $cur_page = (int)$users['data']['page_now'];
 ?>
-    <table>
+    <table class="large-12 columns">
         <thead>
             <tr>
                 <th>ID</th>
@@ -22,13 +22,8 @@ if($users['status']==1) :
         <tfoot>
             <tr>
                 <th colspan="5">
-                    <?= $users['data']['page_now'] ?> / <?= $users['data']['page_count'] ?>
-                        <?php if($cur_page>1) : ?>
-                            <a href="<?= base_url('/admin/users/?page='.($cur_page-1)) ?>">上一页</a>
-                        <?php endif;
-                        if($cur_page<$users['data']['page_count']):?>
-                            <a href="<?= base_url('/admin/users/?page='.($cur_page+1)) ?>">下一页</a>
-                        <?php endif;?>
+                    <?= $users['data']['count'] ?> | <?= $users['data']['page_now'] ?> / <?= $users['data']['page_count'] ?>
+                    <?= $this->paginators->output() ?>
                 </th>
             </tr>
         </tfoot>

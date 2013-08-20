@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if($users['status']==1) :
     $cur_page = (int)$users['data']['page_now'];
 ?>
-    <table>
+    <table class="large-12 columns">
         <thead>
             <tr>
                 <th>ID</th>

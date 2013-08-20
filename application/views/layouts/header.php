@@ -16,8 +16,10 @@
     <div class="sticky">
         <nav class="top-bar ">
             <ul class="title-area">
-                <li class="name"></li>
-                <li class="toggle-topbar menu-icon"><a href="#"><span><?= $lang->line('dashboard')?></span></a></li>
+                <li class="name">
+                    <h1><a href="<?= base_url('/') ?>"><span><?= $site_name ?></span></a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span> </a></li>
             </ul>
 
 
@@ -49,7 +51,6 @@
 
     <div class="pure-u" id="menu">
         <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="<?= base_url('/')?>"><?= $site_name ?></a>
             <ul>
                 <li <?= $nav_index==1?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin') ?>"><?= $lang->line('dashboard') ?></a>
