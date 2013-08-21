@@ -15,8 +15,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       * @return RowArray || ResultArray
       */
      public function get($options= array()){
-         if( ! $this->_required(array('table'),$options))
+         if( ! $this->_required(array('table'),$options) || !$this->db->table_exists($options['table']))
              return false;
+
          $this->_CI->db->select('*')->from($options['table']);
          unset($options['table']);
          if($options)
@@ -33,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       * @return StatusArray
       */
      public function get_list($options =array()){
-         if( ! $this->_required(array('table'),$options))
+         if( ! $this->_required(array('table'),$options) || !$this->db->table_exists($options['table']))
              return false;
          //分页参数
          $page = $options['page'];
@@ -66,6 +67,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              'page_count' => $page_count>0?$page_count:1,
              'page_now' => $page
          ));
+     }
+
+     /**
+      * 删除某一项
+      *
+      * @access public
+      * @return StatusArray
+      */
+     public function delete($options = array()){
+         if(! isset($options['table']) || !$options['table'])
+             return array('status'=>0,'msg'=>'param_missing');
+         $table = $options['table'];
+         unset($options['table']);
+         if(!$this->db->table_exists($table))
+             return array('status'=>0,'msg'=>'table_not_exist');
+         $status = $this->_CI->db->where($options)->delete($table);
+         if(!$status)
+             return array('status'=>0,'msg'=>'sql_error');
+         return array('status'=>1,'msg'=>'delete_success');
      }
 
  }

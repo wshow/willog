@@ -18,7 +18,7 @@ Class M_Terms extends MY_Model
         $default = array(
             'slug' => '',
             'name' => '',
-            'taxonomy' => 1,
+            'taxonomy' => 'tag',
             'parent_id' => 0,
             'desc' => '',
             'created_at' => date("Y-m-d H:i:s"),
@@ -27,6 +27,7 @@ Class M_Terms extends MY_Model
         if( ! $this->_required(array('slug','name'),$options)){
             return array('status'=>0,'msg'=>'param_missing');
         }
+        $options['name'] = json_encode($options['name']);
         $options = $this->_default($default,$options);
         if(is_numeric($options['slug']))
             return array('status'=>0,'msg'=>'no_numeric');
@@ -54,4 +55,34 @@ Class M_Terms extends MY_Model
         $result = $this->_CI->db->get()->row_array();
         return $result['count'];
     }
+
+    /**
+     * 更新属性
+     *
+     * @access public
+     * @return StatusArray
+     */
+    public function update($options = array()){
+        $default = array(
+            'slug' => '',
+            'name' => '',
+            'taxonomy' => 'tag',
+            'parent_id' => 0,
+            'desc' => '',
+            'updated_at' => date("Y-m-d H:i:s")
+        );
+        if( ! $this->_required(array('slug','name'),$options)){
+            return array('status'=>0,'msg'=>'param_missing');
+        }
+        $options['name'] = json_encode($options['name']);
+        $options = $this->_default($default,$options);
+        if(is_numeric($options['slug']))
+            return array('status'=>0,'msg'=>'no_numeric');
+
+        $status = $this->db->where('slug',$options['slug'])->update('terms',$options);
+        if(!$status)
+            return array('status'=>0,'msg'=>'sql_error');
+        return array('status'=>1,'msg'=>'update_success');
+    }
+
 }

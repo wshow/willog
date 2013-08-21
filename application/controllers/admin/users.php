@@ -28,9 +28,8 @@ class Users extends Admin_Controller {
         $this->admin_view(array('folder'=>'users','page'=>'user_add','index'=>82));
     }
 
-    public function edit()
+    public function edit($id = 0)
     {
-        $id = $this->input->get('id');
         $this->data['user'] = $this->m_db->get(array('table'=>'users','id'=>$id));
         if(empty($this->data['user']))
             show_404();
@@ -38,7 +37,7 @@ class Users extends Admin_Controller {
         $this->admin_view(array('folder'=>'users','page'=>'user_edit','index'=>81));
     }
 
-    public function action($action = false)
+    public function action($action = false,$id = 0)
     {
         $user = $this->input->post('u');
         if($action=='add'){
@@ -50,8 +49,7 @@ class Users extends Admin_Controller {
         }
         else if($action=='del')
         {
-            $user = $this->input->get_post('u');
-            $result = $this->m_users->delete($user);
+            $result = $this->m_users->delete(array('id'=>$id));
         }
         if(is_ajax())
             json_result($result);

@@ -19,8 +19,6 @@ class Root extends MY_Controller {
 	 */
 	public function index($p=false,$page=false)
 	{
-        $this->load->model('m_users');
-        //var_dump( $this->m_users->delete(array('username'=>'wzl','nickname'=>'wzl','nouser'=>'23','password'=>'123','reset_key'=>true)) );
 
         if($p=='page'){
 

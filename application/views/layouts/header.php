@@ -58,6 +58,12 @@
                 <li <?= $nav_index==15?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin/categories') ?>"><?= $lang->line('categories') ?></a>
                 </li>
+                <li <?= $nav_index==16?' class="selected"':'' ?>>
+                    <a href="<?= base_url('/admin/cities') ?>"><?= $lang->line('cities') ?></a>
+                </li>
+                <li <?= $nav_index==17?' class="selected"':'' ?>>
+                    <a href="<?= base_url('/admin/tags') ?>"><?= $lang->line('tags') ?></a>
+                </li>
                 <li class="menu-item-divided<?= $nav_index==81?' selected':'' ?>">
                     <a href="<?= base_url('/admin/users')?>"><?= $lang->line('users') ?></a>
                 </li>

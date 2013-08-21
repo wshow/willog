@@ -6,8 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Created: 2013-08-16 22:38
  * File:    users.php
  */
-if($users['status']==1) :
-    $cur_page = (int)$users['data']['page_now'];
+$cur_page = (int)$users['data']['page_now'];
 ?>
     <table class="large-12 columns">
         <thead>
@@ -55,5 +54,3 @@ if($users['status']==1) :
             <?php endforeach; ?>
         </tbody>
     </table>
-
-<?php endif;?>

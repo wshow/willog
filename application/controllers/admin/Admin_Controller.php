@@ -6,7 +6,8 @@
  * File:    MY_Admin_Controller.php
  */
 class Admin_Controller extends CI_Controller{
-    private  $_site_lang = '';
+    public   $site_lang = '';
+    private  $_other_langs = '';
     private  $_cur_lang = '';
     public $cur_user = array();
     public $data = array();
@@ -15,15 +16,23 @@ class Admin_Controller extends CI_Controller{
         return $this->_cur_lang;
     }
 
+    public function get_langs()
+    {
+        return explode(',',$this->_site_lang.','.$this->_other_langs);
+    }
+
     public function __construct(){
         parent::__construct();
         $this->load->model('m_users');
         $this->_site_lang = $this->options->get('site_lang');
+        $this->_other_langs = $this->options->get('other_langs');
         if(! $this->_cur_lang = $this->session->userdata('lang')){
             $this->_cur_lang = $this->_site_lang;
             $this->session->set_userdata('lang',$this->_site_lang);
         }
         $this->data['site_name'] = $this->options->get('site_name',$this->get_lang());
+        $this->data['langs'] = $this->get_langs();
+        $this->data['cur_lang'] = $this->get_lang();
     }
 
     /**
@@ -57,4 +66,5 @@ class Admin_Controller extends CI_Controller{
         $this->load->view('admin/'.(isset($options['folder'])?$options['folder'].'/':'').$options['page'],$this->data);
         $this->load->view('layouts/footer',$this->data);
     }
+
 }

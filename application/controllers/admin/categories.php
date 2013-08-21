@@ -14,6 +14,10 @@ class Categories extends Admin_Controller {
         $page = $this->input->get('page');
         $this->data['users'] = $this->m_db->get_list(array('table'=>'terms','page'=>$page,'where'=>array('taxonomy'=>1)));
 
+        //TODO: 错误提示
+        if(!$this->data['users']['status'])
+            show_error('Something was wrong.',500);
+
         $this->admin_view(array('folder'=>'terms','page'=>'categories','index'=>15));
     }
 }

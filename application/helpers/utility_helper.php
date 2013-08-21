@@ -67,6 +67,13 @@ if ( ! function_exists('valid_email'))
     }
 }
 
+if ( ! function_exists('is_json'))
+{
+    function is_json($str){
+        return !is_null(json_decode($str));
+    }
+}
+
 if ( ! function_exists('is_mobile'))
 {
     function is_mobile(){
