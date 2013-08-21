@@ -12,9 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <input name="t[slug]" placeholder="Slug" value="<?= $tag['slug']?>">
 
-    <?php if(is_json($tag['name'])) $tag['name'] = json_decode($tag['name']);
+    <?php if(is_json($tag['name'])) $tag['name'] = json_decode($tag['name'],true);
     foreach($langs as $lang):?>
-        <input name="t[name][<?= $lang ?>]" placeholder="Name(<?= $lang ?>)"  value="<?= isset($tag['name']->$lang)?$tag['name']->$lang:'' ?>">
+        <input name="t[name][<?= $lang ?>]" placeholder="Name(<?= $lang ?>)"  value="<?= isset($tag['name'][$lang])?$tag['name'][$lang]:'' ?>">
     <?php endforeach;?>
 
     <input name="t[desc]" maxlength="255" placeholder="Desc" value="<?= $tag['desc']?>">

@@ -48,7 +48,7 @@ class Tags extends Admin_Controller
         }
         else if($action=='del')
         {
-            $result = $this->m_db->delete(array('table'=>'term1s','id'=>$id));
+            $result = $this->m_db->delete(array('table'=>'terms','id'=>$id));
         }
         if(is_ajax())
             json_result($result);

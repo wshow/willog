@@ -19,7 +19,6 @@ class Root extends MY_Controller {
 	 */
 	public function index($p=false,$page=false)
 	{
-
         if($p=='page'){
 
         }

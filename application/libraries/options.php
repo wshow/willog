@@ -49,8 +49,8 @@ class Options
         }
         if(count($keys)==1 && count($data)==1){
             $return = array();
-            if( $lang && unserialize($data[0]['value']) )
-                $return = unserialize($data[0]['value']);
+            if( $lang && is_json($data[0]['value']) )
+                $return = json_decode($data[0]['value'],true);
             if($lang && isset($return[$lang]))
                 return $return[$lang];
             return $data[0]['value'];

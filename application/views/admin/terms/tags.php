@@ -44,8 +44,8 @@ $cur_page = (int)$tags['data']['page_now'];
     <?php foreach($tags['data']['result'] as $tag): ?>
         <tr>
             <td>
-                <?php if(is_json($tag['name'])) $tag['name']=json_decode($tag['name']); ?>
-                <?= isset($tag['name']->$cur_lang)?$tag['name']->$cur_lang:'' ?>
+                <?php if(is_json($tag['name'])) $tag['name']=json_decode($tag['name'],true); ?>
+                <?= isset($tag['name'][$cur_lang])?$tag['name'][$cur_lang]:'' ?>
             </td>
             <td>
                 <?= $tag['slug'] ?>
