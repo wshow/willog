@@ -19,7 +19,7 @@
                 <li class="name">
                     <h1><a href="<?= base_url('/') ?>"><span><?= $site_name ?></span></a></h1>
                 </li>
-                <li class="toggle-topbar menu-icon"><a href="#"><span> </a></li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
             </ul>
 
 
@@ -27,19 +27,10 @@
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <li class="divider"></li>
-                    <li class=""><a href="/grid.php">Features</a></li>
+                    <li class=""><a href="#">Profile</a></li>
                     <li class="divider"></li>
-                    <li class=""><a href="/templates.php">Add-ons</a></li>
-                    <li class="divider"></li>
-                    <li class=""><a href="/case-jacquelinewest.php">Case Studies</a></li>
-                    <li class="divider"></li>
-                    <li class=""><a href="/docs/">Docs</a></li>
-                    <li class="divider"></li>
-                    <li class=""><a href="/training.php">Training</a></li>
-                    <li class="divider"></li>
-                    <li class="has-form">
-                        <a href="http://foundation.zurb.com/docs" class="button">Getting Started</a>
-                    </li>
+                    <li class=""><a href="#">Logout</a></li>
+
                 </ul>
             </section></nav>
     </div>
