@@ -20,10 +20,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          $this->_CI->db->select('*')->from($options['table']);
          unset($options['table']);
+         $return = isset($options['return']) ? true : false;
+         unset($options['return']);
          if($options)
              $this->_CI->db->where($options);
          $result = $this->_CI->db->get()->result_array();
          if(count($result)==0) return false;
+         if($return) return $result;
          return count($result)>1?$result:$result[0];
      }
 

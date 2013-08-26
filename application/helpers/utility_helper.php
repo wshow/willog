@@ -21,7 +21,7 @@ if ( ! function_exists('is_ajax'))
 if( ! function_exists('json_result') )
 {
     function json_result($result){
-        header('ContentType: test/json');
+        header('Content-Type: text/json');
         echo json_encode($result);
         exit();
     }

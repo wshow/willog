@@ -9,6 +9,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 Class M_Terms extends MY_Model
 {
     /**
+     * 序列化
+     *
+     * @access public
+     * @preturn array
+     */
+    public  function filter($input =array())
+    {
+        $items = array();
+        foreach($input as $item)
+            $items[$item['id']] = $item;
+        foreach ($items as $item)
+            $items[$item['parent_id']]['children'][$item['id']] = &$items[$item['id']];
+        return isset($items[0]['children']) ? $items[0]['children'] : array();
+    }
+
+    /**
      * 新增属性
      *
      * @access public
@@ -84,5 +100,4 @@ Class M_Terms extends MY_Model
             return array('status'=>0,'msg'=>'sql_error');
         return array('status'=>1,'msg'=>'update_success');
     }
-
 }

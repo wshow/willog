@@ -11,12 +11,12 @@ require_once('Admin_Controller.php');
 class Categories extends Admin_Controller {
     public function index()
     {
-        $page = $this->input->get('page');
-        $this->data['users'] = $this->m_db->get_list(array('table'=>'terms','page'=>$page,'where'=>array('taxonomy'=>1)));
+        $this->data['categories'] = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>'category'));
 
-        //TODO: 错误提示
-        if(!$this->data['users']['status'])
-            show_error('Something was wrong.',500);
+        $this->load->model('m_terms');
+
+        json_result($this->m_terms->filter($this->data['categories']));
+
 
         $this->admin_view(array('folder'=>'terms','page'=>'categories','index'=>15));
     }
