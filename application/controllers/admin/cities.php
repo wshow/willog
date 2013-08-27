@@ -57,5 +57,5 @@ class Cities extends Admin_Controller {
         redirect(base_url('admin/cities'));
     }
 }
-/* End of file categories.php */
-/* Location: ./application/controllers/admin/categories.php */
+/* End of file cities.php */
+/* Location: ./application/controllers/admin/cities.php */

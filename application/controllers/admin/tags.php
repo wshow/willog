@@ -55,3 +55,5 @@ class Tags extends Admin_Controller
         redirect(base_url('admin/tags'));
     }
 }
+/* End of file tags.php */
+/* Location: ./application/controllers/admin/tags.php */
