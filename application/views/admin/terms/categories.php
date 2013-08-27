@@ -7,18 +7,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * File:    users.php
  */
 ?>
+
+<form method="post" action="<?=base_url('/admin/categories/action/add')?>">
+    <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
+
+    <input name="t[slug]" placeholder="Slug">
+
+    <select name="t[parent_id]">
+        <option value="0">-</option>
+        <?= $options ?>
+    </select>
+    <?php foreach($langs as $lang):?>
+        <input name="t[name][<?= $lang ?>]" placeholder="Name(<?= $lang ?>)">
+    <?php endforeach;?>
+
+    <input name="t[desc]" maxlength="255" placeholder="Desc">
+
+    <input type="submit">
+</form>
+
+
     <table class="large-12 columns">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>SL</th>
-                <th>NM</th>
-                <th>DE</th>
-                <th>OP</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Desc</th>
+                <th>-</th>
             </tr>
         </thead>
 
         <tbody>
-
+            <?= $categories ?>
         </tbody>
     </table>

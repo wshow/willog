@@ -18,3 +18,6 @@ $lang['user_add'] = '添加用户';
 $lang['categories'] = '分类管理';
 $lang['cities'] = '城市管理';
 $lang['tags'] = '标签管理';
+$lang['add'] = '添加';
+$lang['edit'] = '编辑';
+$lang['delete'] = '删除';
