@@ -18,6 +18,8 @@ Class M_Terms extends MY_Model
     {
         if($type != 'city' && $type != 'category') $type='category';
         $input = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>$type));
+        if(!$input) return array();
+        //Get Tree
         $items = array();
         foreach($input as $item)
             $items[$item['id']] = $item;

@@ -13,13 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <input name="t[slug]" placeholder="Slug">
 
+    <?php foreach($langs as $lang):?>
+        <input name="t[name][<?= $lang ?>]" placeholder="Name(<?= $lang ?>)">
+    <?php endforeach;?>
+
     <select name="t[parent_id]">
         <option value="0">-</option>
         <?= $options ?>
     </select>
-    <?php foreach($langs as $lang):?>
-        <input name="t[name][<?= $lang ?>]" placeholder="Name(<?= $lang ?>)">
-    <?php endforeach;?>
 
     <input name="t[desc]" maxlength="255" placeholder="Desc">
 

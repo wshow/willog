@@ -3,43 +3,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * willog
  * Author:  willin
- * Created: 2013-08-17 22:17
- * File:    categories.php
+ * Created: 2013-08-27 16:52
+ * File:    cities.php
  */
+
 require_once('Admin_Controller.php');
 
-class Categories extends Admin_Controller {
+class Cities extends Admin_Controller {
     public function index()
     {
         $this->load->model('m_terms');
-        $terms = $this->m_terms->filter('category');
+        $terms = $this->m_terms->filter('city');
 
-        $this->data['categories'] = $this->m_terms->create_html($terms,$this->get_lang(),'table');
+        $this->data['cities'] = $this->m_terms->create_html($terms,$this->get_lang(),'table');
         $this->data['options'] = $this->m_terms->create_html($terms,$this->get_lang(),'option');
 
-        $this->admin_view(array('folder'=>'terms','page'=>'categories','index'=>15));
+        $this->admin_view(array('folder'=>'terms','page'=>'cities','index'=>16));
     }
 
     public function edit($id = 0)
     {
-        $this->data['category'] = $this->m_db->get(array('table'=>'terms','id'=>$id,'taxonomy'=>'category'));
-        if(empty($this->data['category']))
+        $this->data['city'] = $this->m_db->get(array('table'=>'terms','id'=>$id,'taxonomy'=>'city'));
+        if(empty($this->data['city']))
             show_404();
         $this->load->model('m_terms');
-        $terms = $this->m_terms->filter('category');
+        $terms = $this->m_terms->filter('city');
         $this->data['options'] = $this->m_terms->create_html($terms,$this->get_lang(),'option');
 
-        $pid = $this->data['category']['parent_id'];
+        $pid = $this->data['city']['parent_id'];
         $this->data['options'] = str_replace("value=\"{$pid}\"","value=\"{$pid}\" selected=\"selected\"",$this->data['options']);
 
-        $this->admin_view(array('folder'=>'terms','page'=>'category_edit','index'=>15));
+        $this->admin_view(array('folder'=>'terms','page'=>'city_edit','index'=>16));
     }
 
     public function action($action = false,$id = 0)
     {
         $term = $this->input->post('t');
         $this->load->model('m_terms');
-        $term['taxonomy'] = 'category';
+        $term['taxonomy'] = 'city';
         if($action=='add'){
             $result = $this->m_terms->insert($term);
         }
@@ -49,11 +50,11 @@ class Categories extends Admin_Controller {
         }
         else if($action=='del')
         {
-            $result = $this->m_db->delete(array('table'=>'terms','taxonomy'=>'category','id'=>$id));
+            $result = $this->m_db->delete(array('table'=>'terms','taxonomy'=>'city','id'=>$id));
         }
         if(is_ajax())
             json_result($result);
-        redirect(base_url('admin/categories'));
+        redirect(base_url('admin/cities'));
     }
 }
 /* End of file categories.php */
