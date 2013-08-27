@@ -42,7 +42,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
             <div class="large-12 columns">
-
                 <input type="submit" value="<?= $lang->line('submit') ?>" class="button small round">
             </div>
         </fieldset>

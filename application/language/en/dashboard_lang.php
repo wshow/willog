@@ -17,4 +17,10 @@ $lang['desc'] = 'Description';
 $lang['submit'] = 'Submit';
 $lang['count'] = 'Count';
 $lang['operation'] = 'Operation';
+$lang['username'] = 'UserName';
+$lang['nick'] = 'NickName';
+$lang['email'] ='Email';
+$lang['password'] = 'Password';
+$lang['readonly'] = 'Readonly';
+$lang['if_blank'] = 'If blank,not change';
 
