@@ -14,8 +14,10 @@ Class M_Terms extends MY_Model
      * @access public
      * @preturn array
      */
-    public  function filter($input =array())
+    public  function filter($type = 'category')
     {
+        if($type != 'city' && $type != 'category') $type='category';
+        $input = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>$type));
         $items = array();
         foreach($input as $item)
             $items[$item['id']] = $item;
