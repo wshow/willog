@@ -33,7 +33,7 @@ class Paginators
         $default = array(
             'base_url'=>'',
             'total_rows'=> 0,
-            'per_page' => 10,
+            'per_page' => 20,
             'uri_segment' => 3,
             'num_links' => 3,
             'use_page_numbers' => true,

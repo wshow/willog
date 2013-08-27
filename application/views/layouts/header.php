@@ -61,6 +61,9 @@
                 <li <?= $nav_index==82?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin/users/add') ?>"><?= $lang->line('user_add') ?></a>
                 </li>
+                <li class="menu-item-divided<?= $nav_index==91?' selected':'' ?>">
+                    <a href="<?= base_url('/admin/system')?>"><?= $lang->line('system') ?></a>
+                </li>
             </ul>
         </div>
     </div>

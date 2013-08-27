@@ -8,37 +8,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 ?>
 
-<form method="post" action="<?=base_url('/admin/cities/action/add')?>">
-    <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
+<div class="arow">
+    <div class="large-6 columns">
+        <form class="custom" method="post" action="<?=base_url('/admin/cities/action/add')?>">
+            <fieldset>
+                <legend><?= $lang->line('add') ?></legend>
+                <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
 
-    <input name="t[slug]" placeholder="Slug">
+                <div class="large-12 columns">
+                    <label><?= $lang->line('slug') ?></label>
+                    <input type="text" name="t[slug]" placeholder="Slug">
+                </div>
 
-    <select name="t[parent_id]">
-        <option value="0">-</option>
-        <?= $options ?>
-    </select>
-    <?php foreach($langs as $lang):?>
-        <input name="t[name][<?= $lang ?>]" placeholder="Name(<?= $lang ?>)">
-    <?php endforeach;?>
+                <div class="large-12 columns">
+                    <label><?= $lang->line('name') ?></label>
+                    <?php foreach($langs as $l):?>
+                        <input type="text" name="t[name][<?= $l ?>]" placeholder="Name(<?= $l ?>)">
+                    <?php endforeach;?>
+                </div>
 
-    <input name="t[desc]" maxlength="255" placeholder="Desc">
+                <div class="large-12 columns">
+                    <label><?= $lang->line('parent') ?></label>
+                    <select name="t[parent_id]">
+                        <option value="0"><?= $lang->line('none') ?></option>
+                        <?= $options ?>
+                    </select>
+                </div>
 
-    <input type="submit">
-</form>
+                <div class="large-12 columns">
+                    <label><?= $lang->line('desc') ?></label>
+                    <input type="text" name="t[desc]" maxlength="255" placeholder="Desc">
+                </div>
 
+                <div class="large-12 columns">
 
-<table class="large-12 columns">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Slug</th>
-        <th>Desc</th>
-        <th>-</th>
-    </tr>
-    </thead>
+                    <input type="submit" value="<?= $lang->line('submit') ?>" class="button small round">
+                </div>
+            </fieldset>
+        </form>
+    </div>
 
-    <tbody>
-    <?= $cities ?>
-    </tbody>
-</table>
+    <div class="large-6 columns">
+        <table class="large-12 columns">
+            <thead>
+            <tr>
+                <th><?= $lang->line('name')?></th>
+                <th><?= $lang->line('slug')?></th>
+                <th><?= $lang->line('desc')?></th>
+                <th><?= $lang->line('count')?></th>
+                <th><?= $lang->line('operation')?></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?= $cities ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clear"></div>
+</div>

@@ -29,24 +29,31 @@ Class M_Terms extends MY_Model
     }
 
 
-    public function create_html($items,$lang = 'cn',$type = 'option',$dept=0)
+    public function create_html($items,$lang = 'cn',$type = 'option',$dept=0,$curent_item = false)
     {
         if($type != 'table' && $type != 'option') $type='option';
         $html = '';
         foreach($items as $item){
             $name = json_decode($item['name'],true);
             $sep = str_repeat('-',$dept);
-            if($type=='option'){
-                $html .= "<option value=\"{$item['id']}\"> {$sep} {$name[$lang]}</option>";
-            }else{
-                $this->_CI->load->language('dashboard',$lang);
-                $edit = $this->_CI->lang->line('edit');
-                $delete = $this->_CI->lang->line('delete');
-                $base = base_url('/admin/' . ($item['taxonomy']=='city'?'cities':'categories') );
-                $html .= "<tr><td>{$item['id']}</td><td> {$sep} {$name[$lang]}</td><td>{$item['slug']}</td><td>{$item['desc']}</td><td><a href=\"{$base}/edit/{$item['id']}\" class=\"edit\">{$edit}</a> <a href=\"{$base}/delete/{$item['id']}\" class=\"delete\">{$delete}</a></td></tr>";
+            if(is_array($curent_item) && $curent_item['id']==$item['id']){
+                // Do Nothing
             }
-            if(isset($item['children']) && is_array($item['children']))
-                $html .= $this->create_html($item['children'],$lang,$type,$dept+1);
+            else{
+                if($type=='option'){
+                    $html .= "<option value=\"{$item['id']}\"> {$sep} {$name[$lang]}</option>";
+                }else{
+                    $this->_CI->load->language('dashboard',$lang);
+                    $edit = $this->_CI->lang->line('edit');
+                    $delete = $this->_CI->lang->line('delete');
+                    $taxonomy = $item['taxonomy']=='city'?'cities':'categories';
+                    $base = base_url('/admin');
+                    $html .= "<tr><td> {$sep} {$name[$lang]}</td><td>{$item['slug']}</td><td>{$item['desc']}</td><td><a href=\"{$base}/posts?{$item['taxonomy']}={$item['id']}\">{$item['count']}</a></td><td><a href=\"{$base}/{$taxonomy}/edit/{$item['id']}\" class=\"edit\">{$edit}</a> <a href=\"{$base}/{$taxonomy}/delete/{$item['id']}\" class=\"delete\">{$delete}</a></td></tr>";
+                }
+                if(isset($item['children']) && is_array($item['children']))
+                    $html .= $this->create_html($item['children'],$lang,$type,$dept+1);
+
+            }
         }
         return $html;
     }
@@ -73,11 +80,13 @@ Class M_Terms extends MY_Model
         $options = $this->_default($default,$options);
         if(is_numeric($options['slug']))
             return array('status'=>0,'msg'=>'no_numeric');
-        if($this->check_exist($options)>0)
-            return array('status'=>0,'msg'=>'already_exist');
 
         $options['slug'] = strtolower($options['slug']);
         $options['name'] = json_encode($options['name']);
+
+        if($this->check_exist($options)>0)
+            return array('status'=>0,'msg'=>'already_exist');
+
 
         $status = $this->_CI->db->insert('terms',$options);
         if(! $status)

@@ -27,10 +27,8 @@ class Categories extends Admin_Controller {
             show_404();
         $this->load->model('m_terms');
         $terms = $this->m_terms->filter('category');
-        $this->data['options'] = $this->m_terms->create_html($terms,$this->get_lang(),'option');
 
-        $pid = $this->data['category']['parent_id'];
-        $this->data['options'] = str_replace("value=\"{$pid}\"","value=\"{$pid}\" selected=\"selected\"",$this->data['options']);
+        $this->data['options'] = $this->m_terms->create_html($terms,$this->get_lang(),'option',0,$this->data['category']);
 
         $this->admin_view(array('folder'=>'terms','page'=>'category_edit','index'=>15));
     }

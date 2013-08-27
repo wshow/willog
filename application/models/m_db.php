@@ -50,6 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              ->select('count(*) as count')
              ->from($options['table'])
          ;
+         if(isset($options['where']) && $options['where'])
+             $this->_CI->db->where($options['where']);
          $count = $this->_CI->db->get()->row()->count;
          $page_count = ceil($count/$page_size);
 
