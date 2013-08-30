@@ -1,5 +1,7 @@
 Promise First Version Release before 2014-2
 
+###### Default User/Password under DEV ENV: willin/willin
+
 ------------
 
 * ###### 2013-8-28 System Options Doing
