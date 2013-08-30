@@ -46,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          }
          //Check Email or Username
          $logininfo = array();
+         $options['username'] = strtolower($options['username']);
          if( valid_email($options['username']) )
              $logininfo['email'] = $options['username'];
          else
@@ -107,6 +108,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          if( ! $this->_required(array('username','password'),$options)){
              return array('status'=>0,'msg'=>'blank_username_or_password');
          }
+         $options['username'] = strtolower($options['username']);
+         $options['email'] = strtolower($options['email']);
          if($this->check_register($options)>0)
              return array('status'=>0,'msg'=>'user_exist');
          $options['salt'] = random_string('alnum',10);
@@ -144,6 +147,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          if(isset($options['reset_key']))
              $options['reset_key'] = random_string('alnum',32);
          $options = $this->_default($default,$options,true);
+         $options['username'] = strtolower($options['username']);
+         $options['email'] = strtolower($options['email']);
 
          $status = $this->db->where('username',$options['username'])->update('users',$options);
          if(!$status)
