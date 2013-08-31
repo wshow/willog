@@ -48,7 +48,7 @@ Class M_Terms extends MY_Model
                     $delete = $this->_CI->lang->line('delete');
                     $taxonomy = $item['taxonomy']=='city'?'cities':'categories';
                     $base = base_url('/admin');
-                    $html .= "<tr><td> {$sep} {$name[$lang]}</td><td>{$item['slug']}</td><td>{$item['desc']}</td><td><a href=\"{$base}/posts?{$item['taxonomy']}={$item['id']}\">{$item['count']}</a></td><td><a href=\"{$base}/{$taxonomy}/edit/{$item['id']}\" class=\"edit\">{$edit}</a> <a href=\"{$base}/{$taxonomy}/delete/{$item['id']}\" class=\"delete\">{$delete}</a></td></tr>";
+                    $html .= "<tr><td> {$sep} {$name[$lang]}</td><td>{$item['slug']}</td><td>{$item['desc']}</td><td><a href=\"{$base}/posts?{$item['taxonomy']}={$item['id']}\">{$item['count']}</a></td><td><a href=\"{$base}/{$taxonomy}/action/edit/{$item['id']}\" class=\"edit\">{$edit}</a> <a href=\"{$base}/{$taxonomy}/action/del/{$item['id']}\" class=\"delete\">{$delete}</a></td></tr>";
                 }
                 if(isset($item['children']) && is_array($item['children']))
                     $html .= $this->create_html($item['children'],$lang,$type,$dept+1);
