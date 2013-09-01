@@ -35,7 +35,7 @@ h1.logo #logo{
     clear:both;
 }
 #container {
-    padding-left: 150px; /* left col width "#menu" */
+    padding:10px 0 0 150px; /* left col width "#menu" */
     left: 0;
 }
 
@@ -70,10 +70,11 @@ footer{
     top: 0;
     left: 150px;
     bottom: 0;
-    z-index: 1000; /* so the menu or its navicon stays above all content */
+    z-index: 88; /* so the menu or its navicon stays above all content */
     background: #191818;
     overflow-y: auto;
     -webkit-overflow-scroll: touch;
+    padding-top:45px;
 }
 #menu a {
     color: #999;
@@ -170,9 +171,10 @@ footer{
         -webkit-box-shadow: 0 10px 0 1px #fff,0 16px 0 1px #fff,0 22px 0 1px #fff;
         box-shadow: 0 10px 0 1px #fff,0 16px 0 1px #fff,0 22px 0 1px #fff;
     }
+    /*
     #container.active .pure-menu-link {
         left: 150px;
-    }
+    }*/
 }
 /* Pure Menu */
 .pure-menu ul {

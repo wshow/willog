@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="container">
-    <div class="sticky">
+    <div class="fixed">
         <nav class="top-bar ">
             <ul class="title-area">
                 <li class="name">
@@ -27,14 +27,15 @@
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <li class="divider"></li>
-                    <li class=""><a href="#">Profile</a></li>
+                    <li><a href="#"><?= $lang->line('write') ?></a></li>
                     <li class="divider"></li>
-                    <li class=""><a href="#">Logout</a></li>
+                    <li><a href="#"><?= $lang->line('profile') ?></a></li>
+                    <li class="divider"></li>
+                    <li><a href="<?= base_url('/admin/logout') ?>"><?= $lang->line('logout') ?></a></li>
 
                 </ul>
             </section></nav>
     </div>
-
 
     <div class="pure-menu-link">
         <a href="#menu" id="menuLink"><span></span></a>
@@ -45,6 +46,12 @@
             <ul>
                 <li <?= $nav_index==1?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin') ?>"><?= $lang->line('dashboard') ?></a>
+                </li>
+                <li class="menu-item-divided<?= $nav_index==11?' selected':'' ?>">
+                    <a href="#<?= base_url('/admin/posts')?>"><?= $lang->line('posts') ?></a>
+                </li>
+                <li <?= $nav_index==12?' class="selected"':'' ?>>
+                    <a href="#<?= base_url('/admin/wishes') ?>"><?= $lang->line('wishes') ?></a>
                 </li>
                 <li <?= $nav_index==15?' class="selected"':'' ?>>
                     <a href="<?= base_url('/admin/categories') ?>"><?= $lang->line('categories') ?></a>

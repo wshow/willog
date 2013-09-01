@@ -7,6 +7,11 @@ $lang['categories'] = 'Categories';
 $lang['cities'] = 'Cities';
 $lang['tags'] = 'Tags';
 $lang['system'] = 'Options';
+$lang['posts'] = 'Posts';
+$lang['wishes'] = 'Wishes';
+$lang['write'] = 'Write';
+$lang['profile'] = 'Profile';
+$lang['logout'] = 'Logout';
 
 //DB
 $lang['add'] = 'Add';

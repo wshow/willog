@@ -7,6 +7,11 @@ $lang['categories'] = '分类管理';
 $lang['cities'] = '城市管理';
 $lang['tags'] = '标签管理';
 $lang['system'] = '系统设置';
+$lang['posts'] = '日志管理';
+$lang['wishes'] = '心愿墙';
+$lang['write'] = '写新日志';
+$lang['profile'] = '我的资料';
+$lang['logout'] = '注销';
 
 //DB
 $lang['add'] = '添加';
