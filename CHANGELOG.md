@@ -1,10 +1,9 @@
 Promise First Version Release before 2014-2
 
-###### Default User/Password under DEV ENV: willin/willin
-
 ------------
 
 * ###### 2013-8-28 System Options Doing
+* 2013-9-1 Location using Google Maps Done
 * 2013-8-28 Dashboard Style Done
 * 2013-8-27 Cities Management Done
 * 2013-8-27 Categories Management Dne

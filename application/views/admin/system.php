@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <input type="submit" value="<?= $lang->line('submit') ?>" class="button small round">
             </div>
 
-            <?php var_dump($options) ?>
+            <?php //var_dump($options) ?>
         </fieldset>
     </form>
 </div>
