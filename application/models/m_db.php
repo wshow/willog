@@ -93,4 +93,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          return array('status'=>1,'msg'=>'delete_success');
      }
 
+     /**
+      * 修改或插入
+      *
+      * @access public
+      * @return boolean
+      */
+     public function update_or_insert($options = array()){
+         if( ! $this->_required(array('table','key'),$options) || !$this->db->table_exists($options['table']))
+             return false;
+         $from = $options['table'];
+         unset($options['table']);
+         $key = $options['key'];
+         unset($options['key']);
+         
+         if(!array_key_exists($key,$options))
+             return $this->_CI->db->insert($from,$options);
+         $this->db->where($key,$options[$key]);
+         if($this->db->update($from,$options))
+             return true;
+         return $this->_CI->db->insert($from,$options);
+     }
  }
