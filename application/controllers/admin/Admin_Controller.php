@@ -6,9 +6,9 @@
  * File:    MY_Admin_Controller.php
  */
 class Admin_Controller extends CI_Controller{
-    public   $site_lang = '';
-    private  $_other_langs = '';
-    private  $_cur_lang = '';
+    public $site_lang = '';
+    private $_langs = '';
+    private $_cur_lang = '';
     public $cur_user = array();
     public $data = array();
 
@@ -18,14 +18,14 @@ class Admin_Controller extends CI_Controller{
 
     public function get_langs()
     {
-        return explode(',',$this->_site_lang.','.$this->_other_langs);
+        return explode(',',$this->_langs);
     }
 
     public function __construct(){
         parent::__construct();
         $this->load->model('m_users');
         $this->_site_lang = $this->options->get('site_lang');
-        $this->_other_langs = $this->options->get('other_langs');
+        $this->_langs = $this->options->get('site_langs');
         if(! $this->_cur_lang = $this->session->userdata('lang')){
             $this->_cur_lang = $this->_site_lang;
             $this->session->set_userdata('lang',$this->_site_lang);

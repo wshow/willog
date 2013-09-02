@@ -35,7 +35,7 @@ h1.logo #logo{
     clear:both;
 }
 #container {
-    padding:10px 0 0 150px; /* left col width "#menu" */
+    padding:55px 0 0 150px; /* left col width "#menu" */
     left: 0;
 }
 

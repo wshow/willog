@@ -20,6 +20,11 @@ class System extends Admin_Controller {
 
     public function languages()
     {
+        $this->load->helper('directory');
+        $this->data['languages'] = directory_map('./application/language',1);
+        $this->load->model('m_options');
+        $this->data['options'] = $this->m_options->get();
+
         $this->admin_view(array('folder'=>'system','page'=>'languages','index'=>92));
     }
 }
