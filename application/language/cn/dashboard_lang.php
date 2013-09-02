@@ -37,4 +37,6 @@ $lang['readonly'] = '不可编辑';
 $lang['if_blank'] = '留空则不修改';
 
 //Options
-
+$lang['site_name'] = '站点标题';
+$lang['site_desc'] = '副标题';
+$lang['site_key'] = '关键词';

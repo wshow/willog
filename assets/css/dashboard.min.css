@@ -53,6 +53,9 @@ footer{
  * Main Navigation Bar Styles
  * --------------------------
 */
+.top-bar{
+    margin-bottom: 0;
+}
 .top-bar .toggle-topbar.menu-icon a{
     text-indent:-88px;
 }

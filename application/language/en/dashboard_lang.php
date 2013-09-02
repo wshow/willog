@@ -37,4 +37,6 @@ $lang['readonly'] = 'Readonly';
 $lang['if_blank'] = 'If blank,not change';
 
 //Options
-
+$lang['site_name'] = 'Site Name';
+$lang['site_desc'] = 'Site Description';
+$lang['site_key'] = 'Keywords';

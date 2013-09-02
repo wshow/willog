@@ -12,7 +12,8 @@ require_once('Admin_Controller.php');
 class System extends Admin_Controller {
     public function index()
     {
-
+        $this->load->model('m_options');
+        $this->data['options'] = $this->m_options->get();
 
         $this->admin_view(array('page'=>'system','index'=>91));
     }

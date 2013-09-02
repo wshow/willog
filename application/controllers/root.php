@@ -19,13 +19,6 @@ class Root extends MY_Controller {
 	 */
 	public function index($p=false,$page=false)
 	{
-        $this->m_db->update_or_insert(
-            array(
-                'table' => 'users',
-                'id' => 1,
-                'nickname' => '长岛冰泪'
-            )
-        );
         if($p=='page'){
 
         }
