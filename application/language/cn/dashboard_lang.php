@@ -12,6 +12,7 @@ $lang['wishes'] = '心愿墙';
 $lang['write'] = '写新日志';
 $lang['profile'] = '我的资料';
 $lang['logout'] = '注销';
+$lang['languages'] = '系统语言';
 
 //DB
 $lang['add'] = '添加';

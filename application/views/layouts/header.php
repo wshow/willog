@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/normalize.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/foundation.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/dashboard.min.css')?>">
+    <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="<?=base_url('/assets/js/jquery-1.10.2.min.js')?>">\x3C/script>');var base_url='<?= base_url('/')?>';jQuery(document).foundation();</script>
 </head>
 <body>
 <div id="container">
@@ -30,6 +32,14 @@
                     <li><a href="#"><?= $lang->line('write') ?></a></li>
                     <li class="divider"></li>
                     <li><a href="#"><?= $lang->line('profile') ?></a></li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown not-click">
+                        <a href="#"><?= $lang->line('languages') ?></a>
+                        <ul class="dropdown">
+                            <li><a href="#">CN</a></li>
+                            <li><a href="#">EN</a></li>
+                        </ul>
+                    </li>
                     <li class="divider"></li>
                     <li><a href="<?= base_url('/admin/logout') ?>"><?= $lang->line('logout') ?></a></li>
 
@@ -70,6 +80,9 @@
                 </li>
                 <li class="menu-item-divided<?= $nav_index==91?' selected':'' ?>">
                     <a href="<?= base_url('/admin/system')?>"><?= $lang->line('system') ?></a>
+                </li>
+                <li <?= $nav_index==92?' class="selected"':'' ?>>
+                    <a href="<?= base_url('/admin/system/languages') ?>"><?= $lang->line('languages') ?></a>
                 </li>
             </ul>
         </div>

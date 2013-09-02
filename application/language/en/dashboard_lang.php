@@ -12,6 +12,7 @@ $lang['wishes'] = 'Wishes';
 $lang['write'] = 'Write';
 $lang['profile'] = 'Profile';
 $lang['logout'] = 'Logout';
+$lang['languages'] = 'Languages';
 
 //DB
 $lang['add'] = 'Add';

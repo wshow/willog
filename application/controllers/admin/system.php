@@ -15,7 +15,12 @@ class System extends Admin_Controller {
         $this->load->model('m_options');
         $this->data['options'] = $this->m_options->get();
 
-        $this->admin_view(array('page'=>'system','index'=>91));
+        $this->admin_view(array('folder'=>'system','page'=>'system','index'=>91));
+    }
+
+    public function languages()
+    {
+        $this->admin_view(array('folder'=>'system','page'=>'languages','index'=>92));
     }
 }
 /* End of file system.php */
