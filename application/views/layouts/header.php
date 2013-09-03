@@ -81,9 +81,6 @@
                 <li class="menu-item-divided<?= $nav_index==91?' selected':'' ?>">
                     <a href="<?= base_url('/admin/system')?>"><?= $lang->line('system') ?></a>
                 </li>
-                <li <?= $nav_index==92?' class="selected"':'' ?>>
-                    <a href="<?= base_url('/admin/system/languages') ?>"><?= $lang->line('languages') ?></a>
-                </li>
             </ul>
         </div>
     </div>

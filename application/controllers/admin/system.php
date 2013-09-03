@@ -12,29 +12,22 @@ require_once('Admin_Controller.php');
 class System extends Admin_Controller {
     public function index()
     {
+        $this->load->helper('directory');
+        $this->data['languages'] = directory_map('./application/language',1);
         $this->load->model('m_options');
         $this->data['options'] = $this->m_options->get();
 
         $this->admin_view(array('folder'=>'system','page'=>'system','index'=>91));
     }
 
-    public function languages()
-    {
-        $this->load->helper('directory');
-        $this->data['languages'] = directory_map('./application/language',1);
-        $this->load->model('m_options');
-        $this->data['options'] = $this->m_options->get();
-
-        $this->admin_view(array('folder'=>'system','page'=>'languages','index'=>92));
-    }
-
-    public function save($langs = false)
+    public function save()
     {
         $options = $this->input->post('o');
-        if($langs=='languages'){
+        if(isset($options['site_langs']))
             $options['site_langs'] = implode(',',$options['site_langs']);
+        if(isset($options['sys_langs']))
             $options['sys_langs'] = encode_json($options['sys_langs']);
-        }
+
         foreach($options as $key=>$value){
             $temp = array();
             $temp['table'] = 'options';
@@ -44,8 +37,6 @@ class System extends Admin_Controller {
             $temp['autoload'] = 'yes';
             $this->m_db->update_or_insert($temp);
         }
-        if($langs)
-            redirect(base_url('/admin/system/languages'));
         redirect(base_url('/admin/system'));
     }
 }

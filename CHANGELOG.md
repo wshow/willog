@@ -2,8 +2,9 @@ Promise First Version Release before 2014-2
 
 ------------
 
-* ! 2013-9-2 System Languages Doing
-* ! 2013-8-28 System Options Doing
+* ! 2013-9-3 
+* 2013-9-3 System Languages Done
+* 2013-9-2 System Options Done
 * 2013-9-1 Location using Google Maps Done
 * 2013-8-28 Dashboard Style Done
 * 2013-8-27 Cities Management Done
