@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?=base_url('/assets/css/foundation.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/dashboard.min.css')?>">
     <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
-    <script type="text/javascript">window.jQuery || document.write('<script src="<?=base_url('/assets/js/jquery-1.10.2.min.js')?>">\x3C/script>');var base_url='<?= base_url('/')?>';jQuery(document).foundation();</script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="<?=base_url('/assets/js/jquery-1.10.2.min.js')?>">\x3C/script>');var base_url='<?= base_url('/')?>';</script>
 </head>
 <body>
 <div id="container">

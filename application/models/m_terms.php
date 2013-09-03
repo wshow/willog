@@ -82,7 +82,7 @@ Class M_Terms extends MY_Model
             return array('status'=>0,'msg'=>'no_numeric');
 
         $options['slug'] = strtolower($options['slug']);
-        $options['name'] = json_encode($options['name']);
+        $options['name'] = encode_json($options['name']);
 
         if($this->check_exist($options)>0)
             return array('status'=>0,'msg'=>'already_exist');
@@ -128,7 +128,7 @@ Class M_Terms extends MY_Model
         if( ! $this->_required(array('slug','name'),$options)){
             return array('status'=>0,'msg'=>'param_missing');
         }
-        $options['name'] = json_encode($options['name']);
+        $options['name'] = encode_json($options['name']);
         $options = $this->_default($default,$options);
         if(is_numeric($options['slug']))
             return array('status'=>0,'msg'=>'no_numeric');

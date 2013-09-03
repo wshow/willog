@@ -28,18 +28,24 @@ class System extends Admin_Controller {
         $this->admin_view(array('folder'=>'system','page'=>'languages','index'=>92));
     }
 
-    public function save()
+    public function save($langs = false)
     {
         $options = $this->input->post('o');
+        if($langs=='languages'){
+            $options['site_langs'] = implode(',',$options['site_langs']);
+            $options['sys_langs'] = encode_json($options['sys_langs']);
+        }
         foreach($options as $key=>$value){
             $temp = array();
             $temp['table'] = 'options';
             $temp['by'] = 'key';
             $temp['key'] = $key;
-            $temp['value'] = is_array($value)?json_encode($value):$value;
+            $temp['value'] = is_array($value)?encode_json($value):$value;
             $temp['autoload'] = 'yes';
             $this->m_db->update_or_insert($temp);
         }
+        if($langs)
+            redirect(base_url('/admin/system/languages'));
         redirect(base_url('/admin/system'));
     }
 }

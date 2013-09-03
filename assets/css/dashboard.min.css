@@ -9,6 +9,12 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
 }
+.max120{
+    max-width: 120px;
+}
+.inline{
+    display: inline !important;
+}
 /* Login */
 h1.logo #logo{
 

@@ -13,6 +13,8 @@ $lang['write'] = 'Write';
 $lang['profile'] = 'Profile';
 $lang['logout'] = 'Logout';
 $lang['languages'] = 'Languages';
+$lang['site_lang'] = 'Default Language';
+$lang['site_langs'] = 'Enabled Languages';
 
 //DB
 $lang['add'] = 'Add';
