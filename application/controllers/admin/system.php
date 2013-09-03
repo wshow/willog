@@ -27,6 +27,21 @@ class System extends Admin_Controller {
 
         $this->admin_view(array('folder'=>'system','page'=>'languages','index'=>92));
     }
+
+    public function save()
+    {
+        $options = $this->input->post('o');
+        foreach($options as $key=>$value){
+            $temp = array();
+            $temp['table'] = 'options';
+            $temp['by'] = 'key';
+            $temp['key'] = $key;
+            $temp['value'] = is_array($value)?json_encode($value):$value;
+            $temp['autoload'] = 'yes';
+            $this->m_db->update_or_insert($temp);
+        }
+        redirect(base_url('/admin/system'));
+    }
 }
 /* End of file system.php */
 /* Location: ./application/controllers/admin/system.php */

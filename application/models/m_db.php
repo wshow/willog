@@ -105,13 +105,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $from = $options['table'];
          unset($options['table']);
          $by = $options['by'];
+         unset($options['by']);
          if(!array_key_exists($by,$options))
              return $this->_CI->db->insert($from,$options);
-         unset($options['by']);
          $this->_CI->db->select('count(1) as count')->from($from)->where($by,$options[$by]);
          $count = $this->_CI->db->get()->row_array();
          if($count['count']>0)
-             return $this->db->where($by,$options['by'])->update($from,$options);
+             return $this->db->where($by,$options[$by])->update($from,$options);
          return $this->_CI->db->insert($from,$options);
      }
  }
