@@ -29,7 +29,7 @@
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <li class="divider"></li>
-                    <li><a href="#"><?= $lang->line('write') ?></a></li>
+                    <li><a href="<?= base_url('/admin/posts/add/') ?>"><?= $lang->line('write') ?></a></li>
                     <li class="divider"></li>
                     <li><a href="<?= base_url('/admin/users/edit/'.$cur_user['id']) ?>"><?= $lang->line('profile') ?></a></li>
                     <li class="divider"></li>
@@ -59,7 +59,7 @@
                     <a href="<?= base_url('/admin') ?>"><?= $lang->line('dashboard') ?></a>
                 </li>
                 <li class="menu-item-divided<?= $nav_index==11?' selected':'' ?>">
-                    <a href="#<?= base_url('/admin/posts')?>"><?= $lang->line('posts') ?></a>
+                    <a href="<?= base_url('/admin/posts')?>"><?= $lang->line('posts') ?></a>
                 </li>
                 <li <?= $nav_index==12?' class="selected"':'' ?>>
                     <a href="#<?= base_url('/admin/wishes') ?>"><?= $lang->line('wishes') ?></a>

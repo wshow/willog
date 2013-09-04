@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.29)
 # Database: willog
-# Generation Time: 2013-08-31 14:06:30 +0000
+# Generation Time: 2013-09-04 15:29:31 +0000
 # ************************************************************
 
 
@@ -36,6 +36,18 @@ CREATE TABLE `w_login_logs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `w_login_logs` WRITE;
+/*!40000 ALTER TABLE `w_login_logs` DISABLE KEYS */;
+
+INSERT INTO `w_login_logs` (`id`, `username`, `password`, `login_ip`, `login_ua`, `login_valid`, `created_at`)
+VALUES
+	(1,'willin','willin','127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.22 Safari/537.36',1,'2013-09-01 15:03:59'),
+	(2,'willin','willin','192.168.0.18','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.22 Safari/537.36',1,'2013-09-01 15:08:41'),
+	(3,'willin','willin','192.168.0.18','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.22 Safari/537.36',1,'2013-09-01 15:31:25'),
+	(4,'willin','willin','127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0',1,'2013-09-03 22:13:51');
+
+/*!40000 ALTER TABLE `w_login_logs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table w_options
@@ -58,10 +70,13 @@ LOCK TABLES `w_options` WRITE;
 
 INSERT INTO `w_options` (`id`, `key`, `value`, `desc`, `autoload`)
 VALUES
-	(1,'site_name','{\"cn\":\"WillogCN\",\"en\":\"WillogEN\"}','站点名称','yes'),
-	(2,'site_lang','cn','默认语言','yes'),
-	(3,'other_langs','en','其他语言','yes'),
-	(4,'theme','default','站点主题','yes');
+	(1,'site_name','{\"cn\":\"WillogCN\",\"en\":\"WillogEN\"}','站点标题','yes'),
+	(2,'site_desc','{\"cn\":\"\",\"en\":\"\"}','站点副标题','yes'),
+	(3,'site_key','{\"cn\":\"\",\"en\":\"\"}','站点关键词','yes'),
+	(4,'site_lang','cn','默认语言','yes'),
+	(5,'site_langs','cn,en','站点启用语言','yes'),
+	(6,'sys_langs','{\"cn\":\"中文\",\"en\":\"English\"}','系统可用语言','yes'),
+	(7,'site_theme','default','默认主题','yes');
 
 /*!40000 ALTER TABLE `w_options` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -106,6 +121,7 @@ CREATE TABLE `w_posts` (
   `slug` varchar(255) DEFAULT NULL COMMENT '别名',
   `name` longtext COMMENT '名称',
   `content` longtext COMMENT '正文',
+  `thumb` varchar(512) DEFAULT NULL COMMENT '缩略图',
   `views` bigint(20) unsigned DEFAULT '0' COMMENT '访问量',
   `comments` bigint(20) unsigned DEFAULT '0' COMMENT '评论量',
   `status` varchar(32) DEFAULT 'draft' COMMENT '状态：draft/publish/protect',
@@ -167,7 +183,7 @@ LOCK TABLES `w_users` WRITE;
 
 INSERT INTO `w_users` (`id`, `username`, `email`, `nickname`, `password`, `salt`, `reset_key`, `created_at`, `updated_at`)
 VALUES
-	(1,'willin','willin@willin.org','Willin','c50b1bc753c0d51f6f9f6479c53a8b5e7ae4364f','SZJKzepQzt',NULL,'2013-08-30 14:36:18','2013-08-30 14:36:18');
+	(1,'willin','willin@willin.org','长岛冰泪','c50b1bc753c0d51f6f9f6479c53a8b5e7ae4364f','SZJKzepQzt',NULL,'2013-08-30 14:36:18','2013-08-30 14:36:18');
 
 /*!40000 ALTER TABLE `w_users` ENABLE KEYS */;
 UNLOCK TABLES;
