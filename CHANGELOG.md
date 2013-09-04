@@ -2,7 +2,8 @@ Promise First Version Release before 2014-2
 
 ------------
 
-* ! 2013-9-3 
+* 2013-9-4 !!! Post Add Doing
+* 2013-9-4 Dashboard Language Change Done
 * 2013-9-3 System Languages Done
 * 2013-9-2 System Options Done
 * 2013-9-1 Location using Google Maps Done
