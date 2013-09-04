@@ -37,6 +37,7 @@ class System extends Admin_Controller {
             $temp['autoload'] = 'yes';
             $this->m_db->update_or_insert($temp);
         }
+        $this->caches->delete();
         redirect(base_url('/admin/system'));
     }
 }
