@@ -24,6 +24,7 @@ class Admin_Controller extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('m_users');
+        $this->cur_user = $this->m_users->get_session();
         $this->_site_lang = $this->options->get('site_lang');
         $this->_langs = $this->options->get('site_langs');
         if(! $this->_cur_lang = $this->session->userdata('lang')){
@@ -34,6 +35,7 @@ class Admin_Controller extends CI_Controller{
         $this->data['langs'] = $this->get_langs();
         $this->data['sys_langs'] = $this->_get_sys_langs();
         $this->data['cur_lang'] = $this->get_lang();
+        $this->data['cur_user'] = $this->cur_user;
     }
 
     /**

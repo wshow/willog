@@ -31,7 +31,7 @@
                     <li class="divider"></li>
                     <li><a href="#"><?= $lang->line('write') ?></a></li>
                     <li class="divider"></li>
-                    <li><a href="#"><?= $lang->line('profile') ?></a></li>
+                    <li><a href="<?= base_url('/admin/users/edit/'.$cur_user['id']) ?>"><?= $lang->line('profile') ?></a></li>
                     <li class="divider"></li>
                     <li class="has-dropdown not-click">
                         <a href="#"><?= $lang->line('languages') ?></a>
