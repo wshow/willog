@@ -40,6 +40,15 @@ class System extends Admin_Controller {
         $this->caches->delete();
         redirect(base_url('/admin/system'));
     }
+
+    public function change($lang = false)
+    {
+        if(in_array($lang,$this->get_langs()))
+            $this->session->set_userdata('lang',$lang);
+        if ($this->agent->is_referral())
+            redirect($this->agent->referrer());
+        redirect('/admin/');
+    }
 }
 /* End of file system.php */
 /* Location: ./application/controllers/admin/system.php */

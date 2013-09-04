@@ -32,6 +32,7 @@ class Admin_Controller extends CI_Controller{
         }
         $this->data['site_name'] = $this->options->get('site_name',$this->get_lang());
         $this->data['langs'] = $this->get_langs();
+        $this->data['sys_langs'] = $this->_get_sys_langs();
         $this->data['cur_lang'] = $this->get_lang();
     }
 
@@ -65,6 +66,12 @@ class Admin_Controller extends CI_Controller{
         $this->load->view('layouts/header',$this->data);
         $this->load->view('admin/'.(isset($options['folder'])?$options['folder'].'/':'').$options['page'],$this->data);
         $this->load->view('layouts/footer',$this->data);
+    }
+
+    private function _get_sys_langs(){
+        $langs = $this->options->get('sys_langs');
+        if(is_json($langs)) return json_decode($langs,true);
+        return array();
     }
 
 }

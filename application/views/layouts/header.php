@@ -36,8 +36,9 @@
                     <li class="has-dropdown not-click">
                         <a href="#"><?= $lang->line('languages') ?></a>
                         <ul class="dropdown">
-                            <li><a href="#">CN</a></li>
-                            <li><a href="#">EN</a></li>
+                            <?php foreach($langs as $l): ?>
+                            <li><a href="<?= base_url('/admin/system/change/'.$l) ?>"><?= isset($sys_langs[$l])?$sys_langs[$l]:$l ?></a></li>
+                            <?php endforeach; ?>
                         </ul>
                     </li>
                     <li class="divider"></li>
