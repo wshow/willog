@@ -50,7 +50,7 @@ if(isset($options['site_langs']))
 
                 <?php foreach($languages as $l): ?>
                     <label for="<?= $l ?>">
-                        <input <?=(in_array($l,$options['site_langs']))?'checked="checked"':''?> type="checkbox" name="o[site_langs][]" id="<?= $l ?>" value="<?= $l ?>" class="inline">
+                        <input <?=(in_array($l,$options['site_langs']))?'checked="checked"':''?> type="checkbox" name="o[site_langs][]" id="<?= $l ?>" value="<?= $l ?>" class="inline"> <?=$l?>
                         <input type="text" value="<?= isset($options['sys_langs'][$l])?$options['sys_langs'][$l]:$l ?>" name="o[sys_langs][<?= $l ?>]" class="max120 inline">
 
                     </label>
