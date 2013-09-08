@@ -43,3 +43,6 @@ $lang['if_blank'] = 'If blank,not change';
 $lang['site_name'] = 'Site Name';
 $lang['site_desc'] = 'Site Description';
 $lang['site_key'] = 'Keywords';
+
+//Posts
+$lang['need_js'] = 'You need enable Javascript before editing a post.';

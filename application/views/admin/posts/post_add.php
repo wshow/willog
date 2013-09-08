@@ -29,7 +29,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="large-12 columns">
     <div class="large-9 columns">
-        <form method="post">
+        <noscript>
+            <div data-alert="" class="alert-box round">
+                <?= $lang->line('need_js') ?>
+                <a href="" class="close">×</a>
+            </div>
+        </noscript>
+        <form id="post_form" method="post">
             <div class="editors">
                 <ul id="editor_switch" class="button-group radius">
                     <?php foreach($langs as $l): ?>
@@ -48,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php endforeach; ?>
                 </div>
             </div>
+            <input type="button" class="button" id="post_submit">
         </form>
     </div>
     <div class="large-3 columns">

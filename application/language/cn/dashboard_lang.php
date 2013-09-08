@@ -43,3 +43,6 @@ $lang['if_blank'] = '留空则不修改';
 $lang['site_name'] = '站点标题';
 $lang['site_desc'] = '副标题';
 $lang['site_key'] = '关键词';
+
+//Posts
+$lang['need_js'] = '您需要先开启Javascript才能编辑文章。';

@@ -13,4 +13,10 @@ jQuery(document).ready(function(w){
         }
         return false;
     });
+
+    w('#post_submit').click(function(){
+        w('#content_'+w('#'+tinyMCE.activeEditor.id).data('lang')).val(tinyMCE.activeEditor.getContent());
+
+        return false;
+    })
 });
