@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
 <!-- Place inside the <head> of your HTML -->
 <script type="text/javascript" src="<?= base_url('/assets') ?>/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="<?= base_url('/assets') ?>/js/posts.js"></script>
 <script type="text/javascript">
     tinymce.init({
         selector: "textarea#tinymce",
@@ -18,8 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php endif; ?>
         plugins: [
             "advlist autolink link image lists charmap preview hr anchor pagebreak spellchecker",
-            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
-            "save table contextmenu directionality template paste textcolor"
+            "wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
+            "save table contextmenu directionality paste textcolor"
         ],
         toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview media fullpage | forecolor backcolor"
 
@@ -29,7 +30,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="large-12 columns">
     <div class="large-9 columns">
         <form method="post">
-            <textarea id="tinymce"></textarea>
+            <div class="editors">
+                <ul id="editor_switch" class="button-group radius">
+                    <?php foreach($langs as $l): ?>
+                        <li>
+                            <a href="#<?= $l ?>" data-lang="<?= $l ?>" class="small button <?= ($l==$cur_lang)?'current':'secondary' ?>">
+                                <?= isset($sys_langs[$l])?$sys_langs[$l]:$l ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+
+                </ul>
+                <textarea id="tinymce" data-lang="<?= $cur_lang ?>"></textarea>
+                <div class="hide-">
+                    <?php foreach($langs as $l): ?>
+                        <textarea name="p[content][<?= $l ?>]" id="content_<?= $l ?>"></textarea>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </form>
     </div>
     <div class="large-3 columns">
