@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php endif; ?>
         plugins: [
             "advlist autolink link image lists charmap preview hr anchor pagebreak spellchecker",
-            "wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
+            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
             "save table contextmenu directionality paste textcolor"
         ],
         toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview media fullpage | forecolor backcolor"
