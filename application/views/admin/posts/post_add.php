@@ -36,6 +36,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </noscript>
         <form id="post_form" method="post">
+            <div class="title">
+                <label>Title</label>
+                <?php foreach($langs as $l): ?>
+                    <input type="text" name="p[name][<?= $l ?>]" placeholder="Title (<?= $l ?>)">
+                <?php endforeach; ?>
+            </div>
             <div class="editors">
                 <ul id="editor_switch" class="button-group radius">
                     <?php foreach($langs as $l): ?>
