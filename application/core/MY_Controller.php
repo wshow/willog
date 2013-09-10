@@ -36,7 +36,7 @@ class MY_Controller extends CI_Controller{
                 $params=array_delete($params,0);
         }if (method_exists($this, $method))
         {
-            return call_user_func_array(array($this, $method), $params);
+            call_user_func_array(array($this, $method), $params);
         }
         show_404();
     }

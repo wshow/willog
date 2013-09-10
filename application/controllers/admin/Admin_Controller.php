@@ -46,7 +46,7 @@ class Admin_Controller extends CI_Controller{
         if($this->router->class!='login')
         {
             if(empty($this->cur_user))
-                redirect(base_url('admin/login'));
+                redirect(base_url('admin/login?return='.uri_string()));
         }
         if (method_exists($this, $method))
         {

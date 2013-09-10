@@ -17,7 +17,7 @@
        <div class="row">
            <div class="large-6 large-offset-3 columns">
                <h1 class="logo text-center"><a href="#" id="logo">Willog</a></h1>
-               <form id="loginform" method="post" action="<?= base_url('/admin/login/submit') ?>" class="radius5">
+               <form id="loginform" method="post" action="<?= base_url('/admin/login/submit'.($this->input->get('return')?'?return='.$this->input->get('return'):'')) ?>" class="radius5">
                    <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
                    <div class="username">
                        <label for="username"><?= $lang->line('username') ?></label>

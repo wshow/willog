@@ -41,6 +41,8 @@ class Login extends Admin_Controller {
         if(! $result['status'])
             redirect(base_url('/admin/login?msg='.$result['msg']));
         else{
+            if($return = $this->input->get('return'))
+                redirect(base_url('/'.$return));
             if ($this->agent->is_referral() && !strpos($this->agent->referrer(),'admin/login'))
                 redirect($this->agent->referrer());
             else
