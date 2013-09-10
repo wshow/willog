@@ -46,3 +46,10 @@ $lang['site_key'] = 'Keywords';
 
 //Posts
 $lang['need_js'] = 'You need enable Javascript before editing a post.';
+$lang['title'] = 'Title';
+$lang['slug'] = 'Slug';
+$lang['geolocation'] = 'Location';
+$lang['search'] = 'Search';
+$lang['address'] = 'Address';
+$lang['save_draft'] = 'Save draft';
+$lang['publish'] = 'Publish';

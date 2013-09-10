@@ -46,3 +46,10 @@ $lang['site_key'] = '关键词';
 
 //Posts
 $lang['need_js'] = '您需要先开启Javascript才能编辑文章。';
+$lang['title'] = '标题';
+$lang['slug'] = '别名';
+$lang['geolocation'] = '地图位置';
+$lang['search'] = '搜索';
+$lang['address'] = '具体地址';
+$lang['save_draft'] = '保存草稿';
+$lang['publish'] = '立即发布';

@@ -14,3 +14,4 @@ $lang['param_missing'] = '缺少参数';
 $lang['insert_success'] = '添加成功';
 $lang['update_success'] = '更新成功';
 $lang['no_numeric'] = '禁止纯数字别名';
+$lang['available'] = '可以使用';

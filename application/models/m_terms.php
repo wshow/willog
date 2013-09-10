@@ -98,7 +98,7 @@ Class M_Terms extends MY_Model
      * 检测是否存在
      *
      * @access public
-     * @return boolean
+     * @return int
      */
     public function check_exist($options = array())
     {

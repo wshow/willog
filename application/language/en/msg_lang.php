@@ -14,3 +14,4 @@ $lang['insert_success'] = 'Add success';
 $lang['update_success'] = 'Update success';
 $lang['param_missing'] = 'Param missing';
 $lang['no_numeric'] = 'No numeric slug';
+$lang['available'] = 'Available';

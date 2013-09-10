@@ -266,4 +266,7 @@ footer{
     width: 100%;
 }
 
-
+/* Map */
+#map-canvas{
+    height:300px;
+}

@@ -60,6 +60,16 @@ class Posts extends Admin_Controller
             json_result($result);
         redirect(base_url('admin/posts'));
     }
+
+    public function slug($slug = false)
+    {
+        //if(is_ajax())
+        {
+            $this->load->model('m_posts');
+            $result = $this->m_posts->check_slug($slug);
+            json_result($result);
+        }
+    }
 }
 /* End of file posts.php */
 /* Location: ./application/controllers/admin/posts.php */

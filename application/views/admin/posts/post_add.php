@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Created: 2013-09-04 23:16
  * File:    post_add.php
  */
- ?>
+?>
 <!-- Place inside the <head> of your HTML -->
 <script type="text/javascript" src="<?= base_url('/assets') ?>/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?= base_url('/assets') ?>/js/posts.js"></script>
@@ -28,16 +28,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <div class="large-12 columns">
-    <div class="large-9 columns">
-        <noscript>
-            <div data-alert="" class="alert-box round">
-                <?= $lang->line('need_js') ?>
-                <a href="" class="close">×</a>
-            </div>
-        </noscript>
-        <form id="post_form" method="post">
+    <form id="post_form" method="post">
+        <div class="large-9 columns">
+            <noscript>
+                <div data-alert="" class="alert-box round">
+                    <?= $lang->line('need_js') ?>
+                    <a href="" class="close">×</a>
+                </div>
+            </noscript>
+
             <div class="title">
-                <label>Title</label>
+                <label><?= $lang->line('title') ?></label>
                 <?php foreach($langs as $l): ?>
                     <input type="text" name="p[name][<?= $l ?>]" placeholder="Title (<?= $l ?>)">
                 <?php endforeach; ?>
@@ -60,10 +61,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php endforeach; ?>
                 </div>
             </div>
-            <input type="button" class="button" id="post_submit">
-        </form>
-    </div>
-    <div class="large-3 columns">
+        </div>
+        <div class="large-3 columns">
+            <div class="slug">
+                <label for="slug"><?= $lang->line('slug') ?></label>
+                <input type="text" id="slug" name="p[slug]" placeholder="Slug">
+                <span class="hide">已经存在</span>
+            </div>
+            <div class="map">
+                <label for="search_place"><?= $lang->line('geolocation') ?></label>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input type="text" id="search_place" placeholder="Search">
+                    </div>
+                    <div class="small-3 columns">
+                        <input id="search_place_button" type="button" class="button postfix" value="<?= $lang->line('search') ?>">
+                    </div>
+                </div>
 
-    </div>
+                <div id="map-canvas"></div>
+                <input type="hidden" id="lat" name="p[lat]">
+                <input type="hidden" id="lng" name="p[lng]">
+            </div>
+            <div class="address">
+                <label><?= $lang->line('address') ?></label>
+                <?php foreach($langs as $l): ?>
+                    <input type="text" name="p[address][<?= $l ?>]" placeholder="Address (<?= $l ?>)">
+                <?php endforeach; ?>
+            </div>
+
+
+            <div class="buttons row collapse">
+                <div class="small-6 columns">
+                    <input type="button" class="small button secondary expand" id="post_draft" value="<?= $lang->line('save_draft') ?>">
+                </div>
+                <div class="small-6 columns">
+                    <input type="button" class="small button success expand" id="post_submit" value="<?= $lang->line('publish') ?>">
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
