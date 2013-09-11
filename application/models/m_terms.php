@@ -28,6 +28,25 @@ Class M_Terms extends MY_Model
         return isset($items[0]['children']) ? $items[0]['children'] : array();
     }
 
+    public function create_checkbox($items,$lang = 'cn',$dept = 0,$selected = false)
+    {
+        $html = '';
+        foreach($items as $item){
+            if(is_json($item['name'])) $item['name'] = json_decode($item['name'],true);
+            $item_name = isset($item['name'][$lang]) ? $item['name'][$lang] : $item['name'];
+            $html .= '<li>';
+            $html .= "<input type=\"checkbox\" name=\"m[{$item['taxonomy']}]\" value=\"{$item['id']}\" ";
+            if(in_array($item['id'],$selected)) $html .= 'checked="checked"';
+            $html .= ">{$item_name}";
+            if(isset($item['children']) && is_array($item['children'])){
+                $html .= '<ul class="children">';
+                $html .= $this->create_checkbox($item['children'],$lang,$dept+1,$selected);
+                $html .= '</ul>';
+            }
+            $html .= '</li>';
+        }
+        return $html;
+    }
 
     public function create_html($items,$lang = 'cn',$type = 'option',$dept=0,$curent_item = false)
     {
