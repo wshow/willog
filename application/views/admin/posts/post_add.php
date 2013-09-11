@@ -68,6 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <input type="text" id="slug" name="p[slug]" placeholder="Slug">
                 <span class="hide">已经存在</span>
             </div>
+
+            <div class="terms">
+                <label><?= $lang->line('category') ?></label>
+                <ul class="categories">
+                    <?= $categories ?>
+                </ul>
+            </div>
+
             <div class="map">
                 <label for="search_place"><?= $lang->line('geolocation') ?></label>
                 <div class="row collapse">
@@ -89,7 +97,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <input type="text" name="p[address][<?= $l ?>]" placeholder="Address (<?= $l ?>)">
                 <?php endforeach; ?>
             </div>
-
 
             <div class="buttons row collapse">
                 <div class="small-6 columns">

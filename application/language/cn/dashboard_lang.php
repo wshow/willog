@@ -53,3 +53,5 @@ $lang['search'] = '搜索';
 $lang['address'] = '具体地址';
 $lang['save_draft'] = '保存草稿';
 $lang['publish'] = '立即发布';
+$lang['category'] = '分类';
+

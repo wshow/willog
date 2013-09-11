@@ -28,6 +28,10 @@ class Posts extends Admin_Controller
 
     public function add()
     {
+        $this->load->model('m_terms');
+        $terms = $this->m_terms->filter('category');
+        $this->data['categories'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
+
         $this->admin_view(array('folder'=>'posts','page'=>'post_add','index'=>11));
     }
 
