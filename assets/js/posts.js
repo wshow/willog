@@ -36,7 +36,15 @@ jQuery(document).ready(function(w){
 
     w('#post_submit').click(function(){
         w('#content_'+w('#'+tinyMCE.activeEditor.id).data('lang')).val(tinyMCE.activeEditor.getContent());
-
+        w.ajax({
+            url:w('#post_form').attr('action'),
+            type:w('#post_form').attr('method'),
+            data:w('#post_form').serialize(),
+            dataType:'json',
+            success:function(j){
+                alert(j);
+            }
+        });
         return false;
     })
 

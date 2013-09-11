@@ -31,6 +31,8 @@ class Posts extends Admin_Controller
         $this->load->model('m_terms');
         $terms = $this->m_terms->filter('category');
         $this->data['categories'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
+        $terms = $this->m_terms->filter('city');
+        $this->data['cities'] = $this->m_terms->create_html($terms,$this->get_lang());
 
         $this->admin_view(array('folder'=>'posts','page'=>'post_add','index'=>11));
     }
@@ -47,10 +49,15 @@ class Posts extends Admin_Controller
     public function action($action = false,$id = 0)
     {
         $post = $this->input->post('p');
+        $metas = $this->input->post('m');
+
         $post['type'] = 'post';
         $this->load->model('m_posts');
         if($action=='add'){
             $result = $this->m_posts->insert($post);
+            if(isset($result['post_id'])){
+                //TODO: Add Post Metas
+            }
         }
         else if($action=='edit')
         {
@@ -67,7 +74,7 @@ class Posts extends Admin_Controller
 
     public function slug($slug = false)
     {
-        //if(is_ajax())
+        if(is_ajax())
         {
             $this->load->model('m_posts');
             $result = $this->m_posts->check_slug($slug);

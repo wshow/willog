@@ -270,3 +270,15 @@ footer{
 #map-canvas{
     height:300px;
 }
+
+form.custom .terms .custom.checkbox.checked:before{
+    margin-top:0;
+}
+form .terms > ul{
+    display: block;
+    padding:10px;
+    background: #eee;
+}
+form .terms ul li{
+    list-style: none;
+}

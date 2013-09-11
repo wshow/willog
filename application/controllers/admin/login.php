@@ -30,7 +30,7 @@ class Login extends Admin_Controller {
 
     public function submit()
     {
-        $result = $this->m_users->login($this->input->post('p'));
+        $result = $this->m_users->login($this->input->post('p',true));
         //AJAX Handler
         if(is_ajax()){
             $this->lang->load('msg',$this->get_lang());

@@ -54,4 +54,5 @@ $lang['address'] = '具体地址';
 $lang['save_draft'] = '保存草稿';
 $lang['publish'] = '立即发布';
 $lang['category'] = '分类';
-
+$lang['city'] = '城市';
+$lang['unselected'] = '未选择';

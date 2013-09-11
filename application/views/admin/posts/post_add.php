@@ -28,7 +28,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <div class="large-12 columns">
-    <form id="post_form" method="post">
+    <form action="<?= base_url('/admin/posts/action/add') ?>" id="post_form" method="post" class="custom">
+        <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
         <div class="large-9 columns">
             <noscript>
                 <div data-alert="" class="alert-box round">
@@ -55,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 </ul>
                 <textarea id="tinymce" data-lang="<?= $cur_lang ?>"></textarea>
-                <div class="hide-">
+                <div class="hide">
                     <?php foreach($langs as $l): ?>
                         <textarea name="p[content][<?= $l ?>]" id="content_<?= $l ?>"></textarea>
                     <?php endforeach; ?>
@@ -67,6 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <label for="slug"><?= $lang->line('slug') ?></label>
                 <input type="text" id="slug" name="p[slug]" placeholder="Slug">
                 <span class="hide">已经存在</span>
+            </div>
+
+            <div class="terms">
+                <label><?= $lang->line('city') ?></label>
+                <select name="m[city]">
+                    <option><?= $lang->line('unselected') ?></option>
+                    <?= $cities ?>
+                </select>
             </div>
 
             <div class="terms">
