@@ -18,11 +18,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         language:'zh_CN',
         <?php endif; ?>
         plugins: [
-            "advlist autolink link image lists charmap preview hr anchor pagebreak spellchecker",
-            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
+            "advlist autolink link image lists charmap preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen  insertdatetime nonbreaking",
             "save table contextmenu directionality paste textcolor"
         ],
-        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview media fullpage | forecolor backcolor"
+        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview | forecolor backcolor"
 
     });
 </script>
