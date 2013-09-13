@@ -35,7 +35,7 @@ Class M_Terms extends MY_Model
             if(is_json($item['name'])) $item['name'] = json_decode($item['name'],true);
             $item_name = isset($item['name'][$lang]) ? $item['name'][$lang] : $item['name'];
             $html .= "<li><label for=\"term-{$item['id']}\">";
-            $html .= "<input type=\"checkbox\" name=\"m[{$item['taxonomy']}]\" value=\"{$item['id']}\" ";
+            $html .= "<input type=\"checkbox\" name=\"m[{$item['taxonomy']}][]\" value=\"{$item['id']}\" ";
             if(is_array($selected) && in_array($item['id'],$selected)) $html .= 'checked="checked"';
             $html .= " id=\"term-{$item['id']}\"> {$item_name} </label>";
             if(isset($item['children']) && is_array($item['children'])){
@@ -103,7 +103,7 @@ Class M_Terms extends MY_Model
         $options['slug'] = strtolower($options['slug']);
         $options['name'] = encode_json($options['name']);
 
-        if($this->check_exist($options)>0)
+        if($this->check_exist($options['slug'])>0)
             return array('status'=>0,'msg'=>'already_exist');
 
 
@@ -119,12 +119,13 @@ Class M_Terms extends MY_Model
      * @access public
      * @return int
      */
-    public function check_exist($options = array())
+    public function check_exist($slug = false,$id = false)
     {
         $this->_CI->db->select('count(*) as count')->from('terms')
-            ->where('slug',$options['slug'])
-            ->or_where('name',$options['name'])
+            ->where('slug',$slug)
         ;
+        if($id)
+            $this->_CI->db->where('id <>',$id);
         $result = $this->_CI->db->get()->row_array();
         return $result['count'];
     }
@@ -137,6 +138,7 @@ Class M_Terms extends MY_Model
      */
     public function update($options = array()){
         $default = array(
+            'id' => 0,
             'slug' => '',
             'name' => '',
             'taxonomy' => 'tag',
@@ -144,7 +146,7 @@ Class M_Terms extends MY_Model
             'desc' => '',
             'updated_at' => date("Y-m-d H:i:s")
         );
-        if( ! $this->_required(array('slug','name'),$options)){
+        if( ! $this->_required(array('id','slug','name'),$options)){
             return array('status'=>0,'msg'=>'param_missing');
         }
         $options['name'] = encode_json($options['name']);
@@ -152,7 +154,10 @@ Class M_Terms extends MY_Model
         if(is_numeric($options['slug']))
             return array('status'=>0,'msg'=>'no_numeric');
 
-        $status = $this->db->where('slug',$options['slug'])->update('terms',$options);
+        if($this->check_exist($options['slug'],$options['id'])>0)
+            return array('status'=>0,'msg'=>'already_exist');
+
+        $status = $this->db->where('id',$options['id'])->update('terms',$options);
         if(!$status)
             return array('status'=>0,'msg'=>'sql_error');
         return array('status'=>1,'msg'=>'update_success');

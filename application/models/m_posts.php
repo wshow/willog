@@ -14,7 +14,7 @@ Class M_Posts extends MY_Model
      * @access public
      * @return boolean
      */
-    public function check_slug($slug = false)
+    public function check_slug($slug = false,$id = false)
     {
         if(!$slug)
             return array('status'=>0,'msg'=>'param_missing');
@@ -23,6 +23,8 @@ Class M_Posts extends MY_Model
         $this->_CI->db->select('count(*) as count')->from('posts')
             ->where('slug',$slug)
         ;
+        if($id)
+            $this->_CI->db->where('id <>',$id);
         $result = $this->_CI->db->get()->row_array();
         if($result['count']>0)
             return array('status'=>0,'msg'=>'already_exist');
@@ -36,7 +38,7 @@ Class M_Posts extends MY_Model
      * @access public
      * @return StatusArray
      */
-    public function insert($options = array()){
+    public function insert($options = array(),$metas = array()){
         $default = array(
             'slug' => '',
             'name' => '',
@@ -62,13 +64,100 @@ Class M_Posts extends MY_Model
         $options['content'] = encode_json($options['content']);
         $options['address'] = encode_json($options['address']);
 
-        if($this->check_slug($options['slug'])>0)
+        $slug_staus = $this->check_slug($options['slug']);
+        if($slug_staus['status']==0)
             return array('status'=>0,'msg'=>'already_exist');
 
 
-        $status = $this->_CI->db->insert('terms',$options);
+        $status = $this->_CI->db->insert('posts',$options);
         if(! $status)
             return array('status'=>0,'msg'=>'sql_error');
-        return array('status'=>1,'msg'=>'insert_success','post_id'=>$this->_CI->db->insert_id());
+        return $this->insert_meta($this->_CI->db->insert_id(),$metas);
+    }
+
+    public function update($options = array(),$metas = array()){
+        $default = array(
+            'id' => 0,
+            'slug' => '',
+            'name' => '',
+            'content' => '',
+            'thumb' => '',
+            'status' => 'draft',
+            'type' => 'post',
+            'lng' => 0,
+            'lat' => 0,
+            'address' => '',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+        );
+        if( ! $this->_required(array('id','slug','name'),$options)){
+            return array('status'=>0,'msg'=>'param_missing');
+        }
+        $options = $this->_default($default,$options);
+        if(is_numeric($options['slug']))
+            return array('status'=>0,'msg'=>'no_numeric');
+
+        $options['slug'] = strtolower($options['slug']);
+        $options['name'] = encode_json($options['name']);
+        $options['content'] = encode_json($options['content']);
+        $options['address'] = encode_json($options['address']);
+
+        $slug_staus = $this->check_slug($options['slug'],$options['id']);
+        if($slug_staus['status']==0)
+            return array('status'=>0,'msg'=>'already_exist');
+
+
+        $status = $this->_CI->db->where('id',$options['id'])->update('posts',$options);
+        if(! $status)
+            return array('status'=>0,'msg'=>'sql_error');
+        return $this->insert_meta($this->_CI->db->insert_id(),$metas);
+    }
+
+    /**
+     * 添加文章Meta
+     *
+     * @access public
+     * @return StatusArray
+     */
+    public function insert_meta($post_id,$options = array()){
+        $this->_CI->db->select('id')->from('postmeta')->where('post_id',$post_id);
+        $metas = $this->_CI->db->get()->result_array();
+
+        $data_id = array();
+        if(count($metas)>0){
+            foreach($metas as $meta){
+                array_push($data_id,$meta['id']);
+            }
+        }
+
+        $data = array();
+        foreach($options as $key=>$value){
+            if(is_array($value)){
+                foreach($value as $v){
+                    $temp = array();
+                    $temp['post_id'] = $post_id;
+                    $temp['meta_key'] = $key;
+                    $temp['meta_value'] = $v;
+                    array_push($data,$temp);
+                }
+            }else{
+                $temp = array();
+                $temp['post_id'] = $post_id;
+                $temp['meta_key'] = $key;
+                $temp['meta_value'] = $value;
+                array_push($data,$temp);
+            }
+        }
+
+        foreach($data as $item){
+            if(count($data_id)>0)
+                $item['id'] = array_shift($data_id);
+            if(isset($item['id']))
+                $this->_CI->db->where('id',$item['id'])->update('postmeta',$item);
+            else
+                $this->_CI->db->insert('postmeta',$item);
+        }
+
+        return array('status'=>1,'msg'=>'insert_success');
     }
 }

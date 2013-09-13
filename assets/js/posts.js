@@ -42,7 +42,11 @@ jQuery(document).ready(function(w){
             data:w('#post_form').serialize(),
             dataType:'json',
             success:function(j){
-                alert(j);
+                if(j.status){
+                    window.location=base_url+'/admin/posts';
+                }else{
+                    alert(j.msg);
+                }
             }
         });
         return false;

@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <fieldset>
             <legend><?= $lang->line('edit') ?></legend>
             <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
+            <input type="hidden" name="t[id]" value="<?= $city['id'] ?>">
 
             <div class="large-12 columns">
                 <label><?= $lang->line('slug') ?></label>

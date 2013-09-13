@@ -6,10 +6,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= ($lang->line($page)?$lang->line($page).' - ':' ').$site_name.' - Powered by Willog' ?></title>
+    <title><?= ($page?$lang->line($page).' - ':' ').$site_name.' - Powered by Willog' ?></title>
     <link rel="stylesheet" href="<?=base_url('/assets/css/normalize.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/foundation.min.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/dashboard.min.css')?>">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" >
     <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
     <script type="text/javascript">window.jQuery || document.write('<script src="<?=base_url('/assets/js/jquery-1.10.2.min.js')?>">\x3C/script>');var base_url='<?= base_url('/')?>';</script>
 </head>
@@ -23,7 +25,6 @@
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
             </ul>
-
 
             <section class="top-bar-section">
                 <!-- Right Nav Section -->

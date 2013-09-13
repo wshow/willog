@@ -54,14 +54,11 @@ class Posts extends Admin_Controller
         $post['type'] = 'post';
         $this->load->model('m_posts');
         if($action=='add'){
-            $result = $this->m_posts->insert($post);
-            if(isset($result['post_id'])){
-                //TODO: Add Post Metas
-            }
+            $result = $this->m_posts->insert($post,$metas);
         }
         else if($action=='edit')
         {
-            $result = $this->m_posts->update($post);
+            $result = $this->m_posts->update($post,$metas);
         }
         else if($action=='del')
         {
