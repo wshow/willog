@@ -17,7 +17,7 @@ Class M_Terms extends MY_Model
     public function filter($type = 'category')
     {
         if($type != 'city' && $type != 'category') $type='category';
-        $input = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>$type));
+        $input = $this->m_db->get(array('select'=>"*,(select count(1) from w_postmeta where meta_key='{$type}' and meta_value= w_terms.id) as count",'table'=>'terms','return'=>true,'taxonomy'=>$type));
         if(!$input) return array();
         //Get Tree
         $items = array();

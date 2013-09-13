@@ -17,8 +17,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      public function get($options= array()){
          if( ! $this->_required(array('table'),$options) || !$this->db->table_exists($options['table']))
              return false;
-
-         $this->_CI->db->select('*')->from($options['table']);
+         if(isset($options['select']) && $options['select'])
+         {
+             $this->_CI->db->select($options['select']);
+             unset($options['select']);
+         }else{
+             $this->_CI->db->select('*');
+         }
+         $this->_CI->db->from($options['table']);
          unset($options['table']);
          $return = isset($options['return']) ? true : false;
          unset($options['return']);
@@ -56,9 +62,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $page_count = ceil($count/$page_size);
 
          //从数据库中查询数据
-         $this->_CI->db
-             ->select('*')
-             ->from($options['table']);
+         if(isset($options['select']) && $options['select'])
+         {
+             $this->_CI->db->select($options['select']);
+             unset($options['select']);
+         }else{
+             $this->_CI->db->select('*');
+         }
+         $this->_CI->db->from($options['table']);
          if(isset($options['where']) && $options['where'])
              $this->_CI->db->where($options['where']);
          $this->_CI->db

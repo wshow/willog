@@ -16,7 +16,7 @@ class Tags extends Admin_Controller
         $tag = array(
             'taxonomy' => 'tag'
         );
-        $this->data['tags'] = $this->m_db->get_list(array('table'=>'terms','where'=>$tag,'page'=>$page));
+        $this->data['tags'] = $this->m_db->get_list(array('select'=>"*,(select count(1) from w_postmeta where meta_key='tag' and meta_value= w_terms.id) as count",'table'=>'terms','where'=>$tag,'page'=>$page));
         $this->paginators->config(array(
             'base_url' => base_url('/admin/tags/index'),
             'total_rows' => $this->data['tags']['data']['count'],
