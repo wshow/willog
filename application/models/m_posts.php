@@ -157,7 +157,9 @@ Class M_Posts extends MY_Model
             else
                 $this->_CI->db->insert('postmeta',$item);
         }
-
+        if(count($data_id)>0)
+            $this->_CI->db->where_in('id',$data_id)->delete('postmeta');
+        
         return array('status'=>1,'msg'=>'insert_success');
     }
 }
