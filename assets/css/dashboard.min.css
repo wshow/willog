@@ -270,15 +270,22 @@ footer{
 #map-canvas{
     height:300px;
 }
+form ul,form ol,form dl{
+    margin:0;
+}
 
 form.custom .terms .custom.checkbox.checked:before{
     margin-top:0;
 }
-form .terms > ul{
+form .terms .bkg {
     display: block;
     padding:10px;
+    margin:0 0 10px;
     background: #eee;
 }
 form .terms ul li{
     list-style: none;
+}
+form .terms ul.tags li{
+    float:left;
 }

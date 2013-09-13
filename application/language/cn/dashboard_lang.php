@@ -56,3 +56,4 @@ $lang['publish'] = '立即发布';
 $lang['category'] = '分类';
 $lang['city'] = '城市';
 $lang['unselected'] = '未选择';
+$lang['tag'] = '标签';

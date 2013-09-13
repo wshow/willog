@@ -80,9 +80,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="terms">
                 <label><?= $lang->line('category') ?></label>
-                <ul class="categories">
-                    <?= $categories ?>
-                </ul>
+                <div class="bkg">
+                    <ul class="categories">
+                        <?= $categories ?>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="terms">
+                <label><?= $lang->line('tag') ?></label>
+                <div class="bkg">
+                    <ul class="tags">
+                        <?= $tags ?>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
             </div>
 
             <div class="map">

@@ -56,3 +56,4 @@ $lang['publish'] = 'Publish';
 $lang['category'] = 'Category';
 $lang['city'] = 'City';
 $lang['unselected'] = 'Unselected';
+$lang['tag'] = 'Tags';

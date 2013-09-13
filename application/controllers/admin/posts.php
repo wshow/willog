@@ -33,6 +33,8 @@ class Posts extends Admin_Controller
         $this->data['categories'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
         $terms = $this->m_terms->filter('city');
         $this->data['cities'] = $this->m_terms->create_html($terms,$this->get_lang());
+        $terms = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>'tag'));
+        $this->data['tags'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
 
         $this->admin_view(array('folder'=>'posts','page'=>'post_add','index'=>11));
     }
