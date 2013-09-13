@@ -57,3 +57,4 @@ $lang['category'] = '分类';
 $lang['city'] = '城市';
 $lang['unselected'] = '未选择';
 $lang['tag'] = '标签';
+$lang['created_at'] = '创建时间';

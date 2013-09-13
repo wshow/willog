@@ -283,9 +283,10 @@ form .terms .bkg {
     margin:0 0 10px;
     background: #eee;
 }
-form .terms ul li{
+form li{
     list-style: none;
 }
 form .terms ul.tags li{
     float:left;
+    padding:5px 10px;
 }
