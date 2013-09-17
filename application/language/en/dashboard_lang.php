@@ -58,3 +58,4 @@ $lang['city'] = 'City';
 $lang['unselected'] = 'Unselected';
 $lang['tag'] = 'Tags';
 $lang['created_at'] = 'Created Time';
+$lang['thumb'] = 'Thumbnail';

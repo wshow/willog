@@ -122,6 +122,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php endforeach; ?>
             </div>
 
+            <div class="thumb">
+                <label><?= $lang->line('thumb') ?></label>
+                <input type="text" name="p[thumb]" placeholder="Thumb">
+            </div>
+
             <div class="created_at">
                 <label><?= $lang->line('created_at') ?></label>
                 <div class="row collapse">
