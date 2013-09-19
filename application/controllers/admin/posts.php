@@ -64,6 +64,7 @@ class Posts extends Admin_Controller
         }
         else if($action=='del')
         {
+            $this->m_db->delete(array('table'=>'postmeta','post_id'=>$id));
             $result = $this->m_db->delete(array('table'=>'posts','type'=>'post','id'=>$id));
         }
         if(is_ajax())
