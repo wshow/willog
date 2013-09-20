@@ -47,6 +47,7 @@ class Cities extends Admin_Controller {
         }
         else if($action=='del')
         {
+            $this->m_db->delete(array('table'=>'terms','taxonomy'=>'city','parent_id'=>$id));
             $result = $this->m_db->delete(array('table'=>'terms','taxonomy'=>'city','id'=>$id));
         }
         if(is_ajax())
