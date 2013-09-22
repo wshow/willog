@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          //从数据库中查询数据
          if(isset($options['select']) && $options['select'])
          {
-             $this->_CI->db->select($options['select']);
+             $this->_CI->db->select($options['select'],false);
              unset($options['select']);
          }else{
              $this->_CI->db->select('*');

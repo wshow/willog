@@ -15,9 +15,12 @@ class Posts extends Admin_Controller
     {
         if(!is_numeric($page)) show_404();
         $post = array(
-            'type' => 'post'
+            'table' => 'posts',
+            'page' => $page,
+            'where' => array('type' => 'post'),
+            'select' => "w_posts.id,w_posts.slug,w_posts.`name`,w_posts.views,w_posts.comments,w_posts.`status`,w_posts.type,w_posts.updated_at,w_posts.created_at,(select group_concat('\\\"',taxonomy,'-',id,'\\\":',`name`) from w_terms where id in (select meta_value from w_postmeta where post_id = w_posts.id)) as terms"
         );
-        $this->data['posts'] = $this->m_db->get_list(array('table'=>'posts','where'=>$post,'page'=>$page));
+        $this->data['posts'] = $this->m_db->get_list($post);
         $this->paginators->config(array(
             'base_url' => base_url('/admin/posts/index'),
             'total_rows' => $this->data['posts']['data']['count'],
