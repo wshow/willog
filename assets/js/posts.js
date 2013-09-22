@@ -14,9 +14,13 @@ jQuery(document).ready(function(w){
 
     w('#slug').blur(function(){
         if(w(this).val()!='' && w.trim(w(this).val())!=''){
+
+            var post_id = 0;
+            if(typeof w(this).data('id') != 'undefined')
+                post_id = w(this).data('id');
             var msg_span = w(this).next('span');
             w.ajax({
-                url:base_url+'admin/posts/slug/'+w.trim(w(this).val()),
+                url:base_url+'admin/posts/slug/'+post_id+'/'+w.trim(w(this).val()),
                 dataType:'json',
                 type:'get',
                 success:function(j){

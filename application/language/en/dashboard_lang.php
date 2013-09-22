@@ -59,3 +59,5 @@ $lang['unselected'] = 'Unselected';
 $lang['tag'] = 'Tags';
 $lang['created_at'] = 'Created Time';
 $lang['thumb'] = 'Thumbnail';
+$lang['comments'] = 'Comments';
+$lang['views'] = 'Views';

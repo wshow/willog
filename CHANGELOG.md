@@ -4,6 +4,7 @@ Promise First Version Release before 2014-2
 
 * 2013-9-13 *** Start Website Pages
 * 2013-9-13 *** Delay Admin Dashboard Development
+* 2013-9-21 Post Management List Done
 * 2013-9-13 Post Add Done
 * 2013-9-4 Dashboard Language Change Done
 * 2013-9-3 System Languages Done

@@ -12,15 +12,17 @@ $cur_page = (int)$posts['data']['page_now'];
     <table class="large-12 columns">
         <thead>
         <tr>
-            <th><?= $lang->line('username') ?></th>
-            <th><?= $lang->line('nick') ?></th>
-            <th><?= $lang->line('email') ?></th>
+            <th><?= $lang->line('title') ?></th>
+            <th><?= $lang->line('category') ?></th>
+            <th><?= $lang->line('city') ?></th>
+            <th><?= $lang->line('tag') ?></th>
+            <th><?= $lang->line('views') ?> / <?= $lang->line('comments') ?></th>
             <th><?= $lang->line('operation') ?></th>
         </tr>
         </thead>
         <tfoot>
         <tr>
-            <th colspan="5">
+            <th colspan="6">
                 <?= $posts['data']['count'] ?> | <?= $posts['data']['page_now'] ?> / <?= $posts['data']['page_count'] ?>
                 <?= $this->paginators->output() ?>
             </th>
@@ -30,17 +32,35 @@ $cur_page = (int)$posts['data']['page_now'];
         <?php foreach($posts['data']['result'] as $post): ?>
             <tr>
                 <td>
-                    <?= $post['name'] ?>
+                    <?= $post['name'][$cur_lang] ?>
                 </td>
                 <td>
-                    Test
+                    <?php if(isset($post['category'])): ?>
+                        <?php foreach($post['category'] as $item): ?>
+                            <a href="#<?= $item['id'] ?>"><?= $item['name'][$cur_lang] ?></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </td>
                 <td>
-                    Test
+                    <?php if(isset($post['city'])): ?>
+                        <?php foreach($post['city'] as $item): ?>
+                            <a href="#<?= $item['id'] ?>"><?= $item['name'][$cur_lang] ?></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </td>
                 <td>
-                    <a href="<?= base_url('/admin/users/edit/'.$post['id']) ?>"><?= $lang->line('edit') ?></a>
-                    <a href="<?= base_url('/admin/users/action/del/'.$post['id']) ?>"><?= $lang->line('delete') ?></a>
+                    <?php if(isset($post['tag'])): ?>
+                        <?php foreach($post['tag'] as $item): ?>
+                            <a href="#<?= $item['id'] ?>"><?= $item['name'][$cur_lang] ?></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?= $post['views'] ?> / <?= $post['comments'] ?>
+                </td>
+                <td>
+                    <a href="<?= base_url('/admin/posts/edit/'.$post['id']) ?>"><?= $lang->line('edit') ?></a>
+                    <a href="<?= base_url('/admin/posts/action/del/'.$post['id']) ?>"><?= $lang->line('delete') ?></a>
                 </td>
             </tr>
         <?php endforeach; ?>

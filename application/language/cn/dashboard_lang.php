@@ -59,4 +59,5 @@ $lang['unselected'] = '未选择';
 $lang['tag'] = '标签';
 $lang['created_at'] = '创建时间';
 $lang['thumb'] = '缩略图';
-
+$lang['comments'] = '评论';
+$lang['views'] = '点击';

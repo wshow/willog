@@ -27,7 +27,7 @@ class Posts extends Admin_Controller
                     $value = '{' . $value . '}';
                 }
                 if(is_json($value)){
-                    $post[$key] = $value = json_decode($value);
+                    $post[$key] = $value = json_decode($value,true);
                 }
                 if($key == 'terms'){
                     foreach($value as $k=>$v){
@@ -67,6 +67,14 @@ class Posts extends Admin_Controller
     public function edit($id = 0)
     {
         $this->data['post'] = $this->m_db->get(array('table'=>'posts','id'=>$id,'type'=>'post'));
+        $this->load->model('m_terms');
+        $terms = $this->m_terms->filter('category');
+        $this->data['categories'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
+        $terms = $this->m_terms->filter('city');
+        $this->data['cities'] = $this->m_terms->create_html($terms,$this->get_lang());
+        $terms = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>'tag'));
+        $this->data['tags'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
+
         if(empty($this->data['post']))
             show_404();
 
@@ -97,12 +105,14 @@ class Posts extends Admin_Controller
         redirect(base_url('admin/posts'));
     }
 
-    public function slug($slug = false)
+    public function slug($id = 0,$slug = false)
     {
+        $id = is_numeric($id) ? $id : 0;
+
         if(is_ajax())
         {
             $this->load->model('m_posts');
-            $result = $this->m_posts->check_slug($slug);
+            $result = $this->m_posts->check_slug($slug,$id);
             json_result($result);
         }
     }
