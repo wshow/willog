@@ -14,13 +14,35 @@ class Posts extends Admin_Controller
     public function index($page = 1)
     {
         if(!is_numeric($page)) show_404();
-        $post = array(
+        $arg = array(
             'table' => 'posts',
             'page' => $page,
             'where' => array('type' => 'post'),
             'select' => "w_posts.id,w_posts.slug,w_posts.`name`,w_posts.views,w_posts.comments,w_posts.`status`,w_posts.type,w_posts.updated_at,w_posts.created_at,(select group_concat('\\\"',taxonomy,'-',id,'\\\":',`name`) from w_terms where id in (select meta_value from w_postmeta where post_id = w_posts.id)) as terms"
         );
-        $this->data['posts'] = $this->m_db->get_list($post);
+        $posts = $this->m_db->get_list($arg);
+        foreach($posts['data']['result'] as &$post){
+            foreach($post as $key=>$value){
+                if($key == 'terms'){
+                    $value = '{' . $value . '}';
+                }
+                if(is_json($value)){
+                    $post[$key] = $value = json_decode($value);
+                }
+                if($key == 'terms'){
+                    foreach($value as $k=>$v){
+                        $tmp = explode('-',$k);
+                        $tmpv = array('id'=>$tmp[1],'name'=>$v);
+                        if(!isset($post[$tmp[0]])) $post[$tmp[0]]=array();
+                        array_push($post[$tmp[0]],$tmpv);
+                    }
+                    unset($post[$key]);
+                }
+            }
+        }
+//        json_result($posts);
+//        exit();
+        $this->data['posts'] = $posts;
         $this->paginators->config(array(
             'base_url' => base_url('/admin/posts/index'),
             'total_rows' => $this->data['posts']['data']['count'],
