@@ -14,6 +14,7 @@ class Login extends Admin_Controller {
         //Check IS_LOGIN
         if(!empty($this->cur_user))
             redirect(base_url('/admin'));
+        $this->m_users->check_user();
 
         //Load Language and Error msg
         $this->lang->load('admin_login',$this->get_lang());

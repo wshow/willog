@@ -238,4 +238,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          return $this->get_session('id')?true:false;
      }
 
+
+     public function check_user(){
+         $this->_CI->db
+             ->select('count(*) as count')
+             ->from('users')
+         ;
+         $count = $this->_CI->db->get()->row()->count;
+         if($count > 0) return true;
+         $default = array(
+             'username' => 'willin',
+             'email' => 'willin@willin.org',
+             'password' => 'willin',
+             'salt' => random_string('alnum',10),
+             'nickname' => 'Willin Wang',
+             'created_at' => date("Y-m-d H:i:s"),
+             'updated_at' => date("Y-m-d H:i:s")
+         );
+         $this->insert($default);
+     }
+
  }
