@@ -47,7 +47,15 @@ class System extends Admin_Controller {
             $this->session->set_userdata('lang',$lang);
         if ($this->agent->is_referral())
             redirect($this->agent->referrer());
-        redirect('/admin/');
+        redirect(base_url('/admin/'));
+    }
+
+    public function cache(){
+        $this->caches->delete();
+        if ($this->agent->is_referral())
+            redirect($this->agent->referrer());
+        redirect(base_url('/admin/'));
+
     }
 }
 /* End of file system.php */

@@ -59,6 +59,7 @@ if(isset($options['site_langs']))
 
             <div class="large-12 columns">
                 <input type="submit" value="<?= $lang->line('submit') ?>" class="button small round">
+                <a href="<?= base_url('/admin/system/cache')?>" class="button small round"><?= $lang->line('clean_cache')?></a>
             </div>
         </fieldset>
     </form>

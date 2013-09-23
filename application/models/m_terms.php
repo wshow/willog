@@ -31,19 +31,21 @@ Class M_Terms extends MY_Model
     public function create_checkbox($items,$lang = 'cn',$dept = 0,$selected = false)
     {
         $html = '';
-        foreach($items as $item){
-            if(is_json($item['name'])) $item['name'] = json_decode($item['name'],true);
-            $item_name = isset($item['name'][$lang]) ? $item['name'][$lang] : $item['name'];
-            $html .= "<li><label for=\"term-{$item['id']}\">";
-            $html .= "<input type=\"checkbox\" name=\"m[{$item['taxonomy']}][]\" value=\"{$item['id']}\" ";
-            if(is_array($selected) && in_array($item['id'],$selected)) $html .= 'checked="checked"';
-            $html .= " id=\"term-{$item['id']}\"> {$item_name} </label>";
-            if(isset($item['children']) && is_array($item['children'])){
-                $html .= '<ul class="children">';
-                $html .= $this->create_checkbox($item['children'],$lang,$dept+1,$selected);
-                $html .= '</ul>';
+        if(is_array($items)){
+            foreach($items as $item){
+                if(is_json($item['name'])) $item['name'] = json_decode($item['name'],true);
+                $item_name = isset($item['name'][$lang]) ? $item['name'][$lang] : $item['name'];
+                $html .= "<li><label for=\"term-{$item['id']}\">";
+                $html .= "<input type=\"checkbox\" name=\"m[{$item['taxonomy']}][]\" value=\"{$item['id']}\" ";
+                if(is_array($selected) && in_array($item['id'],$selected)) $html .= 'checked="checked"';
+                $html .= " id=\"term-{$item['id']}\"> {$item_name} </label>";
+                if(isset($item['children']) && is_array($item['children'])){
+                    $html .= '<ul class="children">';
+                    $html .= $this->create_checkbox($item['children'],$lang,$dept+1,$selected);
+                    $html .= '</ul>';
+                }
+                $html .= '</li>';
             }
-            $html .= '</li>';
         }
         return $html;
     }
