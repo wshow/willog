@@ -1,3 +1,3 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|install|assets|robots\.txt|favicon\.ico)
+RewriteCond $1 !^(index\.php|install|themes|assets|robots\.txt|favicon\.ico)
 RewriteRule ^(.*)$ index.php/$1 [L]

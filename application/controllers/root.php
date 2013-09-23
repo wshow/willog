@@ -22,6 +22,7 @@ class Root extends MY_Controller {
         if($p=='page'){
 
         }
+        $this->load->view($this->theme.'/index',$this->data);
 	}
 
     public function posts($id_or_slug){

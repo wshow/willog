@@ -105,3 +105,11 @@ if ( ! function_exists('is_mobile'))
     }
 }
 
+if( ! function_exists('deel_strimwidth'))
+{
+    //echo deel_strimwidth(strip_tags($str), 0, 125, '...');
+    function deel_strimwidth($str ,$start , $width ,$trimmarker ){
+        $output = preg_replace('/^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$start.'}((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$width.'}).*/s','\1',$str);
+        return $output.$trimmarker;
+    }
+}

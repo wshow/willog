@@ -136,4 +136,16 @@ class Options
 
     }
 
+    public function get_all(){
+        if( ! $options = $this->_Adapter->get('options') )
+            $options = $this->_set_options(TRUE);
+        $data=array();
+        if(is_array($options)){
+            foreach($options as $option){
+                $data[$option['key']]=is_json($option['value'])?json_decode($option['value'],true):$option['value'];
+            }
+        }
+        return $data;
+    }
+
 }
