@@ -60,7 +60,7 @@ $cur_page = (int)$posts['data']['page_now'];
                 </td>
                 <td>
                     <a href="<?= base_url('/admin/posts/edit/'.$post['id']) ?>"><?= $lang->line('edit') ?></a>
-                    <a href="<?= base_url('/admin/posts/action/del/'.$post['id']) ?>"><?= $lang->line('delete') ?></a>
+                    <a href="<?= base_url('/admin/posts/action/del/'.$post['id']) ?>" class="delete"><?= $lang->line('delete') ?></a>
                 </td>
             </tr>
         <?php endforeach; ?>

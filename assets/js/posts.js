@@ -1,4 +1,25 @@
+Array.prototype.S = String.fromCharCode(2);
+Array.prototype.in_array = function(e) {
+    var r = new RegExp(this.S+e+this.S);
+    return (r.test(this.S+this.join(this.S)+this.S));
+};
+
 jQuery(document).ready(function(w){
+    if(typeof terms!='undefined'){
+        w('#city option').each(function(i,d){
+            if(terms.in_array(w(d).val())){
+                w(d).attr('selected','selected');
+                w('#city').next('div').children('.current').html(w(d).text());
+            }
+        });
+        w('input[type=checkbox]').each(function(i,d){
+            if(terms.in_array(w(d).val())){
+                w(d).attr('checked','checked');
+                w(d).next('span').addClass('checked');
+            }
+        });
+    }
+
     w('#editor_switch a').click(function(){
         var editor_switch_li = w(this).parent('li');
         if(w(this).data('lang')!=w('#'+tinyMCE.activeEditor.id).data('lang')){

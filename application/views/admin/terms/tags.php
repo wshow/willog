@@ -78,7 +78,7 @@ $cur_page = (int)$tags['data']['page_now'];
                     </td>
                     <td>
                         <a href="<?= base_url('/admin/tags/edit/'.$tag['id']) ?>">修改</a>
-                        <a href="<?= base_url('/admin/tags/action/del/'.$tag['id']) ?>">删除</a>
+                        <a href="<?= base_url('/admin/tags/action/del/'.$tag['id']) ?>" class="delete">删除</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

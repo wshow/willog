@@ -41,7 +41,7 @@ $cur_page = (int)$users['data']['page_now'];
                 <td>
                     <a href="<?= base_url('/admin/users/edit/'.$user['id']) ?>"><?= $lang->line('edit') ?></a>
                     <?php if($user['id']>1): ?>
-                        <a href="<?= base_url('/admin/users/action/del/'.$user['id']) ?>"><?= $lang->line('delete') ?></a>
+                        <a href="<?= base_url('/admin/users/action/del/'.$user['id']) ?>" class="delete"><?= $lang->line('delete') ?></a>
                     <?php endif; ?>
                 </td>
             </tr>

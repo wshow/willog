@@ -30,7 +30,7 @@ $post['content']=json_decode($post['content'],true);
 </script>
 
 <div class="large-12 columns">
-    <form action="<?= base_url('/admin/posts/action/edit') ?>" id="post_form" method="post" class="custom">
+    <form action="<?= base_url('/admin/posts/action/edit/'.$post['id']) ?>" id="post_form" method="post" class="custom">
         <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
         <div class="large-9 columns">
             <noscript>
@@ -59,11 +59,13 @@ $post['content']=json_decode($post['content'],true);
 
                     <div class="large-6 columns">
                         <label><?= $lang->line('city') ?></label>
-                        <select name="m[city]">
-                            <option><?= $lang->line('unselected') ?></option>
+                        <select name="m[city]" id="city">
+                            <option value=""><?= $lang->line('unselected') ?></option>
                             <?= $cities ?>
                         </select>
-
+                        <script type="text/javascript">
+                            var terms = '<?=$post['terms']?>'.split(',');
+                        </script>
                         <label><?= $lang->line('tag') ?></label>
                         <div class="bkg">
                             <ul class="tags">
@@ -132,42 +134,7 @@ $post['content']=json_decode($post['content'],true);
 
             <div class="created_at">
                 <label><?= $lang->line('created_at') ?></label>
-                <div class="row collapse">
-                    <div class="small-6 columns">
-                        <input type="text" maxlength="4" name="created_at[year]" value="<?= date('Y')?>">
-                    </div>
-                    <div class="small-3 columns">
-                        <select name="created_at[month]" id="month">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
-                        <script type="text/javascript">jQuery('#month').val(<?= date('m') ?>);</script>
-                    </div>
-                    <div class="small-3 columns">
-                        <input type="text" maxlength="2" name="created_at[day]" value="<?= date('d')?>">
-                    </div>
-                </div>
-                <div class="row collapse">
-                    <div class="small-4 columns">
-                        <input type="text" maxlength="2" name="created_at[hour]" value="<?= date('H')?>">
-                    </div>
-                    <div class="small-4 columns">
-                        <input type="text" maxlength="2" name="created_at[min]" value="<?= date('i')?>">
-                    </div>
-                    <div class="small-4 columns">
-                        <input type="text" maxlength="2" name="created_at[sec]" value="<?= date('s')?>">
-                    </div>
-                </div>
+                <input type="text" name="p[created_at]" value="<?= $post['created_at'] ?>">
             </div>
 
             <div class="buttons row collapse">

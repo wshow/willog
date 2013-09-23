@@ -75,9 +75,8 @@ Class M_Posts extends MY_Model
         return $this->insert_meta($this->_CI->db->insert_id(),$metas);
     }
 
-    public function update($options = array(),$metas = array()){
+    public function update($id = 0,$options = array(),$metas = array()){
         $default = array(
-            'id' => 0,
             'slug' => '',
             'name' => '',
             'content' => '',
@@ -90,7 +89,7 @@ Class M_Posts extends MY_Model
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         );
-        if( ! $this->_required(array('id','slug','name'),$options)){
+        if( ! $this->_required(array('slug','name'),$options)){
             return array('status'=>0,'msg'=>'param_missing');
         }
         $options = $this->_default($default,$options);
@@ -102,15 +101,15 @@ Class M_Posts extends MY_Model
         $options['content'] = encode_json($options['content']);
         $options['address'] = encode_json($options['address']);
 
-        $slug_staus = $this->check_slug($options['slug'],$options['id']);
+        $slug_staus = $this->check_slug($options['slug'],$id);
         if($slug_staus['status']==0)
             return array('status'=>0,'msg'=>'already_exist');
 
 
-        $status = $this->_CI->db->where('id',$options['id'])->update('posts',$options);
+        $status = $this->_CI->db->where('id',$id)->update('posts',$options);
         if(! $status)
             return array('status'=>0,'msg'=>'sql_error');
-        return $this->insert_meta($this->_CI->db->insert_id(),$metas);
+        return $this->insert_meta($id,$metas);
     }
 
     /**

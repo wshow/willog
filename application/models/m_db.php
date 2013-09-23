@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              return false;
          if(isset($options['select']) && $options['select'])
          {
-             $this->_CI->db->select($options['select']);
+             $this->_CI->db->select($options['select'],false);
              unset($options['select']);
          }else{
              $this->_CI->db->select('*');

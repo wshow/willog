@@ -66,7 +66,7 @@ class Posts extends Admin_Controller
 
     public function edit($id = 0)
     {
-        $this->data['post'] = $this->m_db->get(array('table'=>'posts','id'=>$id,'type'=>'post'));
+        $this->data['post'] = $this->m_db->get(array('table'=>'posts','id'=>$id,'type'=>'post','select'=>"*,(select group_concat( meta_value ) from w_postmeta where post_id = w_posts.id) as terms"));
         $this->load->model('m_terms');
         $terms = $this->m_terms->filter('category');
         $this->data['categories'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
@@ -74,7 +74,6 @@ class Posts extends Admin_Controller
         $this->data['cities'] = $this->m_terms->create_html($terms,$this->get_lang());
         $terms = $this->m_db->get(array('table'=>'terms','return'=>true,'taxonomy'=>'tag'));
         $this->data['tags'] = $this->m_terms->create_checkbox($terms,$this->get_lang());
-
         if(empty($this->data['post']))
             show_404();
 
@@ -89,11 +88,13 @@ class Posts extends Admin_Controller
         $post['type'] = 'post';
         $this->load->model('m_posts');
         if($action=='add'){
+            $dt = $this->input->post('created_at');
+            $post['created_at'] = date("Y-m-d H:i:s", strtotime($dt['year'] . '-' .$dt['month'] . '-' . $dt['day'] . ' ' . $dt['hour'] . ':' . $dt['min'] . ':' . $dt['sec']));
             $result = $this->m_posts->insert($post,$metas);
         }
         else if($action=='edit')
         {
-            $result = $this->m_posts->update($post,$metas);
+            $result = $this->m_posts->update($id,$post,$metas);
         }
         else if($action=='del')
         {

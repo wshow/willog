@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="large-6 columns">
                         <label><?= $lang->line('city') ?></label>
                         <select name="m[city]">
-                            <option><?= $lang->line('unselected') ?></option>
+                            <option value=""><?= $lang->line('unselected') ?></option>
                             <?= $cities ?>
                         </select>
 
