@@ -133,7 +133,7 @@ class CI_DB_driver {
             header("Location: ".$base_url.'install/', TRUE, 302);
 
             exit();
-//            log_message('error', 'Unable to connect to the database');
+//			log_message('error', 'Unable to connect to the database');
 //
 //			if ($this->db_debug)
 //			{
