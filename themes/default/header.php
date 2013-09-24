@@ -15,3 +15,9 @@
     <script type="text/javascript" src="<?=$opt['cdn_url']?>themes/<?=$opt['site_theme']?>/js/default.min.js"></script>
 </head>
 <body class="<?=is_mobile()?'mobile':'desktop'?>">
+<div class="wrapper">
+    <header>
+        <h2><?=$opt['site_desc'][$cur_lang]?></h2>
+        <h1><a href="#"><?=$site_name?></a></h1>
+        <h2 class="bottom"><span class="hide">相距??，</span>不管还要多久，最后我会在你身边。</h2>
+    </header><?=$base_url.$cur_lang?>

@@ -1,3 +1,4 @@
+@charset "utf-8";
 /*
 	Theme Name: Default
 	Theme URL: http://now.willin.org/
@@ -6,4 +7,137 @@
 	Author URI: http://willin.org
 	Version: 1.0
 */
-*{margin:0;padding:0;}
+@import url(http://fonts.googleapis.com/css?family=Abel|Rock+Salt);
+@font-face {
+    font-family: 'ecoico';
+    src:url('fonts/ecoico.eot');
+    src:url('fonts/ecoico.eot?#iefix') format('embedded-opentype'),
+    url('fonts/ecoico.woff') format('woff'),
+    url('fonts/ecoico.ttf') format('truetype'),
+    url('fonts/ecoico.svg#ecoico') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* Clearfix */
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+ul,ol,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:#69f;
+}
+a:hover{
+    color:#369;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+body {
+    font-family: 'Abel', Arial, sans-serif;
+    background: url(images/bg.png) #f1f1f1;
+    font-weight: 300;
+    font-size: 12px;
+    color: #ccc;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.wrapper{
+    margin:0 auto;
+}
+header h1{
+    font-family: 'Rock Salt', Arial, sans-serif;
+    font-size: 3.5em;
+    text-shadow: 2px 2px 4px #333,4px 4px 0px #69f;
+    display: inline-block;
+    animation:reverseh1 4s infinite linear;
+    -webkit-animation:reverseh1 4s infinite linear;
+    -moz-animation:reverseh1 4s infinite linear;
+    -o-animation:reverseh1 4s infinite linear;
+    -ms-animation:reverseh1 4s infinite linear;
+}
+header h1 a{
+    color:#f06;
+
+}
+header h2{
+    text-shadow:0px 1px 2px #f06;
+}
+@media screen and (max-width:768px){
+    header{
+        text-align: center;
+        font-size:75%;
+    }
+}
+@media screen and (min-width:960px){
+    .wrapper{
+        width:93.75%;
+        max-width: 1024px;
+    }
+    header{
+        position: relative;
+    }
+    header h2{
+        position: relative;
+        left:255px;
+        top:40px;
+        width:480px;
+    }
+    header h2.bottom{
+        top:-50px;
+    }
+}
+
+.hide{
+    display: none;
+}
+#canvas {
+    z-index:-1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+
+/* Animation */
+@keyframes reverseh1{
+    0%{transform:perspective(500px) rotateX(0deg);}
+    100%{transform:perspective(500px) rotateX(360deg);}
+}
+@-webkit-keyframes reverseh1{
+    0%{-webkit-transform:perspective(500px) rotateX(0deg);}
+    100%{-webkit-transform:perspective(500px) rotateX(360deg);}
+}
+@-moz-keyframes reverseh1{
+    0%{-moz-transform:perspective(500px) rotateX(0deg);}
+    100%{-moz-transform:perspective(500px) rotateX(360deg);}
+}
+@-o-keyframes reverseh1{
+    0%{-o-transform:perspective(500px) rotateX(0deg);}
+    100%{-o-transform:perspective(500px) rotateX(360deg);}
+}
+@-ms-keyframes reverseh1{
+    0%{-ms-transform:perspective(500px) rotateX(0deg);}
+    100%{-ms-transform:perspective(500px) rotateX(360deg);}
+}
