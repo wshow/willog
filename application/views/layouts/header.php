@@ -5,7 +5,7 @@
 <!--[if !IE]><!--><html class="no-js" lang="zh-CN"> <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title><?= ($page?$lang->line($page).' - ':' ').$site_name.' - Powered by Willog' ?></title>
     <link rel="stylesheet" href="<?=base_url('/assets/css/normalize.css')?>">
     <link rel="stylesheet" href="<?=base_url('/assets/css/foundation.min.css')?>">
