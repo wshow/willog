@@ -6,18 +6,27 @@
 ## Overview
 
 The best way to log what you will do and what you want
-Demo: [now.willin.org](http://now.willin.org/)
+Demo: [now.willin.org](http://now.willin.org/).
 
+Based on CodeIgniter 2.1.4 (a open source PHP MVC framework).
 
-## Installation
+## Environment Requirement
 
+PHP >= 5.1.6 (Recommend enable short_open_tag)
 
+MySQL > 4.1
 
-## Configuration
+Apache/NginX
+
+## Installation &amp; Configuration
 
 
 ## Features
 
+* Based on location
+* Timeline
+* Wishlist (with progress)
+* Donation Payment
 
 ## Faq
 
@@ -37,19 +46,27 @@ Dev Notes: (https://www.evernote.com/pub/willinwang/willog)
 
 ## 概述
 
-基于LBS的轻博客系统，记录奔波成长历程和心愿的最佳方式。演示: [now.willin.org](http://now.willin.org/)
+基于LBS的轻博客系统，记录奔波成长历程和心愿的最佳方式。演示: [now.willin.org](http://now.willin.org/)。
 
+Mvc框架采用开源的CodeIgniter 2.1.4。
 
-## 安装
+## 环境需求
 
+PHP >= 5.1.6 (最好开启short_open_tag)
 
+MySQL > 4.1
 
-## 配置
+Apache/NginX
 
+## 安装与配置
 
 
 ## 特色
 
+* 基于经纬度位置，有交互
+* 时间轴
+* 心愿墙（包含心愿完成进度）
+* 捐赠支付
 
 ## Q&amp;A
 
