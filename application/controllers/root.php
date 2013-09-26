@@ -28,7 +28,7 @@ class Root extends MY_Controller {
     public function post($id_or_slug){
         if(is_numeric($id_or_slug))
             echo 'number<br>';
-        show_404();
+        $this->willog->w_404($this->data);
     }
 
     public function e404(){

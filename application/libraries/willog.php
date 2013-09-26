@@ -44,4 +44,9 @@ class Willog
             return $html;
         echo $html;
     }
+
+    public function w_404($data = false){
+        global $opt;
+        $this->_CI->load->view( $opt['site_theme'].'/404',$data);
+    }
 }
