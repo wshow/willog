@@ -12,6 +12,8 @@ class MY_Controller extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
+        $this->load->library('willog');
+        global $opt;
         $this->data['opt'] = $opt = $this->options->get_all();
         //json_result($opt);
         $this->site_lang = $opt['site_lang'];

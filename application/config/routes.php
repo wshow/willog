@@ -51,6 +51,12 @@ $route['search/(:any)'] = 'archive/search/$1';
 $route['(:any)/archive/(:any)'] = 'archive/index/$1/$2';
 $route['archive/(:any)'] = 'archive/index/$1';
 
+//Posts and Wishes
+$route['(:any)/post/(:any)'] = 'index/post/$1/$2';
+$route['post/(:any)'] = 'index/post/$1';
+$route['(:any)/wish/(:any)'] = 'index/wish/$1/$2';
+$route['wish/(:any)'] = 'index/wish/$1';
+
 //Pagination
 $route['page/(:any)'] = 'root/index/page/$1';
 $route['cn/page/(:num)'] = 'root/index/cn/page/$1';
@@ -61,9 +67,9 @@ $route['cn'] = 'root/index/cn';
 $route['en'] = 'root/index/en';
 $route['admin'] = 'admin/dashboard';
 //Posts
-$route['(:any)'] = 'root/posts/$1';
+$route['(:any)'] = 'root/post/$1';
 
-$route['404_override'] = '';
+$route['404_override'] = 'root/e404';
 
 
 /* End of file routes.php */

@@ -2,9 +2,6 @@
 
 class Archive extends MY_Controller {
 
-    public function __construct(){
-        parent::__construct();
-    }
 	/**
 	 * Index Page for this controller.
 	 *

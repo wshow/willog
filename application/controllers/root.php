@@ -25,9 +25,14 @@ class Root extends MY_Controller {
         $this->load->view($this->theme.'/index',$this->data);
 	}
 
-    public function posts($id_or_slug){
+    public function post($id_or_slug){
         if(is_numeric($id_or_slug))
             echo 'number<br>';
+        show_404();
+    }
+
+    public function e404(){
+        $this->load->view($this->theme.'/404',$this->data);
     }
 }
 

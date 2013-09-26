@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="large-12 columns">
     <form action="<?= base_url('/admin/posts/action/add') ?>" id="post_form" method="post" class="custom">
         <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
+        <input type="hidden" name="p[device]" value="<?=is_mobile()?'mobile':'desktop'?>">
         <div class="large-9 columns">
             <noscript>
                 <div data-alert="" class="alert-box round">

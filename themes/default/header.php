@@ -20,4 +20,7 @@
         <h2><?=$opt['site_desc'][$cur_lang]?></h2>
         <h1><a href="#"><?=$site_name?></a></h1>
         <h2 class="bottom"><span class="hide">相距??，</span>不管还要多久，最后我会在你身边。</h2>
-    </header><?=$base_url.$cur_lang?>
+    </header>
+    <main id="main">
+        <div id="content">
+            test
