@@ -1,4 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+include_once('functions.php');?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,4 +24,5 @@
     </header>
     <main id="main">
         <div id="content">
-            test
+            test test test test test test test test test test test test test test test test test test test test test
+            <a href="#">test </a> test test test test test test test test test test test

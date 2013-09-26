@@ -19,6 +19,15 @@
     font-style: normal;
 
 }
+
+.hide{
+    display: none;
+}
+.center{
+    text-align: center;
+    margin:0 auto;
+    display: block;
+}
 /*! normalize.css v2.1.1 | MIT License | git.io/normalize */
 
 /* ==========================================================================
@@ -433,6 +442,9 @@ a:hover{
 }
 
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clear{
+    clear:both;
+}
 .clearfix:before,
 .clearfix:after {
     content: " ";
@@ -454,6 +466,7 @@ body {
     color: #ccc;
     overflow-y: scroll;
     overflow-x: hidden;
+    text-shadow: 0 0 1px #333;
 }
 .wrapper{
     margin:0 auto;
@@ -482,18 +495,18 @@ header h1 a:hover{
 header h2{
     text-shadow:0px 1px 2px #f06;
 }
-#content,#sidebar{
+#sidebar,article{
     background: rgba(255,0,102,0.5);
-    padding:10px;
 }
 main,#main{position: relative;}
+
 #content{
     width: calc(100% - 333px);
     width: -webkit-calc(100% - 350px);
     width: -moz-calc(100% - 350px);
     width: -o-calc(100% - 350px);
     width: -ms-calc(100% - 350px);
-
+    padding:10px;
 }
 #sidebar{
     width:336px;
@@ -502,8 +515,38 @@ main,#main{position: relative;}
     top:0;
     right:0;
 }
-.hide{
-    display: none;
+.widget{
+    clear: both;
+}
+.widget img{
+    margin:5px auto;
+    display: block;
+}
+.widget > div{
+    padding:10px;
+}
+.widget h3{
+    background: #69f;
+    padding:10px;
+    display: inline-block;
+    border-radius:0 0 20px 0;
+    -webkit-border-radius:0 0 20px 0;
+    -moz-border-radius:0 0 20px 0;
+    -o-border-radius:0 0 20px 0;
+    -ms-border-radius:0 0 20px 0;
+    color:#eee;
+    box-shadow:2px 2px 0 #333;
+}
+.widget .language li{
+    padding-right:10px;
+    float:right;
+}
+.radius{
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
 }
 #canvas {
     z-index:1;
@@ -518,6 +561,9 @@ footer#footer{
 }
 /* Responsive */
 @media screen and (max-width:767px){
+    .hide-for-small{
+        display: none;
+    }
     header{
         text-align: center;
         font-size:75%;
@@ -587,4 +633,64 @@ header h1 a:focus::after {
     -webkit-transform: translateX(0px);
     -moz-transform: translateX(0px);
     transform: translateX(0px);
+}
+
+#main a {
+    line-height: 2em;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    perspective: 800px;
+}
+
+#main a span {
+    position: relative;
+    display: inline-block;
+    padding: 3px 15px 0;
+    background: rgba(0,0,0,0.1);
+    box-shadow: inset 0 3px rgba(102,153,255,0.5);
+    -webkit-transition: background 0.6s;
+    -moz-transition: background 0.6s;
+    transition: background 0.6s;
+    -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+    -moz-transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
+}
+
+#main a span::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(102,153,255,0.5);
+    color: #fff;
+    content: attr(data-hover);
+    -webkit-transform: rotateX(270deg);
+    -moz-transform: rotateX(270deg);
+    transform: rotateX(270deg);
+    -webkit-transition: -webkit-transform 0.6s;
+    -moz-transition: -moz-transform 0.6s;
+    transition: transform 0.6s;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+    pointer-events: none;
+}
+
+#main a:hover span,
+#main a:focus span {
+    background: #2f4351;
+}
+
+#main a:hover span::before,
+#main a:focus span::before {
+    -webkit-transform: rotateX(10deg);
+    -moz-transform: rotateX(10deg);
+    transform: rotateX(10deg);
 }

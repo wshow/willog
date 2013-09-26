@@ -43,7 +43,6 @@ class MY_Controller extends CI_Controller{
         $this->data['cur_lang'] = $this->cur_lang;
         if (method_exists($this, $method))
         {
-            $this->load->view($this->theme.'/functions');
             return call_user_func_array(array($this, $method), $params);
         }
         show_404();

@@ -163,4 +163,8 @@ Class M_Posts extends MY_Model
         
         return array('status'=>1,'msg'=>'insert_success');
     }
+
+    public function get_archives(){
+        return $this->_CI->db->query("SELECT YEAR(created_at) AS `year`, MONTH(created_at) AS `month`, count(ID) as posts FROM `w_posts` WHERE `status` <> 'draft' GROUP BY YEAR(created_at), MONTH(created_at) ORDER BY created_at asc ")->result_array();
+    }
 }
