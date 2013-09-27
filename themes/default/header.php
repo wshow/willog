@@ -19,10 +19,8 @@ include_once('functions.php');?>
 <div class="wrapper">
     <header>
         <h2><?=$opt['site_desc'][$cur_lang]?></h2>
-        <h1><a href="#"><?=$site_name?></a></h1>
+        <h1><a href="<?=$base_url?>"><?=$site_name?></a></h1>
         <h2 class="bottom"><span class="hide">相距??，</span>不管还要多久，最后我会在你身边。</h2>
     </header>
     <main id="main">
         <div id="content">
-            test test test test test test test test test test test test test test test test test test test test test
-            <a href="#">test </a> test test test test test test test test test test test

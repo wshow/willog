@@ -18,8 +18,6 @@ class MY_Controller extends CI_Controller{
         //json_result($opt);
         $this->site_lang = $opt['site_lang'];
         $this->theme = $opt['site_theme'];
-        $this->data['site_name'] = $opt['site_name'][$this->_get_lang()];
-        $this->data['base_url'] = base_url($this->_get_lang()==$this->site_lang?'':$this->_get_lang());
         $this->data['cur_lang'] = $this->_get_lang();
     }
 
@@ -28,7 +26,6 @@ class MY_Controller extends CI_Controller{
         if($lang != 'cn' && $lang != 'en'){
             return $this->site_lang;
         }
-        $this->data['site_name'] = $this->options->get('site_name',$lang);
         return $lang;
     }
 
@@ -41,6 +38,9 @@ class MY_Controller extends CI_Controller{
                 $params=array_delete($params,0);
         }
         $this->data['cur_lang'] = $this->cur_lang;
+        $this->data['site_name'] = $this->options->get('site_name',$this->cur_lang);
+        $this->data['base_url'] = base_url($this->cur_lang==$this->site_lang?'':$this->cur_lang);
+
         if (method_exists($this, $method))
         {
             return call_user_func_array(array($this, $method), $params);

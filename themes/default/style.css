@@ -508,11 +508,291 @@ main,#main{position: relative;}
     width: -ms-calc(100% - 350px);
     padding:10px;
 }
+/* Timeline */
+
+.timeline {
+    margin: 30px 0 0 0;
+    padding: 0;
+    position: relative;
+    display: block;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+article img{
+    max-width:100%;
+    margin:10px auto;
+    display: block;
+}
+article p{
+    padding:5px 0;
+    text-indent: 2em;
+}
+.timeline:before{
+    content:' ';
+    top:0;
+    bottom:0;
+    background: rgba(255,0,102,0.5);;
+    position: absolute;
+    width:10px;
+    left:20%;
+    margin-left: -10px;
+}
+.timeline > li > .meta {
+    display: block;
+    width: 20%;
+    padding-right: 80px;
+    position: absolute;
+    text-align: right;
+}
+.timeline > li .device {
+    width: 40px;
+    height: 40px;
+    font-family: 'ecoico';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-size: 1.4em;
+    line-height: 40px;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    color: #fff;
+    background: #46a4da;
+    border-radius: 50%;
+    box-shadow: 0 0 0 8px rgba(255,0,102,0.5);;
+    text-align: center;
+    left: 20%;
+    margin: 0 0 0 -25px;
+}
+
+.phone:before {
+    content: "\e000";
+}
+
+.screen:before {
+    content: "\e001";
+}
+
+.mail:before {
+    content: "\e002";
+}
+
+.earth:before {
+    content: "\e003";
+}
+
+
+.timeline > li .meta time {
+    font-size: 0.9em;
+    color: #bdd0db;
+}
+
+.timeline > li .meta address {
+    font-size: 2.9em;
+    color: #3594cb;
+}
+
+.timeline > li:nth-child(odd) .meta address {
+    color: #6cbfee;
+}
+
+/* Right content */
+.timeline > li .mrright {
+    margin: 0 50px 75px 25%;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 1.4;
+    position: relative;
+    border-radius: 5px;
+    perspective: 600px;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    -o-perspective: 600px;
+    -ms-perspective: 600px;
+
+}
+.timeline > li.current .mrright{
+    margin:0px 0 15px 0;
+    padding-top: 100px;
+}
+.timeline >li article{
+    background: rgba(53,148,203,0.5);
+    padding: 2em;
+    transition: transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
+    -webkit-transition: -webkit-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
+    -moz-transition: -moz-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
+    -o-transition: -o-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
+    -ms-transition: -ms-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform:rotateX(10deg);
+    -webkit-transform:rotateX(10deg);
+    -moz-transform:rotateX(10deg);
+    -o-transform:rotateX(10deg);
+    -ms-transform:rotateX(10deg);
+}
+.timeline > li.current article{
+    transform:rotateX(-5deg);
+    -webkit-transform:rotateX(-5deg);
+    -moz-transform:rotateX(-5deg);
+    -o-transform:rotateX(-5deg);
+    -ms-transform:rotateX(-5deg);
+    background: #f60 !important;
+}
+
+
+.timeline > li:nth-child(odd) article {
+    background: rgba(108,191,238,0.5);
+}
+
+.timeline > li article h2 {
+    margin-top: 0px;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+/* The triangle */
+.timeline > li article:after {
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: rgba(53,148,203,0.5);
+    border-width: 10px;
+    top: 10px;
+}
+
+.timeline > li:nth-child(odd) article:after {
+    border-right-color: rgba(108,191,238,0.5);
+}
+.timeline > li.current article:after {
+    border-right-color: transparent;
+    border-bottom-color: rgba(255,0,102,0.5);
+    top:-20px;
+    right: 90%;
+}
+
+.timeline >li article cite{
+    color:#666;
+    text-shadow: 0 0 1px #f06;
+}
+.timeline >li article section.meta{
+    color:#bdd0db;
+}
+.timeline >li article section h1,.timeline >li article section h2,.timeline >li article section h3,.timeline >li article section h4,.timeline >li article section h5, .timeline >li article section h6{
+    color:#69f;
+    text-shadow: 1px 1px 1px #000;
+}
+.timeline >li article section ul li{
+    margin-left:2em;
+    list-style: square;
+}
+.timeline >li article section ol li{
+    margin-left:2em;
+    list-style: decimal;
+}
+.timeline >li article section blockquote,.timeline >li article section b{
+    background: #eee;
+    padding:10px;
+    color:#333;
+    position: relative;
+    text-indent: 20px;
+}
+.timeline >li article section blockquote:before,.timeline >li article section b:before{
+    content: '“';
+    display: block;
+    position: absolute;
+    color:#f60;
+    font-size:30px;
+    top: 0;
+    left:0;
+}
+.timeline >li article section blockquote:after,.timeline >li article section b:after{
+    content: '”';
+    display: block;
+    position: absolute;
+    color:#f60;
+    font-size:30px;
+    bottom: -15px;
+    right:5px;
+}
+/* Example Media Queries */
+@media screen and (max-width: 65.375em) {
+
+    .timeline > li .meta address {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 47.2em) {
+    .timeline:before{
+        left:auto;
+        right:45px;
+    }
+    .timeline > li > .meta {
+        width: 100% ;
+        position: relative ;
+        padding: 0 0 20px 0;
+        text-indent: 2em;
+        text-align: left;
+    }
+
+    .timeline > li .mrright {
+        margin: 0 5px 30px 5px;
+        padding: 1em;
+        font-weight: 400;
+        font-size: 95%;
+    }
+
+    .timeline > li.current .mrright{
+        padding-top: 2.5em;
+    }
+    .timeline > li article:after {
+        right: auto;
+        left: 20px;
+        border-right-color: transparent;
+        border-bottom-color: rgba(53,148,203,0.5);
+        top: -20px;
+    }
+
+    .timeline > li:nth-child(odd) article:after {
+        border-right-color: transparent;
+        border-bottom-color: rgba(108,191,238,0.5);
+    }
+
+    .timeline > li.current article:after {
+        border-right-color: transparent;
+        border-bottom-color: #f60;
+    }
+    .timeline > li .device {
+        position: relative;
+        float: right;
+        left: auto;
+        margin: -55px 30px 0 0px;
+    }
+}
+
+/* Sidebar */
 #sidebar{
     width:336px;
     overflow:hidden;
     position: absolute;
-    top:0;
+    top:30px;
     right:0;
 }
 .widget{
