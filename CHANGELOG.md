@@ -4,6 +4,7 @@ Promise First Version Release before 2014-2
 
 * 2013-9-13 *** Start Website Pages
 * 2013-9-13 *** Delay Admin Dashboard Development
+* 2013-9-28 Alpha Release
 * 2013-9-24 Upgrade to CodeIgniter 2.1.4
 * 2013-9-23 Posts Management Done
 * 2013-9-21 Post List Done

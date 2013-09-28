@@ -875,6 +875,12 @@ footer#footer{
         width:100%;
         position: relative;
     }
+    #loading{
+        position: fixed;
+        top:auto !important;
+        bottom:1px !important;
+        right:1px !important;
+    }
 }
 @media screen and (min-width:768px){
     .wrapper{
@@ -996,3 +1002,37 @@ header h1 a:focus::after {
     transform: rotateX(10deg);
 }
 
+#loading{
+    position: fixed;
+    width:40px;
+    height:40px;
+    top:10px;
+    right:10px;
+    z-index: 9999;
+    background: url(images/loading.png) no-repeat;
+    animation:rotate 2s ease-out;
+    -webkit-animation:rotate 2s ease-out infinite;
+    -moz-animation:rotate 2s ease-out infinite;
+    -o-animation:rotate 2s ease-out infinite;
+    -ms-animation:rotate 2s ease-out infinite;
+}
+@keyframes rotate {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(359deg);}
+}
+@-webkit-keyframes rotate {
+    from {-webkit-transform:rotate(0deg);}
+    to {-webkit-transform:rotate(359deg);}
+}
+@-moz-keyframes rotate {
+    from {-moz-transform:rotate(0deg);}
+    to {-moz-transform:rotate(359deg);}
+}
+@-o-keyframes rotate {
+    from {-o-transform:rotate(0deg);}
+    to {-o-transform:rotate(359deg);}
+}
+@-ms-keyframes rotate {
+    from {-ms-transform:rotate(0deg);}
+    to {-ms-transform:rotate(359deg);}
+}

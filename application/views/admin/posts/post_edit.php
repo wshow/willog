@@ -118,8 +118,8 @@ $post['content']=json_decode($post['content'],true);
                 </div>
 
                 <div id="map-canvas"></div>
-                <input type="hidden" id="lat" name="p[lat]">
-                <input type="hidden" id="lng" name="p[lng]">
+                <input type="hidden" id="lat" name="p[lat]" value="$post[lat]">
+                <input type="hidden" id="lng" name="p[lng]" value="$post[lng]">
             </div>
             <div class="address">
                 <label><?= $lang->line('address') ?></label>

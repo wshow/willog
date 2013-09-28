@@ -66,10 +66,10 @@ class Willog
                     $result['city'] = "<a href=\"{$url}\">{$term['name'][$lang]}</a>";
                 }else if($term['taxonomy'] == 'tag'){
                     $url = $base_url.'tag/'.$term['slug'];
-                    $result['tag'] = ((isset($result['tag']))?$result['tag'].' , ':'')."<a href=\"{$url}\">{$term['name'][$lang]}</a>";
+                    $result['tag'] = (($result['tag']!='')?$result['tag'].' , ':'')."<a href=\"{$url}\">{$term['name'][$lang]}</a>";
                 }else if($term['taxonomy'] == 'category'){
                     $url = $base_url.'category/'.$term['slug'];
-                    $result['category'] = ((isset($result['category']))?$result['category'].' , ':'')."<a href=\"{$url}\">{$term['name'][$lang]}</a>";
+                    $result['category'] = (($result['category']!='')?$result['category'].' , ':'')."<a href=\"{$url}\">{$term['name'][$lang]}</a>";
                 }
             }
         }
@@ -109,7 +109,8 @@ class Willog
             foreach($items as $item){
                 $name = json_decode($item['name'],true);
                 $name = isset($name[$lang])?$name[$lang]:(isset($name[0])?$name[0]:'');
-                $html.= "<li><a href=\"{$base_url}{$item['taxonomy']}/{$item['slug']}\">{$name} ({$item['count']})</a>";
+                $count = (isset($item['children']) && is_array($item['children']) && $item['count']==0)?'':'('.$item['count'].')';
+                $html.= "<li><a href=\"{$base_url}{$item['taxonomy']}/{$item['slug']}\">{$name} {$count}</a>";
             if(isset($item['children']) && is_array($item['children']))
                 $html .= $this->_create_html($item['children'],$lang,$base_url);
                 $html .='</li>';
@@ -117,6 +118,12 @@ class Willog
             $html.='</ul>';
         }
         return $html;
+    }
+
+    public function w_view($posts){
+        if(!is_array($posts)) $posts=array($posts);
+        $posts = implode(',',$posts);
+        $this->_CI->db->query("update w_posts set views=views+1 where id in ({$posts})");
     }
 
     public function w_404($data = false){

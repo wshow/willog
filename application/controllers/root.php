@@ -29,11 +29,14 @@ class Root extends MY_Controller {
             //'select' => "w_posts.*,(select group_concat('\\\"',taxonomy,'-',id,'\\\":',`name`) from w_terms where id in (select meta_value from w_postmeta where post_id = w_posts.id)) as terms"
         );
         $posts = $this->m_db->get_list($arg);
+        $post_id = array();
         foreach($posts['data']['result'] as &$post){
-
+            array_push($post_id,$post['id']);
             $post['terms'] = rtrim($post['terms'], ",");
             $post['terms'] = $this->db->query("select * from w_terms where id in ({$post['terms']})")->result_array();
         }
+        if(count($post_id)>0)
+            $this->willog->w_view($post_id);
 //        json_result($posts);
 //        exit();
         include(__DIR__.'/../../themes/'.$this->data['opt']['site_theme'].'/language.php');

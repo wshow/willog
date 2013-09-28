@@ -104,27 +104,28 @@ function initialize() {
         createMarker(e.latLng);
     });
     // Try HTML5 geolocation
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = new google.maps.LatLng(position.coords.latitude,
-                position.coords.longitude);
+    if(jQuery('#lat').val() != '' && jQuery.trim(jQuery('#lat').val())!=''){
+        var pos = new google.maps.LatLng(jQuery('#lat').val(),
+            jQuery('#lng').val());
+
+        map.setCenter(pos);
+    }else{
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude);
                 jQuery('#lat').val(position.coords.latitude.toFixed(6));
                 jQuery('#lng').val(position.coords.longitude.toFixed(6));
-
-//            var infowindow = new google.maps.InfoWindow({
-//                map: map,
-//                position: pos,
-//                content: 'Now'
-//            });
-
-            map.setCenter(pos);
-        }, function() {
-            handleNoGeolocation(true);
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleNoGeolocation(false);
+                map.setCenter(pos);
+            }, function() {
+                handleNoGeolocation(true);
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleNoGeolocation(false);
+        }
     }
+
     geocoder = new google.maps.Geocoder(map);
 }
 

@@ -10,5 +10,6 @@
     </div>
 </div><!--End Wrapper-->
 <canvas id="canvas"></canvas>
+<div id="loading"></div>
 </body>
 </html>
