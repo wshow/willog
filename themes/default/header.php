@@ -12,7 +12,7 @@ include_once('functions.php');?>
     <meta name="description" content="<?= $opt['site_desc'][$cur_lang] ?>">
     <title><?= isset($title)?$title.' - ':'' ?> <?=$site_name?> - <?=$opt['site_desc'][$cur_lang]?></title>
     <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
-    <script>window.jQuery || document.write(unescape('%3Cscript src="<?=$opt['cdn_url']?>themes/<?=$opt['site_theme']?>/js/jquery.min.js"%3E%3C/script%3E'))</script>
+    <script>var base_url="<?=base_url()?>",lang_url="<?=$base_url?>";window.jQuery || document.write(unescape('%3Cscript src="<?=$opt['cdn_url']?>themes/<?=$opt['site_theme']?>/js/jquery.min.js"%3E%3C/script%3E'))</script>
     <script type="text/javascript" src="<?=$opt['cdn_url']?>themes/<?=$opt['site_theme']?>/js/default.min.js"></script>
 </head>
 <body class="<?=is_mobile()?'mobile':'desktop'?>">
@@ -20,7 +20,7 @@ include_once('functions.php');?>
     <header>
         <h2><?=$opt['site_desc'][$cur_lang]?></h2>
         <h1><a href="<?=$base_url?>"><?=$site_name?></a></h1>
-        <h2 class="bottom"><span class="hide">相距??，</span>不管还要多久，最后我会在你身边。</h2>
+        <h2 class="bottom"><?=create_geolocation('31.96713', '118.78143', $lang['distance'])?>不管还要多久，最后我会在你身边。</h2>
     </header>
     <main id="main">
         <div id="content">

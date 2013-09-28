@@ -28,6 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          unset($options['table']);
          $return = isset($options['return']) ? true : false;
          unset($options['return']);
+         if(isset($options['where_in'])){
+             $this->_CI->db->where_in($options['where_in']);
+             unset($options['where_in']);
+         }
          if($options)
              $this->_CI->db->where($options);
          $result = $this->_CI->db->get()->result_array();

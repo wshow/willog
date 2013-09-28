@@ -70,7 +70,7 @@ if ( ! function_exists('valid_email'))
 if ( ! function_exists('is_json'))
 {
     function is_json($str){
-        return !is_null(json_decode($str));
+        return !is_null(json_decode($str,true));
     }
 }
 
@@ -111,5 +111,71 @@ if( ! function_exists('deel_strimwidth'))
     function deel_strimwidth($str ,$start , $width ,$trimmarker ){
         $output = preg_replace('/^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$start.'}((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$width.'}).*/s','\1',$str);
         return $output.$trimmarker;
+    }
+}
+
+if( ! function_exists('calc_distance'))
+{
+
+    function calc_distance($location,$lat,$lng){
+        $latlng = explode(',',$location);
+        $EARTH_RADIUS = 6378137.0;
+        $f = getRad(($latlng[0] + $lat)/2);
+        $g = getRad(($latlng[0] - $lat)/2);
+        $l = getRad(($latlng[1] - $lng)/2);
+
+        $sg = sin($g);
+        $sl = sin($l);
+        $sf = sin($f);
+
+        $a = $EARTH_RADIUS;
+        $fl = 1/298.257;
+
+        $sg = $sg*$sg;
+        $sl = $sl*$sl;
+        $sf = $sf*$sf;
+
+        $s = $sg*(1-$sl) + (1-$sf)*$sl;
+        $c = (1-$sg)*(1-$sl) + $sf*$sl;
+
+        $w = atan(sqrt($s/$c));
+        $r = sqrt($s*$c)/$w;
+        $d = 2*$w*$a;
+        $h1 = (3*$r -1)/2/$c;
+        $h2 = (3*$r +1)/2/$s;
+
+        $distance = $d*(1 + $fl*($h1*$sf*(1-$sg) - $h2*(1-$sf)*$sg));
+        if($distance>1000)
+            return number_format($distance/1000, 2, '.', '').'KM';
+        return number_format($distance, 2, '.', '').'M';
+
+    }
+}
+if( ! function_exists('getRad'))
+{
+    function getRad($d){
+        return $d*pi()/180.0;
+    }
+}
+if( ! function_exists('create_geolocation'))
+{
+    function create_geolocation($lat,$lng,$tip){
+        $html = '';
+        if(isset($_COOKIE["location"])){
+            $distance = calc_distance($_COOKIE["location"],$lat,$lng);
+
+            $html = "<span>{$tip} <span>{$distance}</span>.</span>";
+        }
+        else
+            $html = "<span class=\"hide\">{$tip} <span class=\"geolocation\" data-lat=\"{$lat}\" data-lng=\"{$lng}\">??</span>. </span> ";
+        return $html;
+    }
+}
+if( ! function_exists('create_map'))
+{
+    function create_map($lat,$lng){
+        if($lat && $lng)
+            return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?center={$lat},{$lng}&zoom=16&size=600x300&maptype=roadmap&markers={$lat},{$lng}&scale=1&sensor=false\">";
+        return '';
     }
 }

@@ -53,6 +53,7 @@ $lang['geolocation'] = 'Location';
 $lang['search'] = 'Search';
 $lang['address'] = 'Address';
 $lang['save_draft'] = 'Save draft';
+$lang['draft'] = 'Draft';
 $lang['publish'] = 'Publish';
 $lang['category'] = 'Category';
 $lang['city'] = 'City';

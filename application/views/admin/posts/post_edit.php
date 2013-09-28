@@ -32,7 +32,7 @@ $post['content']=json_decode($post['content'],true);
 <div class="large-12 columns">
     <form action="<?= base_url('/admin/posts/action/edit/'.$post['id']) ?>" id="post_form" method="post" class="custom">
         <input type="hidden" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash() ?>" />
-        <input type="hidden" name="p[device]" value="<?=is_mobile()?'mobile':'desktop'?>">
+        <input type="hidden" name="p[device]" value="<?=$post['device']?>">
         <div class="large-9 columns">
             <noscript>
                 <div data-alert="" class="alert-box round">
@@ -140,7 +140,11 @@ $post['content']=json_decode($post['content'],true);
 
             <div class="buttons row collapse">
                 <div class="small-6 columns">
-                    <input type="button" class="small button secondary expand" id="post_draft" value="<?= $lang->line('save_draft') ?>">
+                    <select name="p[status]" id="status">
+                        <option value="draft"><?=$lang->line('save_draft')?></option>
+                        <option value="publish"><?=$lang->line('publish')?></option>
+                    </select>
+                    <script type="text/javascript">jQuery('#status').val('<?= $post['status'] ?>');</script>
                 </div>
                 <div class="small-6 columns">
                     <input type="button" class="small button success expand" id="post_submit" value="<?= $lang->line('publish') ?>">

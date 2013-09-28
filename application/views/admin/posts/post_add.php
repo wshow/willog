@@ -170,7 +170,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="buttons row collapse">
                 <div class="small-6 columns">
-                    <input type="button" class="small button secondary expand" id="post_draft" value="<?= $lang->line('save_draft') ?>">
+                    <select name="p[status]">
+                        <option value="draft"><?=$lang->line('save_draft')?></option>
+                        <option value="publish"><?=$lang->line('publish')?></option>
+                    </select>
                 </div>
                 <div class="small-6 columns">
                     <input type="button" class="small button success expand" id="post_submit" value="<?= $lang->line('publish') ?>">

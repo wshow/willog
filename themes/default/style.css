@@ -508,8 +508,18 @@ main,#main{position: relative;}
     width: -ms-calc(100% - 350px);
     padding:10px;
 }
+#content .pagination{
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+}
+#content .pagination li{
+    display: inline;
+    margin:5px;
+    padding: 5px;
+    background: rgba(255,0,102,0.5);
+}
 /* Timeline */
-
 .timeline {
     margin: 30px 0 0 0;
     padding: 0;
@@ -529,6 +539,15 @@ article p{
     padding:5px 0;
     text-indent: 2em;
 }
+article h2 a,article section a:hover,#content .pagination li a{
+     color: #eee;
+     text-shadow: 2px 2px 5px #f06;
+ }
+article h2 a:hover,article section a,article .meta span{
+    color: #f06;
+    text-shadow: 2px 2px 5px #eee;
+}
+
 .timeline:before{
     content:' ';
     top:0;
@@ -568,11 +587,11 @@ article p{
     margin: 0 0 0 -25px;
 }
 
-.phone:before {
+.mobile:before {
     content: "\e000";
 }
 
-.screen:before {
+.desktop:before {
     content: "\e001";
 }
 
@@ -688,7 +707,7 @@ article p{
 }
 
 .timeline >li article cite{
-    color:#666;
+    color:#333;
     text-shadow: 0 0 1px #f06;
 }
 .timeline >li article section.meta{
@@ -817,9 +836,11 @@ article p{
     color:#eee;
     box-shadow:2px 2px 0 #333;
 }
-.widget .language li{
-    padding-right:10px;
-    float:right;
+.widget li{
+    margin: 10px;
+}
+.widget .language li,.widget .tags li{
+    float:left;
 }
 .radius{
     border-radius: 5px;
@@ -915,14 +936,14 @@ header h1 a:focus::after {
     transform: translateX(0px);
 }
 
-#main a {
+.widget a {
     line-height: 2em;
     -webkit-perspective: 800px;
     -moz-perspective: 800px;
     perspective: 800px;
 }
 
-#main a span {
+.widget a span {
     position: relative;
     display: inline-block;
     padding: 3px 15px 0;
@@ -942,7 +963,7 @@ header h1 a:focus::after {
     transform-origin: 0% 50%;
 }
 
-#main a span::before {
+.widget a span::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -963,14 +984,15 @@ header h1 a:focus::after {
     pointer-events: none;
 }
 
-#main a:hover span,
-#main a:focus span {
+.widget a:hover span,
+.widget a:focus span {
     background: #2f4351;
 }
 
-#main a:hover span::before,
-#main a:focus span::before {
+.widget a:hover span::before,
+.widget a:focus span::before {
     -webkit-transform: rotateX(10deg);
     -moz-transform: rotateX(10deg);
     transform: rotateX(10deg);
 }
+

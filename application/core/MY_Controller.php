@@ -39,7 +39,7 @@ class MY_Controller extends CI_Controller{
         }
         $this->data['cur_lang'] = $this->cur_lang;
         $this->data['site_name'] = $this->options->get('site_name',$this->cur_lang);
-        $this->data['base_url'] = base_url($this->cur_lang==$this->site_lang?'':$this->cur_lang);
+        $this->data['base_url'] = $this->cur_lang==$this->site_lang?base_url():(base_url($this->cur_lang).'/');
 
         if (method_exists($this, $method))
         {

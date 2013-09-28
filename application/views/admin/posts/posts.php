@@ -32,7 +32,7 @@ $cur_page = (int)$posts['data']['page_now'];
         <?php foreach($posts['data']['result'] as $post): ?>
             <tr>
                 <td>
-                    <?= $post['name'][$cur_lang] ?>
+                    <?=$post['status']=='draft'?'('.$lang->line('draft').')':''?><?= $post['name'][$cur_lang] ?>
                 </td>
                 <td>
                     <?php if(isset($post['category'])): ?>

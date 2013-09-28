@@ -15,6 +15,24 @@
                 </div>
             </div>
             <div class="widget">
+                <h3><?= $lang['cities'] ?></h3>
+                <div>
+                    <?= $this->willog->w_get_widget_terms('city',$cur_lang,$base_url) ?>
+                </div>
+            </div>
+            <div class="widget">
+                <h3><?= $lang['categories'] ?></h3>
+                <div>
+                    <?= $this->willog->w_get_widget_terms('category',$cur_lang,$base_url) ?>
+                </div>
+            </div>
+            <div class="widget">
+                <h3><?= $lang['tags'] ?></h3>
+                <div class="tags">
+                    <?= $this->willog->w_get_widget_terms('tag',$cur_lang,$base_url) ?>
+                </div>
+            </div>
+            <div class="widget">
                 <h3><?= $lang['archives'] ?></h3>
                 <div>
                     <?= $this->willog->w_get_archives() ?>
