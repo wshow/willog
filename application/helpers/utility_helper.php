@@ -175,7 +175,7 @@ if( ! function_exists('create_map'))
 {
     function create_map($lat,$lng){
         if($lat && $lng)
-            return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?center={$lat},{$lng}&zoom=15&size=600x300&maptype=roadmap&markers={$lat},{$lng}&scale=1&sensor=false\">";
+            return "<img src=\"http://maps.googleapis.com/maps/api/staticmap?center={$lat},{$lng}&zoom=13&size=600x300&maptype=roadmap&markers={$lat},{$lng}&scale=1&sensor=false\">";
         return '';
     }
 }

@@ -526,7 +526,8 @@ main,#main{position: relative;}
     position: relative;
     display: block;
 }
-li {
+.timeline > li {
+    padding-bottom: 10px;
     display: list-item;
     text-align: -webkit-match-parent;
 }
@@ -561,7 +562,7 @@ article h2 a:hover,article section a,article .meta span{
 .timeline > li > .meta {
     display: block;
     width: 20%;
-    padding-right: 80px;
+    padding-right: 50px;
     position: absolute;
     text-align: right;
 }
@@ -868,6 +869,9 @@ footer#footer{
     header{
         text-align: center;
         font-size:75%;
+    }
+    #sidebar{
+        display: none;
     }
 }
 @media screen and (max-width:959px){

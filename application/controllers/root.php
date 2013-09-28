@@ -32,8 +32,10 @@ class Root extends MY_Controller {
         $post_id = array();
         foreach($posts['data']['result'] as &$post){
             array_push($post_id,$post['id']);
-            $post['terms'] = rtrim($post['terms'], ",");
-            $post['terms'] = $this->db->query("select * from w_terms where id in ({$post['terms']})")->result_array();
+            if($post['terms'] ){
+                $post['terms'] = rtrim($post['terms'], ",");
+                $post['terms'] = $this->db->query("select * from w_terms where id in ({$post['terms']})")->result_array();
+            }
         }
         if(count($post_id)>0)
             $this->willog->w_view($post_id);
