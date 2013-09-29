@@ -28,6 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          unset($options['table']);
          $return = isset($options['return']) ? true : false;
          unset($options['return']);
+         if(isset($options['order_by'])){
+             $this->_CI->db->order_by($options['order_by']);
+             unset($options['order_by']);
+         }
          if(isset($options['where_in'])){
              $this->_CI->db->where_in($options['where_in']);
              unset($options['where_in']);
@@ -76,9 +80,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $this->_CI->db->from($options['table']);
          if(isset($options['where']) && $options['where'])
              $this->_CI->db->where($options['where']);
-         $this->_CI->db
-             ->order_by((isset($options['order'])&&$options['order'])?$options['order']:'id desc')
-             ->limit($page_size, ($page-1)*$page_size);
+         if(isset($options['order_by'])){
+             $this->_CI->db->order_by($options['order_by']);
+
+         }
+         else
+         {
+             $this->_CI->db
+                 ->order_by((isset($options['order'])&&$options['order'])?$options['order']:'id desc');
+         }
+         $this->_CI->db->limit($page_size, ($page-1)*$page_size);
 
          $result = $this->_CI->db->get()->result_array();
          return array('status'=>1,'msg'=>'', 'data'=>array(

@@ -171,8 +171,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="buttons row collapse">
                 <div class="small-6 columns">
                     <select name="p[status]">
-                        <option value="draft"><?=$lang->line('save_draft')?></option>
                         <option value="publish"><?=$lang->line('publish')?></option>
+                        <option value="draft"><?=$lang->line('save_draft')?></option>
                     </select>
                 </div>
                 <div class="small-6 columns">

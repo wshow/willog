@@ -18,7 +18,8 @@ class Posts extends Admin_Controller
             'table' => 'posts',
             'page' => $page,
             'where' => array('type' => 'post'),
-            'select' => "w_posts.id,w_posts.slug,w_posts.`name`,w_posts.views,w_posts.comments,w_posts.`status`,w_posts.type,w_posts.updated_at,w_posts.created_at,(select group_concat('\\\"',taxonomy,'-',id,'\\\":',`name`) from w_terms where id in (select meta_value from w_postmeta where post_id = w_posts.id)) as terms"
+            'select' => "w_posts.id,w_posts.slug,w_posts.`name`,w_posts.views,w_posts.comments,w_posts.`status`,w_posts.type,w_posts.updated_at,w_posts.created_at,(select group_concat('\\\"',taxonomy,'-',id,'\\\":',`name`) from w_terms where id in (select meta_value from w_postmeta where post_id = w_posts.id)) as terms",
+            'order_by' => 'created_at desc'
         );
         $posts = $this->m_db->get_list($arg);
         foreach($posts['data']['result'] as &$post){

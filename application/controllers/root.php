@@ -25,7 +25,8 @@ class Root extends MY_Controller {
             'page' => $page,
             'per_page' => 5,
             'where' => array('type' => 'post'),
-            'select' => "w_posts.*,(select group_concat(meta_value) from w_postmeta where ( post_id = w_posts.id) and ( meta_key = 'category' or meta_key = 'city' or meta_key ='tag')) as terms"
+            'select' => "w_posts.*,(select group_concat(meta_value) from w_postmeta where ( post_id = w_posts.id) and ( meta_key = 'category' or meta_key = 'city' or meta_key ='tag')) as terms",
+            'order_by' => 'created_at desc'
             //'select' => "w_posts.*,(select group_concat('\\\"',taxonomy,'-',id,'\\\":',`name`) from w_terms where id in (select meta_value from w_postmeta where post_id = w_posts.id)) as terms"
         );
         $posts = $this->m_db->get_list($arg);
