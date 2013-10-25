@@ -170,7 +170,9 @@ Class M_Posts extends MY_Model
         return array('status'=>1,'msg'=>'insert_success');
     }
 
-    public function get_archives(){
+    public function get_archives($month = false){
+        if(!$month)
+            return $this->_CI->db->query("SELECT YEAR(created_at) AS `year`, count(ID) as posts FROM `w_posts` WHERE `status` <> 'draft' GROUP BY YEAR(created_at) ORDER BY created_at desc ")->result_array();
         return $this->_CI->db->query("SELECT YEAR(created_at) AS `year`, MONTH(created_at) AS `month`, count(ID) as posts FROM `w_posts` WHERE `status` <> 'draft' GROUP BY YEAR(created_at), MONTH(created_at) ORDER BY created_at desc ")->result_array();
     }
 }

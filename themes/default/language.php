@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 $language = array(
     'cn'=>array(
+        'desc' => '不管还要多久，最后我会在你身边。',
         'languages' => '语言切换',
         'qrcode' => '二维码',
         'qrdesc' => '支持移动设备和平板',
@@ -23,6 +24,7 @@ $language = array(
         'categories' => '分类',
     ),
     'en'=>array(
+        'desc' => 'No matter no long it takes, I\'ll be by your side.',
         'languages' => 'Languages',
         'qrcode' => 'QR Code',
         'qrdesc' => 'Fit with mobile and pad',

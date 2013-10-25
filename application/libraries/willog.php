@@ -62,13 +62,13 @@ class Willog
             foreach($terms as $term){
                 $term['name'] = json_decode($term['name'],true);
                 if($term['taxonomy'] == 'city'){
-                    $url = $base_url.'city/'.$term['slug'];
+                    $url = $base_url.'archive/city/'.$term['slug'];
                     $result['city'] = "<a href=\"{$url}\">{$term['name'][$lang]}</a>";
                 }else if($term['taxonomy'] == 'tag'){
-                    $url = $base_url.'tag/'.$term['slug'];
+                    $url = $base_url.'archive/tag/'.$term['slug'];
                     $result['tag'] = (($result['tag']!='')?$result['tag'].' , ':'')."<a href=\"{$url}\">{$term['name'][$lang]}</a>";
                 }else if($term['taxonomy'] == 'category'){
-                    $url = $base_url.'category/'.$term['slug'];
+                    $url = $base_url.'archive/category/'.$term['slug'];
                     $result['category'] = (($result['category']!='')?$result['category'].' , ':'')."<a href=\"{$url}\">{$term['name'][$lang]}</a>";
                 }
             }
@@ -83,8 +83,8 @@ class Willog
         $archives = $this->_CI->m_posts->get_archives();
         if($archives){
             foreach($archives as $archive){
-                $url = base_url($lang.'/'.$archive['year'].'/'.$archive['month'].'/');
-                $html .= "<li><a href=\"{$url}\">{$archive['year']}-{$archive['month']} ({$archive['posts']})</a></li>";
+                $url = base_url($lang.'/archive/date/'.$archive['year'].'/');
+                $html .= "<li><a href=\"{$url}\">{$archive['year']} ({$archive['posts']})</a></li>";
             }
             if($html != '')
                 $html = '<ul class="archives">'.$html.'</ul>';
@@ -110,7 +110,7 @@ class Willog
                 $name = json_decode($item['name'],true);
                 $name = isset($name[$lang])?$name[$lang]:(isset($name[0])?$name[0]:'');
                 $count = (isset($item['children']) && is_array($item['children']) && $item['count']==0)?'':'('.$item['count'].')';
-                $html.= "<li><a href=\"{$base_url}{$item['taxonomy']}/{$item['slug']}\">{$name} {$count}</a>";
+                $html.= "<li><a href=\"{$base_url}archive/{$item['taxonomy']}/{$item['slug']}\">{$name} {$count}</a>";
             if(isset($item['children']) && is_array($item['children']))
                 $html .= $this->_create_html($item['children'],$lang,$base_url);
                 $html .='</li>';

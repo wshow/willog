@@ -20,7 +20,7 @@ include_once('functions.php');?>
     <header>
         <h2><?=$opt['site_desc'][$cur_lang]?></h2>
         <h1><a href="<?=$base_url?>"><?=$site_name?></a></h1>
-        <h2 class="bottom"><?=create_geolocation('31.96713', '118.78143', $lang['distance'])?>不管还要多久，最后我会在你身边。</h2>
+        <h2 class="bottom"><?=create_geolocation('31.96713', '118.78143', $lang['distance'])?><?=$lang['desc']?></h2>
     </header>
     <main id="main">
         <div id="content">
